@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.are_we_even">
+    package="eu.somniasoft.are_we_even">
    <application
         android:label="are_we_even"
         android:name="${applicationName}"
