@@ -1,6 +1,5 @@
-import 'package:are_we_even/screens/profile_page.dart';
-import 'package:are_we_even/services/authentication-with-social-connections.dart';
-import 'package:auth0_flutter/auth0_flutter.dart';
+import 'package:areweeven/services/authentication-service.dart';
+import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
@@ -12,15 +11,16 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  void navigateToUserProfile(Credentials credentials) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ProfilePage(
-          credentials: credentials,
-        ),
-      ),
-    );
+  // void navigateToUserProfile(Credentials credentials) {
+  void navigateToUserProfile() {
+    // Navigator.push(
+    //   context,
+    //   MaterialPageRoute(
+    //     builder: (context) => ProfilePage(
+    //       credentials: credentials,
+    //     ),
+    //   ),
+    // );
   }
 
   @override
@@ -34,32 +34,54 @@ class _LoginPageState extends State<LoginPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            ElevatedButton(
-              onPressed: () async {
-                SignInWithApple signInWithApple = SignInWithApple();
-
-                final credentials = await signInWithApple.signIn();
-                navigateToUserProfile(credentials);
-              },
-              child: const Text('Sign in with Apple'),
-            ),
-            ElevatedButton(
-              onPressed: () async {
-                try {
-                  SignInWithGoogle signInWithGoogle = SignInWithGoogle();
-                  final credentials = await signInWithGoogle.signIn();
-                  navigateToUserProfile(credentials);
-                } catch (e) {
-                  if (kDebugMode) {
-                    print(e);
-                  }
-                }
-              },
-              child: const Text('Sign in with Google'),
-            ),
+            // ElevatedButton(
+            //   onPressed: () async {
+            //     SignInWithApple signInWithApple = SignInWithApple();
+            //
+            //     final credentials = await signInWithApple.signIn();
+            //     navigateToUserProfile(credentials);
+            //   },
+            //   child: const Text('Sign in with Apple'),
+            // ),
+            ...LoginType.values
+                .map(
+                  (type) => ElevatedButton(
+                    onPressed: () async {
+                      try {
+                        final client = OauthService(type);
+                        final token = await client.getIdToken();
+                        final result = await _performLogin(token!);
+                        print(result);
+                      } catch (e) {
+                        if (kDebugMode) {
+                          print(e);
+                        }
+                      }
+                    },
+                    child: Text(
+                      type.toString(),
+                    ),
+                  ),
+                )
+                .toList(),
           ],
         ),
       ),
     );
+  }
+}
+
+Future<dynamic> _performLogin(String accessToken) async {
+  final dio = Dio();
+
+  try {
+    final response = await dio.post('http://localhost:8080/login', data: {
+      'accessToken': accessToken,
+      'loginType': 'GOOGLE', // Replace with the desired login type
+    });
+    return response.data;
+  } catch (e) {
+    // Error occurred during the request
+    print('Request error: $e');
   }
 }

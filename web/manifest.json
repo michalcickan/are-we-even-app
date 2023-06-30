@@ -1,6 +1,6 @@
 {
-    "name": "are_we_even",
-    "short_name": "are_we_even",
+    "name": "areweeven",
+    "short_name": "areweeven",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

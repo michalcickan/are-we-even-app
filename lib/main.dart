@@ -1,4 +1,4 @@
-import 'package:are_we_even/screens/login_page.dart';
+import 'package:areweeven/screens/login_page.dart';
 import 'package:flutter/material.dart';
 
 void main() => runApp(const MyApp());

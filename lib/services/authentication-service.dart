@@ -1,13 +1,30 @@
+import 'package:google_sign_in/google_sign_in.dart';
 
-import 'package:auth0_flutter/auth0_flutter.dart';
+enum LoginType {
+  google,
+}
 
-abstract class AuthenticationService<T> {
-  Auth0 auth0 = Auth0(
-    'nahit-fidanci.eu.auth0.com', //auth0 domain
-    'AUTH0_CLIENT_ID',
+class OauthService {
+  LoginType _type;
+
+  OauthService(
+    this._type,
   );
 
-  Future<T> signIn();
-
-  Future<void> signOut();
+  Future<String?> getIdToken() async {
+    switch (_type) {
+      case LoginType.google:
+        final googleSigIn = GoogleSignIn(
+          // TODO: make env
+          clientId: "spoofed.apps.googleusercontent.com",
+          scopes: [
+            "email",
+            "profile",
+          ],
+        );
+        final result = await googleSigIn.signIn();
+        final auth = await result?.authentication;
+        return auth?.idToken;
+    }
+  }
 }

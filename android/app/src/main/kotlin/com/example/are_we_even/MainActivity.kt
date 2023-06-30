@@ -1,4 +1,4 @@
-package eu.somniasoft.are_we_even
+package eu.somniasoft.areweeven
 
 import io.flutter.embedding.android.FlutterActivity
 

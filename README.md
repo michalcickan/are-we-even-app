@@ -1,4 +1,4 @@
-# are_we_even
+# areweeven
 
 A new Flutter project.
 
