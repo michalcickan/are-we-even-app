@@ -76,7 +76,7 @@ Future<dynamic> _performLogin(String accessToken) async {
 
   try {
     final response = await dio.post('http://localhost:8080/login', data: {
-      'accessToken': accessToken,
+      'idToken': accessToken,
       'loginType': 'GOOGLE', // Replace with the desired login type
     });
     return response.data;

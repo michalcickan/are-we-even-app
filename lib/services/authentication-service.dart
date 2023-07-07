@@ -1,3 +1,4 @@
+import 'package:areweeven/env/env.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 enum LoginType {
@@ -16,7 +17,7 @@ class OauthService {
       case LoginType.google:
         final googleSigIn = GoogleSignIn(
           // TODO: make env
-          clientId: "spoofed.apps.googleusercontent.com",
+          clientId: Env.googleClientId,
           scopes: [
             "email",
             "profile",
