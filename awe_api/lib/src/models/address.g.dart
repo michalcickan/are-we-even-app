@@ -7,24 +7,13 @@ part of 'address.dart';
 // **************************************************************************
 
 Address _$AddressFromJson(Map<String, dynamic> json) => Address(
-      json['zip'] as String?,
-      json['street'] as String?,
-      json['city'] as String?,
-      json['country'] as String?,
+      street: json['street'] as String,
+      zip: json['zip'] as String,
+      city: json['city'] as String,
     );
 
-Map<String, dynamic> _$AddressToJson(Address instance) {
-  final val = <String, dynamic>{};
-
-  void writeNotNull(String key, dynamic value) {
-    if (value != null) {
-      val[key] = value;
-    }
-  }
-
-  writeNotNull('zip', instance.zip);
-  writeNotNull('street', instance.street);
-  writeNotNull('city', instance.city);
-  writeNotNull('country', instance.country);
-  return val;
-}
+Map<String, dynamic> _$AddressToJson(Address instance) => <String, dynamic>{
+      'street': instance.street,
+      'zip': instance.zip,
+      'city': instance.city,
+    };

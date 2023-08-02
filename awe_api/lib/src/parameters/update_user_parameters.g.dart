@@ -1,26 +1,23 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'user.dart';
+part of 'update_user_parameters.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-User _$UserFromJson(Map<String, dynamic> json) => User(
-      id: json['id'] as int,
+UpdateUserParameters _$UpdateUserParametersFromJson(
+        Map<String, dynamic> json) =>
+    UpdateUserParameters(
+      email: json['email'] as String?,
       name: json['name'] as String?,
       middleName: json['middleName'] as String?,
       surname: json['surname'] as String?,
-      addresses: (json['addresses'] as List<dynamic>?)
-          ?.map((e) => Address.fromJson(e as Map<String, dynamic>))
-          .toList(),
-      email: json['email'] as String,
     );
 
-Map<String, dynamic> _$UserToJson(User instance) {
-  final val = <String, dynamic>{
-    'id': instance.id,
-  };
+Map<String, dynamic> _$UpdateUserParametersToJson(
+    UpdateUserParameters instance) {
+  final val = <String, dynamic>{};
 
   void writeNotNull(String key, dynamic value) {
     if (value != null) {
@@ -28,10 +25,9 @@ Map<String, dynamic> _$UserToJson(User instance) {
     }
   }
 
+  writeNotNull('email', instance.email);
   writeNotNull('name', instance.name);
   writeNotNull('middleName', instance.middleName);
   writeNotNull('surname', instance.surname);
-  writeNotNull('addresses', instance.addresses);
-  val['email'] = instance.email;
   return val;
 }

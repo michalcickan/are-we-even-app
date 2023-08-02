@@ -3,7 +3,7 @@ import 'api_error.dart';
 
 class APIResponse<T> {
   T? data;
-  ApiError? error;
+  APIError? error;
 
   APIResponse({
     this.data,
@@ -18,22 +18,21 @@ class APIResponse<T> {
     if (data == null) {
       if (json["error"] != null) {
         return APIResponse(
-          error: ApiError.fromJson(json["error"]),
+          error: APIError.fromJson(
+            json["error"],
+          ),
         );
       }
       try {
         return APIResponse(data: fromJsonT(json));
       } catch (e) {
         return APIResponse(
-            error: const ApiError(
-          null,
-          422,
-          [],
-        ));
+          error: APIError(message: ""),
+        );
       }
     }
     return data["error"] != null
-        ? APIResponse(error: ApiError.fromJson(data))
+        ? APIResponse(error: APIError.fromJson(data))
         : APIResponse(data: fromJsonT(data));
   }
 

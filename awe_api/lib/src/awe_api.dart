@@ -1,12 +1,13 @@
-import 'package:dio/dio.dart';
+import 'dart:io';
+
 import 'package:awe_api/src/endpoint.dart';
 import 'package:awe_api/src/json_convertable.dart';
-import 'package:awe_api/src/knaken_header_field.dart';
 import 'package:awe_api/src/models/api_response.dart';
 import 'package:awe_api/src/models/generic_result.dart';
-import 'package:awe_api/src/models/token_response.dart';
+import 'package:dio/dio.dart';
 
 import 'global_error_handler.dart';
+import 'header_field.dart';
 
 /// Checks if you are awesome. Spoiler: you are.
 class AweAPI {
@@ -27,9 +28,9 @@ class AweAPI {
       baseUrl: "$baseUrl/api/${apiVersion}/",
       connectTimeout: Duration(seconds: timeoutInSeconds),
       responseType: ResponseType.json,
-      contentType: "application/json",
+      contentType: ContentType.json.toString(),
       headers: {
-        "accept": "application/json",
+        "accept": ContentType.json.toString(),
       },
       receiveDataWhenStatusError: true,
       validateStatus: makeValidateStatus(globalErrorHandler),
@@ -37,82 +38,74 @@ class AweAPI {
     if (logger != null) {
       _dio.interceptors.add(logger!);
     }
-    clientIpAddress = "0.0.0.0";
     _accessToken = accessToken;
   }
 
   set _accessToken(String? newAccessToken) {
     newAccessToken != null
-        ? _dio.options.headers[KnakenHeaderField.authorization.value] =
-    "Bearer ${newAccessToken!}"
-        : _dio.options.headers.remove(KnakenHeaderField.authorization.value);
-  }
-
-  set location(LocationData data) {
-    _dio.options.headers[KnakenHeaderField.location.value] =
-    "${data.latitude} ${data.longitude}";
-  }
-
-  set clientIpAddress(String ipAddress) {
-    _dio.options.headers[KnakenHeaderField.clientIP.value] = ipAddress;
+        ? _dio.options.headers[HeaderField.authorization.value] =
+            "Bearer ${newAccessToken!}"
+        : _dio.options.headers.remove(HeaderField.authorization.value);
   }
 
   Future<T> get<T>(
-      Endpoint endpoint,
-      T Function(Map<String, dynamic> json) parser, {
-        JsonConvertable? params,
-        Map<String, dynamic>? additionalHeaders,
-      }) =>
+    Endpoint endpoint,
+    T Function(Map<String, dynamic> json) parser, {
+    JsonConvertable? params,
+    Map<String, dynamic>? additionalHeaders,
+  }) =>
       _dio
           .get(
-        endpoint.path,
-        data: null,
-        options: _makeOptions(additionalHeaders),
-        queryParameters: params?.toJson(),
-      )
+            endpoint.path,
+            data: null,
+            options: _makeOptions(additionalHeaders),
+            queryParameters: params?.toJson(),
+          )
           .then((value) => APIResponse<T>.fromJson(value.data, parser))
           .then(handleResponse);
 
   Future<T> post<T>(
-      Endpoint endpoint,
-      T Function(Map<String, dynamic> json) parser, {
-        JsonConvertable? params,
-        Map<String, dynamic>? additionalHeaders,
-      }) =>
+    Endpoint endpoint,
+    T Function(Map<String, dynamic> json) parser, {
+    JsonConvertable? params,
+    Map<String, dynamic>? additionalHeaders,
+  }) =>
       _dio
           .post(
-        endpoint.path,
-        data: params?.toJson(),
-        options: _makeOptions(additionalHeaders),
-      )
+            endpoint.path,
+            data: params?.toJson(),
+            options: _makeOptions(additionalHeaders),
+          )
           .then((value) => APIResponse<T>.fromJson(value.data, parser))
           .then(handleResponse);
+
   Future<T> put<T>(
-      Endpoint endpoint,
-      T Function(Map<String, dynamic> json) parser, {
-        JsonConvertable? params,
-        Map<String, dynamic>? additionalHeaders,
-      }) =>
+    Endpoint endpoint,
+    T Function(Map<String, dynamic> json) parser, {
+    JsonConvertable? params,
+    Map<String, dynamic>? additionalHeaders,
+  }) =>
       _dio
           .post(
-        endpoint.path,
-        data: params?.toJson(),
-        options: _makeOptions(additionalHeaders),
-      )
+            endpoint.path,
+            data: params?.toJson(),
+            options: _makeOptions(additionalHeaders),
+          )
           .then((value) => APIResponse<T>.fromJson(value.data, parser))
           .then(handleResponse);
+
   Future<T> delete<T>(
-      Endpoint endpoint,
-      T Function(Map<String, dynamic> json) parser, {
-        JsonConvertable? data,
-        Map<String, dynamic>? additionalHeaders,
-      }) =>
+    Endpoint endpoint,
+    T Function(Map<String, dynamic> json) parser, {
+    JsonConvertable? data,
+    Map<String, dynamic>? additionalHeaders,
+  }) =>
       _dio
           .delete(
-        endpoint.path,
-        data: data?.toJson(),
-        options: _makeOptions(additionalHeaders),
-      )
+            endpoint.path,
+            data: data?.toJson(),
+            options: _makeOptions(additionalHeaders),
+          )
           .then((value) => APIResponse<T>.fromJson(value.data, parser))
           .then(handleResponse);
 
@@ -145,7 +138,7 @@ class AweAPI {
     return (int? statusCode) {
       switch (statusCode ?? 0) {
         case 401:
-        // why we don't have a mechanism for refreshing token?
+          // why we don't have a mechanism for refreshing token?
           _accessToken = null;
           errorHandler?.onLoggedOut();
           break;
@@ -157,4 +150,3 @@ class AweAPI {
     };
   }
 }
-
