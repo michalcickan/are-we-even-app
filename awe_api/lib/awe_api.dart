@@ -34,5 +34,6 @@ export 'src/requests/auth_requests.dart';
 export 'src/requests/expense_requests.dart';
 export 'src/requests/invitation_requests.dart';
 export 'src/interfaces/json_convertible.dart';
-export 'src/interfaces/tokens_provider.dart';
+export 'src/interfaces/tokens_storage.dart';
 export 'src/interfaces/auth_events.dart';
+export 'src/tokens_holder.dart';

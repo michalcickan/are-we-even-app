@@ -139,3 +139,4 @@ app.*.symbols
 
 .env
 **/env.g.dart
+app/**.g.dart

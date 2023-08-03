@@ -16,8 +16,7 @@ class AweAPIClient {
 
   AweAPIClient({
     required String baseUrl,
-    required this.apiVersion,
-    required TokensProvider tokensProvider,
+    required TokensStorage tokensStorage,
     Dio? dio,
     int timeoutInSeconds = 30,
     Interceptor? logger,
@@ -25,7 +24,7 @@ class AweAPIClient {
   }) {
     _dio = dio ?? Dio();
     _dio.options = BaseOptions(
-      baseUrl: "$baseUrl/api/$apiVersion/",
+      baseUrl: $baseUrl,
       connectTimeout: Duration(seconds: timeoutInSeconds),
       responseType: ResponseType.json,
       contentType: ContentType.json.toString(),
@@ -40,7 +39,7 @@ class AweAPIClient {
     _dio.interceptors.add(
       AuthInterceptor(
         authEvents: authEvents,
-        tokensProvider: tokensProvider,
+        tokensStorage: tokensStorage,
         requestBaseOptions: _dio.options,
       ),
     );

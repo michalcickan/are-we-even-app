@@ -13,9 +13,9 @@ extension UserRequests on AweAPIClient {
         params: parameters,
       );
 
-  Future<GenericResult> addAddress(UpdateUserParameters parameters) => post(
+  Future<Address> addAddress(UpdateUserParameters parameters) => post(
         Endpoint.userAddress(),
-        GenericResult.fromJson,
+        Address.fromJson,
         params: parameters,
       );
 

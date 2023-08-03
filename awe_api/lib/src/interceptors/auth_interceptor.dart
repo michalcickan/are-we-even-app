@@ -9,13 +9,13 @@ import 'package:awe_api/src/tokens_holder.dart';
 import 'package:dio/dio.dart';
 
 class AuthInterceptor extends InterceptorsWrapper {
-  final TokensProvider tokensProvider;
+  final TokensStorage tokensStorage;
   final AuthEvents? authEvents;
   final BaseOptions requestBaseOptions;
   TokensHolder? _tokensHolder;
 
   AuthInterceptor({
-    required this.tokensProvider,
+    required this.tokensStorage,
     required this.authEvents,
     required this.requestBaseOptions,
   });
@@ -25,7 +25,7 @@ class AuthInterceptor extends InterceptorsWrapper {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    _tokensHolder ??= await tokensProvider.getTokens();
+    _tokensHolder ??= await tokensStorage.getTokens();
     if (_tokensHolder!.accessToken != null) {
       options.headers[HeaderField.authorization.value] =
           "Bearer ${_tokensHolder!.accessToken}";
@@ -103,8 +103,8 @@ class AuthInterceptor extends InterceptorsWrapper {
 
   void setTokens(TokensHolder holder) {
     _tokensHolder = holder;
-    tokensProvider.saveAccessToken(holder.accessToken);
-    tokensProvider.saveRefreshToken(holder.refreshToken);
+    tokensStorage.saveAccessToken(holder.accessToken);
+    tokensStorage.saveRefreshToken(holder.refreshToken);
   }
 }
 
