@@ -1,10 +1,10 @@
-import 'package:awe_api/src/json_convertable.dart';
+import 'package:awe_api/src/interfaces/json_convertible.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'refresh_token_parameters.g.dart';
 
 @JsonSerializable()
-class RefreshTokenParameters extends JsonConvertable {
+class RefreshTokenParameters extends JsonConvertible {
   final String refreshToken;
   final String clientId;
 

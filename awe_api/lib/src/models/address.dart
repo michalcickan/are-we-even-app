@@ -1,10 +1,10 @@
-import 'package:awe_api/src/json_convertable.dart'; // Assuming you have JsonConvertable class defined in this file
+import 'package:awe_api/src/interfaces/json_convertible.dart'; // Assuming you have JsonConvertable class defined in this file
 import 'package:json_annotation/json_annotation.dart';
 
 part 'address.g.dart';
 
 @JsonSerializable()
-class Address extends JsonConvertable {
+class Address extends JsonConvertible {
   final String street;
   final String zip;
   final String city;

@@ -1,31 +1,31 @@
 import 'dart:io';
 
 import 'package:awe_api/src/endpoint.dart';
-import 'package:awe_api/src/json_convertable.dart';
+import 'package:awe_api/src/interceptors/auth_interceptor.dart';
+import 'package:awe_api/src/interfaces/auth_events.dart';
+import 'package:awe_api/src/interfaces/json_convertible.dart';
 import 'package:awe_api/src/models/api_response.dart';
-import 'package:awe_api/src/models/generic_result.dart';
 import 'package:dio/dio.dart';
 
-import 'global_error_handler.dart';
-import 'header_field.dart';
+import 'interfaces/tokens_provider.dart';
 
 /// Checks if you are awesome. Spoiler: you are.
-class AweAPI {
+class AweAPIClient {
   late final Dio _dio;
   final String apiVersion;
 
-  AweAPI({
+  AweAPIClient({
     required String baseUrl,
     required this.apiVersion,
-    String? accessToken,
+    required TokensProvider tokensProvider,
     Dio? dio,
     int timeoutInSeconds = 30,
     Interceptor? logger,
-    GlobalErrorHandler? globalErrorHandler,
+    AuthEvents? authEvents,
   }) {
     _dio = dio ?? Dio();
     _dio.options = BaseOptions(
-      baseUrl: "$baseUrl/api/${apiVersion}/",
+      baseUrl: "$baseUrl/api/$apiVersion/",
       connectTimeout: Duration(seconds: timeoutInSeconds),
       responseType: ResponseType.json,
       contentType: ContentType.json.toString(),
@@ -33,25 +33,23 @@ class AweAPI {
         "accept": ContentType.json.toString(),
       },
       receiveDataWhenStatusError: true,
-      validateStatus: makeValidateStatus(globalErrorHandler),
     );
     if (logger != null) {
       _dio.interceptors.add(logger!);
     }
-    _accessToken = accessToken;
-  }
-
-  set _accessToken(String? newAccessToken) {
-    newAccessToken != null
-        ? _dio.options.headers[HeaderField.authorization.value] =
-            "Bearer ${newAccessToken!}"
-        : _dio.options.headers.remove(HeaderField.authorization.value);
+    _dio.interceptors.add(
+      AuthInterceptor(
+        authEvents: authEvents,
+        tokensProvider: tokensProvider,
+        requestBaseOptions: _dio.options,
+      ),
+    );
   }
 
   Future<T> get<T>(
     Endpoint endpoint,
     T Function(Map<String, dynamic> json) parser, {
-    JsonConvertable? params,
+    JsonConvertible? params,
     Map<String, dynamic>? additionalHeaders,
   }) =>
       _dio
@@ -67,7 +65,7 @@ class AweAPI {
   Future<T> post<T>(
     Endpoint endpoint,
     T Function(Map<String, dynamic> json) parser, {
-    JsonConvertable? params,
+    JsonConvertible? params,
     Map<String, dynamic>? additionalHeaders,
   }) =>
       _dio
@@ -82,7 +80,7 @@ class AweAPI {
   Future<T> put<T>(
     Endpoint endpoint,
     T Function(Map<String, dynamic> json) parser, {
-    JsonConvertable? params,
+    JsonConvertible? params,
     Map<String, dynamic>? additionalHeaders,
   }) =>
       _dio
@@ -97,7 +95,7 @@ class AweAPI {
   Future<T> delete<T>(
     Endpoint endpoint,
     T Function(Map<String, dynamic> json) parser, {
-    JsonConvertable? data,
+    JsonConvertible? data,
     Map<String, dynamic>? additionalHeaders,
   }) =>
       _dio
@@ -114,17 +112,7 @@ class AweAPI {
     if (data == null) {
       throw (response.error ?? Exception("Something went wrong"));
     }
-    if (data is TokenResponse && data.accessToken != null) {
-      _accessToken = data.accessToken;
-    }
     return data!;
-  }
-
-  Future<GenericResult> logout() {
-    _accessToken = null;
-    return Future.value(
-      GenericResult("ok", 200, DateTime.now()),
-    );
   }
 
   Options? _makeOptions(Map<String, dynamic>? additionalHeaders) {
@@ -132,21 +120,5 @@ class AweAPI {
       return null;
     }
     return Options(headers: additionalHeaders!);
-  }
-
-  ValidateStatus makeValidateStatus(GlobalErrorHandler? errorHandler) {
-    return (int? statusCode) {
-      switch (statusCode ?? 0) {
-        case 401:
-          // why we don't have a mechanism for refreshing token?
-          _accessToken = null;
-          errorHandler?.onLoggedOut();
-          break;
-        case 410:
-          errorHandler?.onForceUpdate();
-          break;
-      }
-      return true;
-    };
   }
 }

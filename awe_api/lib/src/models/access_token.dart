@@ -1,11 +1,11 @@
-import 'package:awe_api/src/json_convertable.dart'; // Assuming you have JsonConvertable class defined in this file
+import 'package:awe_api/src/interfaces/json_convertible.dart'; // Assuming you have JsonConvertable class defined in this file
 import 'package:awe_api/src/utils/date_utils.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'access_token.g.dart';
 
 @JsonSerializable()
-class AccessToken extends JsonConvertable {
+class AccessToken extends JsonConvertible {
   final String accessToken;
   final String refreshToken;
 

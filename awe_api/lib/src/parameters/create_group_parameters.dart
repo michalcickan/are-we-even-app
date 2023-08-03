@@ -1,10 +1,10 @@
-import 'package:awe_api/src/json_convertable.dart';
+import 'package:awe_api/src/interfaces/json_convertible.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'create_group_parameters.g.dart';
 
 @JsonSerializable()
-class CreateGroupParameters extends JsonConvertable {
+class CreateGroupParameters extends JsonConvertible {
   final String name;
 
   CreateGroupParameters({

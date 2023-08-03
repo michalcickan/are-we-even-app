@@ -1,10 +1,10 @@
-import 'package:awe_api/src/json_convertable.dart'; // Assuming you have JsonConvertable class defined in this file
+import 'package:awe_api/src/interfaces/json_convertible.dart'; // Assuming you have JsonConvertable class defined in this file
 import 'package:json_annotation/json_annotation.dart';
 
 part 'api_error.g.dart';
 
 @JsonSerializable()
-class APIError extends JsonConvertable {
+class APIError extends JsonConvertible {
   final String message;
 
   APIError({
@@ -12,7 +12,7 @@ class APIError extends JsonConvertable {
   });
 
   factory APIError.fromJson(Map<String, dynamic> json) =>
-      _$ApiErrorFromJson(json);
+      _$APIErrorFromJson(json);
 
-  Map<String, dynamic> toJson() => _$ApiErrorToJson(this);
+  Map<String, dynamic> toJson() => _$APIErrorToJson(this);
 }

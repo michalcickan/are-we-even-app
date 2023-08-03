@@ -1,10 +1,10 @@
-import 'package:awe_api/src/json_convertable.dart';
+import 'package:awe_api/src/interfaces/json_convertible.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'create_user_address_parameters.g.dart';
 
 @JsonSerializable()
-class CreateUserAddressParameters extends JsonConvertable {
+class CreateUserAddressParameters extends JsonConvertible {
   final String city;
   final String zip;
   final String street;

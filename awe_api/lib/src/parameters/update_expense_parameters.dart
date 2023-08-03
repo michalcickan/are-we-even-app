@@ -1,12 +1,12 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../json_convertable.dart';
+import '../interfaces/json_convertible.dart';
 import 'expense_payer_parameters.dart';
 
 part 'update_expense_parameters.g.dart';
 
 @JsonSerializable()
-class UpdateExpenseParameters extends JsonConvertable {
+class UpdateExpenseParameters extends JsonConvertible {
   final List<ExpensePayerParameters>? users;
   final String? description;
 

@@ -1,4 +1,4 @@
-import 'package:awe_api/src/json_convertable.dart';
+import 'package:awe_api/src/interfaces/json_convertible.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'expense_payer_parameters.dart';
@@ -6,7 +6,7 @@ import 'expense_payer_parameters.dart';
 part 'add_expense_parameters.g.dart';
 
 @JsonSerializable()
-class AddExpenseParameters extends JsonConvertable {
+class AddExpenseParameters extends JsonConvertible {
   final List<ExpensePayerParameters> users;
   final String description;
 

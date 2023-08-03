@@ -1,11 +1,11 @@
 import 'package:json_annotation/json_annotation.dart';
 
-import '../json_convertable.dart';
+import '../interfaces/json_convertible.dart';
 
 part 'expense_payer_parameters.g.dart';
 
 @JsonSerializable()
-class ExpensePayerParameters extends JsonConvertable {
+class ExpensePayerParameters extends JsonConvertible {
   final int id;
   final double paidAmount;
   final double dueAmount;

@@ -1,10 +1,10 @@
-import 'package:awe_api/src/json_convertable.dart';
+import 'package:awe_api/src/interfaces/json_convertible.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'registration_parameters.g.dart';
 
 @JsonSerializable()
-class RegistrationParameters extends JsonConvertable {
+class RegistrationParameters extends JsonConvertible {
   final String password;
   final String email;
 
