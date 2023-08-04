@@ -6,10 +6,12 @@ part 'login_parameters.g.dart';
 @JsonSerializable()
 class LoginParameters extends JsonConvertible {
   final String? idToken;
+  final String? email;
   final String? password;
 
   LoginParameters({
     this.idToken,
+    this.email,
     this.password,
   });
 

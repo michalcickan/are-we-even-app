@@ -1,11 +1,6 @@
+import 'package:awe_api/awe_api.dart';
 import 'package:awe_api/src/endpoint.dart';
 import 'package:awe_api/src/header_field.dart';
-import 'package:awe_api/src/interfaces/auth_events.dart';
-import 'package:awe_api/src/interfaces/tokens_provider.dart';
-import 'package:awe_api/src/models/access_token.dart';
-import 'package:awe_api/src/models/api_response.dart';
-import 'package:awe_api/src/parameters/refresh_token_parameters.dart';
-import 'package:awe_api/src/tokens_holder.dart';
 import 'package:dio/dio.dart';
 
 class AuthInterceptor extends InterceptorsWrapper {

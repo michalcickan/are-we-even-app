@@ -119,11 +119,3 @@ flutter:
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
-
-flutter_gen:
-  output: lib/gen/ # Optional (default: lib/gen/)
-  line_length: 80 # Optional (default: 80)
-
-  # Optional
-  integrations:
-    flutter_svg: true

@@ -1,3 +1,5 @@
+import 'package:awe_api/awe_api.dart';
+
 class Endpoint {
   factory Endpoint.user() => const Endpoint("user");
 
@@ -36,12 +38,6 @@ class Endpoint {
   final String path;
 
   const Endpoint(this.path);
-}
-
-enum LoginType {
-  google,
-  apple,
-  email,
 }
 
 enum InvitationResolution { accept, decline }

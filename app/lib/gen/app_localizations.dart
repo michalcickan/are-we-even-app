@@ -97,23 +97,47 @@ abstract class AppLocalizations {
   /// **'or'**
   String get or;
 
-  /// No description provided for @login_button_with_email_title.
+  /// No description provided for @loginButtonWithEmailTitle.
   ///
   /// In en, this message translates to:
   /// **'Login with email'**
-  String get login_button_with_email_title;
+  String get loginButtonWithEmailTitle;
 
-  /// No description provided for @login_button_with_google.
+  /// No description provided for @loginButtonWithGoogleTitle.
   ///
   /// In en, this message translates to:
   /// **'Login with email'**
-  String get login_button_with_google;
+  String get loginButtonWithGoogleTitle;
 
-  /// No description provided for @register_button_with_email_title.
+  /// No description provided for @registerButtonWithEmailTitle.
   ///
   /// In en, this message translates to:
   /// **'Sign up'**
-  String get register_button_with_email_title;
+  String get registerButtonWithEmailTitle;
+
+  /// No description provided for @loginTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get loginTitle;
+
+  /// No description provided for @loginButtonTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Login'**
+  String get loginButtonTitle;
+
+  /// No description provided for @emailPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Email'**
+  String get emailPlaceholder;
+
+  /// No description provided for @passwordPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Password'**
+  String get passwordPlaceholder;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

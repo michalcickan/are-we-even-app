@@ -8,11 +8,23 @@ class AppLocalizationsEn extends AppLocalizations {
   String get or => 'or';
 
   @override
-  String get login_button_with_email_title => 'Login with email';
+  String get loginButtonWithEmailTitle => 'Login with email';
 
   @override
-  String get login_button_with_google => 'Login with email';
+  String get loginButtonWithGoogleTitle => 'Login with email';
 
   @override
-  String get register_button_with_email_title => 'Sign up';
+  String get registerButtonWithEmailTitle => 'Sign up';
+
+  @override
+  String get loginTitle => 'Login';
+
+  @override
+  String get loginButtonTitle => 'Login';
+
+  @override
+  String get emailPlaceholder => 'Email';
+
+  @override
+  String get passwordPlaceholder => 'Password';
 }

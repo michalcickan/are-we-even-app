@@ -1,0 +1,4 @@
+enum AvailableLoginType {
+  google,
+  email,
+}

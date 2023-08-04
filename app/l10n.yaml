@@ -4,3 +4,4 @@ output-localization-file: app_localizations.dart
 output-dir: lib/gen
 synthetic-package: false
 untranslated-messages-file: not_translated.txt
+style: camel-case

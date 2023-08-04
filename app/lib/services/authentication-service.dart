@@ -1,12 +1,9 @@
 import 'package:areweeven/env/env.dart';
+import 'package:awe_api/awe_api.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-enum LoginType {
-  google,
-}
-
 class OauthService {
-  LoginType _type;
+  final LoginType _type;
 
   OauthService(
     this._type,

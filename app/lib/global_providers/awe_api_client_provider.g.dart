@@ -6,7 +6,7 @@ part of 'awe_api_client_provider.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$aweApiClientHash() => r'8a966dc97adf3f423b930a5117830b51aa01f48b';
+String _$aweApiClientHash() => r'1ed8ded8def6b25c1c89d28b923afda78dab4a6e';
 
 /// See also [aweApiClient].
 @ProviderFor(aweApiClient)

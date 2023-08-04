@@ -1,18 +1,13 @@
 import 'dart:io';
 
+import 'package:awe_api/awe_api.dart';
 import 'package:awe_api/src/endpoint.dart';
 import 'package:awe_api/src/interceptors/auth_interceptor.dart';
-import 'package:awe_api/src/interfaces/auth_events.dart';
-import 'package:awe_api/src/interfaces/json_convertible.dart';
-import 'package:awe_api/src/models/api_response.dart';
 import 'package:dio/dio.dart';
-
-import 'interfaces/tokens_provider.dart';
 
 /// Checks if you are awesome. Spoiler: you are.
 class AweAPIClient {
   late final Dio _dio;
-  final String apiVersion;
 
   AweAPIClient({
     required String baseUrl,
@@ -24,7 +19,7 @@ class AweAPIClient {
   }) {
     _dio = dio ?? Dio();
     _dio.options = BaseOptions(
-      baseUrl: $baseUrl,
+      baseUrl: baseUrl,
       connectTimeout: Duration(seconds: timeoutInSeconds),
       responseType: ResponseType.json,
       contentType: ContentType.json.toString(),

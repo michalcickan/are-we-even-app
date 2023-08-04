@@ -13,7 +13,7 @@ GoRouter goRouter(GoRouterRef ref) => GoRouter(
         switch (state.location) {
           case "/":
             final isLoggedIn = ref.read(isLoggedInProvider).value;
-            return isLoggedIn ?? false ? "/login" : "/home";
+            return isLoggedIn ?? false ? "/home" : "/welcome";
           default:
             return null;
         }
