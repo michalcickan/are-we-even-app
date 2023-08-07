@@ -1,3 +1,4 @@
+import 'package:areweeven/widgets/awe_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -51,8 +52,9 @@ class ScrollablePageWithBottomButton extends ConsumerWidget {
     );
   }
 
-  Widget _makeBottomButton(BuildContext context) => TextButton(
+  Widget _makeBottomButton(BuildContext context) => AWETextButton(
+        TextButtonType.primary,
+        text: bottomButtonTitle,
         onPressed: bottomButtonOnPressed,
-        child: Text(bottomButtonTitle),
       );
 }

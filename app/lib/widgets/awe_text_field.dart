@@ -1,4 +1,5 @@
 import 'package:areweeven/extensions/build_context_themes.dart';
+import 'package:areweeven/widgets/sizes.dart';
 import 'package:flutter/material.dart';
 
 import 'awe_border_radius.dart';
@@ -58,18 +59,25 @@ class _AWETextFieldState extends State<AWETextField>
           controller: _textEditingController,
           cursorColor: context.colorScheme.primary,
           decoration: InputDecoration(
-            suffix: widget.showRemoveButton
+            contentPadding: const EdgeInsets.all(
+              Sizes.large,
+            ),
+            labelText: widget.hintText,
+            suffixIcon: widget.showRemoveButton
                 ? IconButton(
-                    icon: const Icon(Icons.close),
+                    icon: const Icon(
+                      Icons.close,
+                    ),
                     onPressed: _cleanText,
                   )
                 : null,
             floatingLabelStyle: context.textTheme.labelSmall!.copyWith(
               color: context.colorScheme.primary,
             ),
-            labelText: widget.hintText,
-            labelStyle: context.textTheme.bodySmall!.copyWith(
-              color: context.colorScheme.surfaceVariant,
+            labelStyle: context.textTheme.bodyMedium!.copyWith(
+              color: context.colorScheme.onSurface.withAlpha(
+                128,
+              ),
             ),
             focusedBorder: _makeOutlinedBorder(
               context.colorScheme.primary,
@@ -78,8 +86,8 @@ class _AWETextFieldState extends State<AWETextField>
               context.colorScheme.onBackground,
             ),
           ),
-          style: context.textTheme.bodySmall?.copyWith(
-            color: context.colorScheme.onBackground,
+          style: context.textTheme.bodyMedium?.copyWith(
+            color: context.colorScheme.onSurface,
           ),
         ),
       ),

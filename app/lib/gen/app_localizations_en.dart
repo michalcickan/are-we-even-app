@@ -11,7 +11,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loginButtonWithEmailTitle => 'Login with email';
 
   @override
-  String get loginButtonWithGoogleTitle => 'Login with email';
+  String get loginButtonWithGoogleTitle => 'Login with Google';
 
   @override
   String get registerButtonWithEmailTitle => 'Sign up';

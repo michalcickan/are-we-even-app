@@ -106,7 +106,7 @@ abstract class AppLocalizations {
   /// No description provided for @loginButtonWithGoogleTitle.
   ///
   /// In en, this message translates to:
-  /// **'Login with email'**
+  /// **'Login with Google'**
   String get loginButtonWithGoogleTitle;
 
   /// No description provided for @registerButtonWithEmailTitle.

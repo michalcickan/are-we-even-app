@@ -1,7 +1,7 @@
 {
   "or": "or",
   "loginButtonWithEmailTitle": "Login with email",
-  "loginButtonWithGoogleTitle": "Login with email",
+  "loginButtonWithGoogleTitle": "Login with Google",
   "registerButtonWithEmailTitle": "Sign up",
   "loginTitle": "Login",
   "loginButtonTitle": "Login",

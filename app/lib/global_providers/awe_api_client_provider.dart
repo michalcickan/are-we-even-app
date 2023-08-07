@@ -11,7 +11,7 @@ part 'awe_api_client_provider.g.dart';
 @riverpod
 AweAPIClient aweApiClient(AweApiClientRef ref) {
   return AweAPIClient(
-    baseUrl: Env.apiHost,
+    baseUrl: "${Env.apiHost}/",
     logger: kDebugMode
         ? PrettyDioLogger(
             requestHeader: true,

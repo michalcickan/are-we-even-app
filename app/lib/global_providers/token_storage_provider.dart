@@ -7,9 +7,11 @@ part 'token_storage_provider.g.dart';
 
 @riverpod
 TokensStorage tokenStorage(TokenStorageRef ref) {
-  return _AppTokensStorage(ref.read(
-    storageManagerProvider,
-  ));
+  return _AppTokensStorage(
+    ref.watch(
+      storageManagerProvider,
+    ),
+  );
 }
 
 class _AppTokensStorage extends TokensStorage {

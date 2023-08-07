@@ -23,7 +23,8 @@ class ScrollableContent extends StatelessWidget {
             child: SingleChildScrollView(
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               padding: const EdgeInsets.symmetric(
-                horizontal: 16,
+                horizontal: Sizes.medium,
+                vertical: Sizes.medium,
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,

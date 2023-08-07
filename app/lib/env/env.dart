@@ -9,5 +9,5 @@ abstract class Env {
   static const String googleClientId = _Env.googleClientId;
 
   @EnviedField(varName: 'API_HOST')
-  static const String apiHost = _Env.googleClientId;
+  static const String apiHost = _Env.apiHost;
 }

@@ -1,8 +1,9 @@
 import 'package:areweeven/extensions/go_router_context.dart';
 import 'package:areweeven/gen/app_localizations.dart';
 import 'package:areweeven/global_providers/awe_api_client_provider.dart';
+import 'package:areweeven/global_providers/is_logged_in_provider.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
-import 'package:areweeven/routes/main_routes.dart';
+import 'package:areweeven/routes/auth_routes.dart';
 import 'package:areweeven/routes/routes.dart';
 import 'package:areweeven/services/authentication-service.dart';
 import 'package:areweeven/utils/available_login_type.dart';
@@ -50,12 +51,12 @@ class WelcomeActions extends _$WelcomeActions with ProviderRouterContextMixin {
   Future<void> didTap(AvailableLoginType loginType) async {
     switch (loginType) {
       case AvailableLoginType.email:
-        const HomeRoute().push(context);
+        const LoginRoute().push(context);
         break;
       case AvailableLoginType.google:
         try {
           await loginWithExternalProvider(loginType.apiLoginType!);
-          const HomeRoute().push(context);
+          ref.read(isLoggedInProvider.notifier).setLoggedIn(true);
         } on APIError catch (e) {
           // showError
           if (kDebugMode) {
