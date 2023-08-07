@@ -27,6 +27,7 @@ class AweAPIClient {
         "accept": ContentType.json.toString(),
       },
       receiveDataWhenStatusError: true,
+      validateStatus: _validateStatus,
     );
     if (logger != null) {
       _dio.interceptors.add(logger!);
@@ -68,7 +69,9 @@ class AweAPIClient {
             data: params?.toJson(),
             options: _makeOptions(additionalHeaders),
           )
-          .then((value) => APIResponse<T>.fromJson(value.data, parser))
+          .then((value) => APIResponse<T>.fromJson(
+              value.statusCode == HttpStatus.noContent ? {} : value.data,
+              parser))
           .then(handleResponse);
 
   Future<T> put<T>(
@@ -114,5 +117,9 @@ class AweAPIClient {
       return null;
     }
     return Options(headers: additionalHeaders!);
+  }
+
+  bool _validateStatus(int? status) {
+    return true;
   }
 }

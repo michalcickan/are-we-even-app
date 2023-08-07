@@ -1,3 +1,4 @@
+import 'package:areweeven/widgets/sizes.dart';
 import 'package:flutter/material.dart';
 
 import 'awe_border_radius.dart';
@@ -35,7 +36,7 @@ extension _Styles on TextButtonType {
   ButtonStyle style(BuildContext context) {
     switch (this) {
       case TextButtonType.primary:
-        return ButtonStyle(
+        return const _CommonButtonStyle().copyWith(
           backgroundColor: MaterialStateProperty.resolveWith(
             _basicBackgroundColorResolver(
               context,
@@ -52,7 +53,7 @@ extension _Styles on TextButtonType {
           ),
         );
       case TextButtonType.secondary:
-        return ButtonStyle(
+        return const _CommonButtonStyle().copyWith(
           backgroundColor: MaterialStateProperty.resolveWith(
             _basicBackgroundColorResolver(
               context,
@@ -94,3 +95,15 @@ Color Function(Set<MaterialState>) _basicBackgroundColorResolver(
       }
       return resolve(colorScheme);
     };
+
+class _CommonButtonStyle extends ButtonStyle {
+  const _CommonButtonStyle()
+      : super(
+          padding: const MaterialStatePropertyAll(
+            EdgeInsets.symmetric(
+              horizontal: Sizes.medium,
+              vertical: Sizes.small,
+            ),
+          ),
+        );
+}

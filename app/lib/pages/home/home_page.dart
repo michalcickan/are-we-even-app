@@ -1,40 +1,20 @@
+import 'package:areweeven/global_providers/auth_provider.dart';
+import 'package:areweeven/widgets/scrollable_page_with_bottom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  // void navigateToUserProfile(Credentials credentials) {
-  void navigateToUserProfile() {
-    // Navigator.push(
-    //   context,
-    //   MaterialPageRoute(
-    //     builder: (context) => ProfilePage(
-    //       credentials: credentials,
-    //     ),
-    //   ),
-    // );
-  }
+class HomePage extends ConsumerWidget {
+  const HomePage({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Material App Bar'),
-      ),
-      body: Align(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Text("ahoj"),
-          ],
-        ),
-      ),
+  Widget build(BuildContext context, WidgetRef ref) {
+    return ScrollablePageWithBottomButton(
+      bottomButtonTitle: "logout",
+      title: "Home",
+      bottomButtonOnPressed: () {
+        ref.read(authProvider.notifier).logout();
+      },
+      children: const [],
     );
   }
 }

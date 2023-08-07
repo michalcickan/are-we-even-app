@@ -27,4 +27,10 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get passwordPlaceholder => 'Password';
+
+  @override
+  String get registrationTitle => 'Register';
+
+  @override
+  String get repeatPasswordPlaceholder => 'Repeat password';
 }

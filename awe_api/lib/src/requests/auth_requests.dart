@@ -1,5 +1,6 @@
 import 'package:awe_api/awe_api.dart';
 import 'package:awe_api/src/endpoint.dart';
+import 'package:awe_api/src/models/empty_response.dart';
 
 extension AuthRequests on AweAPIClient {
   Future<AccessToken> login(
@@ -10,6 +11,11 @@ extension AuthRequests on AweAPIClient {
         Endpoint.login(loginType),
         AccessToken.fromJson,
         params: parameters,
+      );
+
+  Future<EmptyResponse> logout() => post(
+        Endpoint.logout(),
+        EmptyResponse.fromJson,
       );
 
   Future<AccessToken> register(RegistrationParameters parameters) => post(

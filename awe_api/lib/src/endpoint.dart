@@ -6,10 +6,12 @@ class Endpoint {
   factory Endpoint.userAddress() => const Endpoint("user/address");
 
   factory Endpoint.login(LoginType? loginType) => loginType != null
-      ? Endpoint("login/$loginType")
+      ? Endpoint("login/${loginType.name}")
       : const Endpoint("login");
 
   factory Endpoint.token() => const Endpoint("token");
+
+  factory Endpoint.logout() => const Endpoint("logout");
 
   factory Endpoint.register() => const Endpoint("register");
 

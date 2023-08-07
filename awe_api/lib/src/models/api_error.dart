@@ -15,4 +15,7 @@ class APIError extends JsonConvertible {
       _$APIErrorFromJson(json);
 
   Map<String, dynamic> toJson() => _$APIErrorToJson(this);
+
+  @override
+  String toString() => message;
 }

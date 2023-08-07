@@ -6,7 +6,7 @@ part of 'welcome_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$welcomeTextsHash() => r'9aa965b0eeaaea3b508786e8fb58bae71de558e9';
+String _$welcomeTextsHash() => r'd696fcb15626a7cf7e33a667174d812baa65605f';
 
 /// See also [welcomeTexts].
 @ProviderFor(welcomeTexts)
@@ -34,7 +34,7 @@ final welcomeItemsProvider = AutoDisposeProvider<List<WelcomeItem>>.internal(
 );
 
 typedef WelcomeItemsRef = AutoDisposeProviderRef<List<WelcomeItem>>;
-String _$welcomeActionsHash() => r'9da08fcdab47b33a75fca8c637ad8cd86ff0ece5';
+String _$welcomeActionsHash() => r'356149f1e4a7eaa67d71c4d6994856cb29c312db';
 
 /// See also [WelcomeActions].
 @ProviderFor(WelcomeActions)

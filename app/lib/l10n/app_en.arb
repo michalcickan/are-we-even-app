@@ -6,5 +6,7 @@
   "loginTitle": "Login",
   "loginButtonTitle": "Login",
   "emailPlaceholder": "Email",
-  "passwordPlaceholder": "Password"
+  "passwordPlaceholder": "Password",
+  "registrationTitle": "Register",
+  "repeatPasswordPlaceholder": "Repeat password"
 }

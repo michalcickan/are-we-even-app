@@ -9,7 +9,7 @@ part of 'access_token.dart';
 AccessToken _$AccessTokenFromJson(Map<String, dynamic> json) => AccessToken(
       accessToken: json['accessToken'] as String,
       refreshToken: json['refreshToken'] as String,
-      expiryDate: dateTimeFromTimestamp(json['expiryDate'] as String?),
+      expiryDate: dateTimeFromTimestamp(json['expiryDate'] as int?),
     );
 
 Map<String, dynamic> _$AccessTokenToJson(AccessToken instance) =>

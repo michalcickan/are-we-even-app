@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import 'global_providers/auth_provider.dart';
 import 'global_providers/go_router_provider.dart';
-import 'global_providers/is_logged_in_provider.dart';
 import 'pages/splash_page.dart';
 
 void main() {
@@ -21,15 +21,16 @@ class MyApp extends ConsumerWidget {
     BuildContext context,
     WidgetRef ref,
   ) {
-    final goRouter = ref.watch(goRouterProvider);
-    return ref.watch(isLoggedInProvider).maybeWhen(
-          orElse: () => MaterialApp.router(
-            title: 'Material App',
-            routerConfig: goRouter,
-          ),
-          loading: () => const MaterialApp(
-            home: SplashPage(),
-          ),
-        );
+    final router = ref.watch(goRouterProvider);
+    final isLoggedIn = ref.watch(authProvider);
+    return isLoggedIn.maybeWhen(
+      orElse: () => MaterialApp.router(
+        title: 'Material App',
+        routerConfig: router,
+      ),
+      loading: () => const MaterialApp(
+        home: SplashPage(),
+      ),
+    );
   }
 }

@@ -138,6 +138,18 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Password'**
   String get passwordPlaceholder;
+
+  /// No description provided for @registrationTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Register'**
+  String get registrationTitle;
+
+  /// No description provided for @repeatPasswordPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Repeat password'**
+  String get repeatPasswordPlaceholder;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

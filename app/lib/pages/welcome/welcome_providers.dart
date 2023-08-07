@@ -1,7 +1,7 @@
 import 'package:areweeven/extensions/go_router_context.dart';
 import 'package:areweeven/gen/app_localizations.dart';
+import 'package:areweeven/global_providers/auth_provider.dart';
 import 'package:areweeven/global_providers/awe_api_client_provider.dart';
-import 'package:areweeven/global_providers/is_logged_in_provider.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
 import 'package:areweeven/routes/auth_routes.dart';
 import 'package:areweeven/routes/routes.dart';
@@ -25,12 +25,12 @@ class WelcomeItem {
 }
 
 class WelcomeTexts {
-  final String description;
+  final String? loginRegistrationDeliminatorText;
   final String signUpButtonTitle;
 
   WelcomeTexts({
-    required this.description,
     required this.signUpButtonTitle,
+    this.loginRegistrationDeliminatorText,
   });
 }
 
@@ -38,7 +38,7 @@ class WelcomeTexts {
 WelcomeTexts welcomeTexts(WelcomeTextsRef ref) {
   final translation = ref.watch(localizationProvider);
   return WelcomeTexts(
-    description: translation.or,
+    loginRegistrationDeliminatorText: "------- ${translation.or} -------",
     signUpButtonTitle: translation.registerButtonWithEmailTitle,
   );
 }
@@ -56,7 +56,7 @@ class WelcomeActions extends _$WelcomeActions with ProviderRouterContextMixin {
       case AvailableLoginType.google:
         try {
           await loginWithExternalProvider(loginType.apiLoginType!);
-          ref.read(isLoggedInProvider.notifier).setLoggedIn(true);
+          ref.read(authProvider.notifier).setLoggedIn(true);
         } on APIError catch (e) {
           // showError
           if (kDebugMode) {
@@ -67,6 +67,10 @@ class WelcomeActions extends _$WelcomeActions with ProviderRouterContextMixin {
           logger.i(e.toString());
         }
     }
+  }
+
+  Future<void> didTapRegister() async {
+    const RegistrationRoute().push(context);
   }
 
   Future<AccessToken?> loginWithExternalProvider(LoginType loginType) async {

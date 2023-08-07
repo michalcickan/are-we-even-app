@@ -9,7 +9,7 @@ part of 'refresh_token.dart';
 RefreshToken _$RefreshTokenFromJson(Map<String, dynamic> json) => RefreshToken(
       id: json['id'] as int,
       refreshToken: json['refreshToken'] as String,
-      expiryDate: dateTimeFromTimestamp(json['expiryDate'] as String?),
+      expiryDate: dateTimeFromTimestamp(json['expiryDate'] as int?),
       userId: json['userId'] as int,
     );
 

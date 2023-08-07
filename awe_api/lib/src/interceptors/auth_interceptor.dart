@@ -33,11 +33,21 @@ class AuthInterceptor extends InterceptorsWrapper {
     Response response,
     ResponseInterceptorHandler handler,
   ) async {
-    final data = response.data;
-    if (data is AccessToken && data.accessToken != null) {
-      setTokens(data.tokenHolder);
+    if (response.realUri.pathSegments.contains(Endpoint.logout().path)) {
+      setTokens(
+        TokensHolder(null, null),
+      );
+      return handler.next(response);
     }
-    handler.next(response);
+    final data = response.data?["data"];
+    if (data == null || data["accessToken"] == null) {
+      return handler.next(response);
+    }
+    final accessToken = AccessToken.fromJson(data);
+    if (accessToken?.accessToken != null) {
+      setTokens(accessToken.tokenHolder);
+    }
+    return handler.next(response);
   }
 
   @override

@@ -46,7 +46,7 @@ class _AppTokensStorage extends TokensStorage {
   }
 
   void _saveOrRemoveToken(StoreKey key, String? token) {
-    token == null
+    token != null
         ? storageManager.save(
             key,
             token,

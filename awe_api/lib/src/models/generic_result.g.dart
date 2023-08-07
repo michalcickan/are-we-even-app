@@ -10,7 +10,7 @@ GenericResult _$GenericResultFromJson(Map<String, dynamic> json) =>
     GenericResult(
       json['message'] as String?,
       json['status'] as int?,
-      dateTimeFromTimestamp(json['timestamp'] as String?),
+      dateTimeFromTimestamp(json['timestamp'] as int?),
     );
 
 Map<String, dynamic> _$GenericResultToJson(GenericResult instance) {

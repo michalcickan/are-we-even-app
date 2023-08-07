@@ -6,7 +6,7 @@ part of 'login_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$loginTextsHash() => r'fc3bea78e3c0934edf0e9ffefe5de8d28e7c3b91';
+String _$loginTextsHash() => r'833d3caea7ffa3111e4bf1b0cc9a176f5207588f';
 
 /// See also [loginTexts].
 @ProviderFor(loginTexts)
@@ -36,7 +36,7 @@ final loginIsButtonEnabledProvider = AutoDisposeProvider<bool>.internal(
 );
 
 typedef LoginIsButtonEnabledRef = AutoDisposeProviderRef<bool>;
-String _$loginActionsHash() => r'11175ffb93868c75f4c99a589b75bcbeec568293';
+String _$loginActionsHash() => r'c17270ef3d64207fefc59085f0a16032706a4c9b';
 
 /// See also [LoginActions].
 @ProviderFor(LoginActions)

@@ -9,6 +9,7 @@ part of 'login_parameters.dart';
 LoginParameters _$LoginParametersFromJson(Map<String, dynamic> json) =>
     LoginParameters(
       idToken: json['idToken'] as String?,
+      email: json['email'] as String?,
       password: json['password'] as String?,
     );
 
@@ -22,6 +23,7 @@ Map<String, dynamic> _$LoginParametersToJson(LoginParameters instance) {
   }
 
   writeNotNull('idToken', instance.idToken);
+  writeNotNull('email', instance.email);
   writeNotNull('password', instance.password);
   return val;
 }

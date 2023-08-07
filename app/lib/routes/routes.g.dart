@@ -23,6 +23,10 @@ RouteBase get $rootRoute => GoRouteData.$route(
           factory: $LoginRouteExtension._fromState,
         ),
         GoRouteData.$route(
+          path: 'registration',
+          factory: $RegistrationRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
           path: 'home',
           factory: $HomeRouteExtension._fromState,
         ),
@@ -68,6 +72,24 @@ extension $LoginRouteExtension on LoginRoute {
 
   String get location => GoRouteData.$location(
         '/login',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $RegistrationRouteExtension on RegistrationRoute {
+  static RegistrationRoute _fromState(GoRouterState state) =>
+      const RegistrationRoute();
+
+  String get location => GoRouteData.$location(
+        '/registration',
       );
 
   void go(BuildContext context) => context.go(location);

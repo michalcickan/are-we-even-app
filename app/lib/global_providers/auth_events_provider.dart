@@ -1,7 +1,7 @@
 import 'package:awe_api/awe_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-import 'is_logged_in_provider.dart';
+import 'auth_provider.dart';
 
 part 'auth_events_provider.g.dart';
 
@@ -19,6 +19,6 @@ class _AuthEvents extends AuthEvents {
 
   @override
   void onLoggedOut() {
-    ref.read(isLoggedInProvider.notifier).setLoggedIn(false);
+    ref.read(authProvider.notifier).setLoggedIn(false);
   }
 }

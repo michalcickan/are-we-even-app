@@ -1,3 +1,4 @@
+import 'package:areweeven/global_providers/global_error_provider.dart';
 import 'package:areweeven/widgets/awe_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -29,6 +30,18 @@ class ScrollablePageWithBottomButton extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    ref.listen(
+      globalErrorProvider,
+      (_, text) {
+        if (text == null) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(text),
+            duration: const Duration(seconds: 3),
+          ),
+        );
+      },
+    );
     return Scaffold(
       appBar: title != null
           ? AppBar(
@@ -36,9 +49,7 @@ class ScrollablePageWithBottomButton extends ConsumerWidget {
             )
           : null,
       body: ScrollableContent(
-        scrollContent: [
-          ...children,
-        ],
+        scrollContent: children,
         bottomView: bottomAdditionalViews != null
             ? Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,

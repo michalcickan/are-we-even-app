@@ -1,6 +1,6 @@
 import 'package:areweeven/extensions/go_router_context.dart';
+import 'package:areweeven/global_providers/auth_provider.dart';
 import 'package:areweeven/global_providers/awe_api_client_provider.dart';
-import 'package:areweeven/global_providers/is_logged_in_provider.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
 import 'package:areweeven/utils/logger.dart';
 import 'package:awe_api/awe_api.dart';
@@ -24,19 +24,6 @@ class LoginTexts {
   });
 }
 
-class LoginInput {
-  final String hint;
-  final AutoDisposeNotifierProviderImpl<AutoDisposeNotifier<String>, String>
-      notifier;
-  final bool Function() validate;
-
-  const LoginInput(
-    this.hint,
-    this.notifier,
-    this.validate,
-  );
-}
-
 @riverpod
 LoginTexts loginTexts(LoginTextsRef ref) {
   final translation = ref.watch(localizationProvider);
@@ -56,10 +43,13 @@ class LoginActions extends _$LoginActions with ProviderRouterContextMixin {
   Future<void> didTapBottomButton() async {
     try {
       await ref.read(aweApiClientProvider).login(
-            LoginParameters(),
+            LoginParameters(
+              email: ref.read(loginEmailProvider.notifier).state,
+              password: ref.read(loginPasswordProvider.notifier).state,
+            ),
             null,
           );
-      ref.read(isLoggedInProvider.notifier).setLoggedIn(true);
+      ref.read(authProvider.notifier).setLoggedIn(true);
     } catch (e) {
       logger.e(
         e.toString(),
