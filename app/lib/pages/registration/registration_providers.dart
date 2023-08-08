@@ -1,10 +1,8 @@
 import 'package:areweeven/exceptions/validation_exception.dart';
 import 'package:areweeven/extensions/go_router_context.dart';
 import 'package:areweeven/global_providers/auth_provider.dart';
-import 'package:areweeven/global_providers/awe_api_client_provider.dart';
 import 'package:areweeven/global_providers/global_error_provider.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
-import 'package:awe_api/awe_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'registration_providers.g.dart';
@@ -53,13 +51,10 @@ class RegistrationActions extends _$RegistrationActions
         throw ValidationException.passwordNotMatch();
       }
       final email = ref.read(registrationEmailProvider);
-      await ref.read(aweApiClientProvider).register(
-        RegistrationParameters(
-          password: password,
-          email: email,
-        ),
-      );
-      ref.read(authProvider.notifier).setLoggedIn(true);
+      await ref.read(authProvider.notifier).register(
+            email,
+            password,
+          );
     } catch (e) {
       ref.read(globalErrorProvider.notifier).showError(e);
     }
@@ -96,6 +91,6 @@ bool registrationBottomButtonEnabled(RegistrationBottomButtonEnabledRef ref) {
   final password = ref.watch(registrationPasswordProvider);
   final repeatedPassword = ref.watch(registrationRepeatedPasswordProvider);
   return [email, password, repeatedPassword].every(
-        (element) => element.length > 3,
+    (element) => element.length > 3,
   );
 }

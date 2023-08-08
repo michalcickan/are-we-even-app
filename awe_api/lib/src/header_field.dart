@@ -1,5 +1,6 @@
 enum HeaderField {
-  authorization("Authorization");
+  authorization("Authorization"),
+  deviceId("X-Device-ID");
 
   final String value;
 

@@ -34,7 +34,7 @@ final welcomeItemsProvider = AutoDisposeProvider<List<WelcomeItem>>.internal(
 );
 
 typedef WelcomeItemsRef = AutoDisposeProviderRef<List<WelcomeItem>>;
-String _$welcomeActionsHash() => r'356149f1e4a7eaa67d71c4d6994856cb29c312db';
+String _$welcomeActionsHash() => r'6e35020a09212f17f487c1f39a70125b2bde0d2c';
 
 /// See also [WelcomeActions].
 @ProviderFor(WelcomeActions)

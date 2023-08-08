@@ -1,7 +1,6 @@
 import 'package:areweeven/extensions/go_router_context.dart';
 import 'package:areweeven/gen/app_localizations.dart';
 import 'package:areweeven/global_providers/auth_provider.dart';
-import 'package:areweeven/global_providers/awe_api_client_provider.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
 import 'package:areweeven/routes/auth_routes.dart';
 import 'package:areweeven/routes/routes.dart';
@@ -55,8 +54,16 @@ class WelcomeActions extends _$WelcomeActions with ProviderRouterContextMixin {
         break;
       case AvailableLoginType.google:
         try {
-          await loginWithExternalProvider(loginType.apiLoginType!);
-          ref.read(authProvider.notifier).setLoggedIn(true);
+          final apiLoginType = loginType.apiLoginType!;
+          final client = OauthService(apiLoginType);
+          final token = await client.getIdToken();
+          if (token == null) {
+            throw Exception("Welcome flow cancelled");
+          }
+          await ref.read(authProvider.notifier).loginWithExternalProvider(
+                token,
+                apiLoginType,
+              );
         } on APIError catch (e) {
           // showError
           if (kDebugMode) {
@@ -71,20 +78,6 @@ class WelcomeActions extends _$WelcomeActions with ProviderRouterContextMixin {
 
   Future<void> didTapRegister() async {
     const RegistrationRoute().push(context);
-  }
-
-  Future<AccessToken?> loginWithExternalProvider(LoginType loginType) async {
-    final client = OauthService(loginType);
-    final token = await client.getIdToken();
-    if (token == null) {
-      throw Exception("Welcome flow cancelled");
-    }
-    return await ref.read(aweApiClientProvider).login(
-          LoginParameters(
-            idToken: token,
-          ),
-          loginType,
-        );
   }
 }
 

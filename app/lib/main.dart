@@ -1,7 +1,7 @@
+import 'package:areweeven/global_providers/app_startup_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'global_providers/auth_provider.dart';
 import 'global_providers/go_router_provider.dart';
 import 'pages/splash_page.dart';
 
@@ -22,15 +22,12 @@ class MyApp extends ConsumerWidget {
     WidgetRef ref,
   ) {
     final router = ref.watch(goRouterProvider);
-    final isLoggedIn = ref.watch(authProvider);
-    return isLoggedIn.maybeWhen(
-      orElse: () => MaterialApp.router(
-        title: 'Material App',
-        routerConfig: router,
-      ),
-      loading: () => const MaterialApp(
-        home: SplashPage(),
-      ),
-    );
+    return ref.watch(appStartupProvider)
+        ? MaterialApp.router(
+            routerConfig: router,
+          )
+        : const MaterialApp(
+            home: SplashPage(),
+          );
   }
 }

@@ -1,9 +1,7 @@
 import 'package:areweeven/extensions/go_router_context.dart';
 import 'package:areweeven/global_providers/auth_provider.dart';
-import 'package:areweeven/global_providers/awe_api_client_provider.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
 import 'package:areweeven/utils/logger.dart';
-import 'package:awe_api/awe_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'login_providers.g.dart';
@@ -42,14 +40,10 @@ class LoginActions extends _$LoginActions with ProviderRouterContextMixin {
 
   Future<void> didTapBottomButton() async {
     try {
-      await ref.read(aweApiClientProvider).login(
-            LoginParameters(
-              email: ref.read(loginEmailProvider.notifier).state,
-              password: ref.read(loginPasswordProvider.notifier).state,
-            ),
-            null,
+      await ref.read(authProvider.notifier).login(
+            ref.read(loginEmailProvider.notifier).state,
+            ref.read(loginPasswordProvider.notifier).state,
           );
-      ref.read(authProvider.notifier).setLoggedIn(true);
     } catch (e) {
       logger.e(
         e.toString(),

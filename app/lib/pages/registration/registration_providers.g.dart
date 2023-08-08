@@ -40,7 +40,7 @@ final registrationBottomButtonEnabledProvider =
 
 typedef RegistrationBottomButtonEnabledRef = AutoDisposeProviderRef<bool>;
 String _$registrationActionsHash() =>
-    r'd55d6ca805359d43bf4a45bf8948094d91300166';
+    r'033a523ecac4d534d3ee017852ce1d28c5cabd69';
 
 /// See also [RegistrationActions].
 @ProviderFor(RegistrationActions)
