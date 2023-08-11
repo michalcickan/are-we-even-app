@@ -97,6 +97,18 @@ abstract class AppLocalizations {
   /// **'or'**
   String get or;
 
+  /// No description provided for @save.
+  ///
+  /// In en, this message translates to:
+  /// **'save'**
+  String get save;
+
+  /// No description provided for @logout.
+  ///
+  /// In en, this message translates to:
+  /// **'Logout'**
+  String get logout;
+
   /// No description provided for @loginButtonWithEmailTitle.
   ///
   /// In en, this message translates to:
@@ -150,6 +162,66 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Repeat password'**
   String get repeatPasswordPlaceholder;
+
+  /// No description provided for @homeTabTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Home'**
+  String get homeTabTitle;
+
+  /// No description provided for @settingsTabTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Settings'**
+  String get settingsTabTitle;
+
+  /// No description provided for @groupsTabTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Groups'**
+  String get groupsTabTitle;
+
+  /// No description provided for @appearanceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Appearance'**
+  String get appearanceTitle;
+
+  /// No description provided for @profileTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Profile'**
+  String get profileTitle;
+
+  /// No description provided for @namePlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Name'**
+  String get namePlaceholder;
+
+  /// No description provided for @surnamePlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Surname'**
+  String get surnamePlaceholder;
+
+  /// No description provided for @middleNamePlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Middle name'**
+  String get middleNamePlaceholder;
+
+  /// No description provided for @updatePersonalInfoTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Update basic info'**
+  String get updatePersonalInfoTitle;
+
+  /// No description provided for @updateAddresses.
+  ///
+  /// In en, this message translates to:
+  /// **'Update addresses'**
+  String get updateAddresses;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

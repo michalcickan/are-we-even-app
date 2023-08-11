@@ -1,5 +1,7 @@
 {
   "or": "or",
+  "save": "save",
+  "logout": "Logout",
   "loginButtonWithEmailTitle": "Login with email",
   "loginButtonWithGoogleTitle": "Login with Google",
   "registerButtonWithEmailTitle": "Sign up",
@@ -8,5 +10,15 @@
   "emailPlaceholder": "Email",
   "passwordPlaceholder": "Password",
   "registrationTitle": "Register",
-  "repeatPasswordPlaceholder": "Repeat password"
+  "repeatPasswordPlaceholder": "Repeat password",
+  "homeTabTitle": "Home",
+  "settingsTabTitle": "Settings",
+  "groupsTabTitle": "Groups",
+  "appearanceTitle": "Appearance",
+  "profileTitle": "Profile",
+  "namePlaceholder": "Name",
+  "surnamePlaceholder": "Surname",
+  "middleNamePlaceholder": "Middle name",
+  "updatePersonalInfoTitle": "Update basic info",
+  "updateAddresses": "Update addresses"
 }

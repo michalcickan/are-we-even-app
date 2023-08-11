@@ -2,16 +2,17 @@ import 'dart:io';
 
 import 'package:awe_api/awe_api.dart';
 import 'package:awe_api/src/endpoint.dart';
+import 'package:awe_api/src/extensions/map_dio.dart';
 import 'package:awe_api/src/interceptors/auth_interceptor.dart';
 import 'package:dio/dio.dart';
 
 /// Checks if you are awesome. Spoiler: you are.
-class AweAPIClient {
+final class AweAPIClient {
   late final Dio _dio;
 
   AweAPIClient({
     required String baseUrl,
-    required TokensStorage tokensStorage,
+    required AuthInfoManager authInfoManager,
     Dio? dio,
     int timeoutInSeconds = 30,
     Interceptor? logger,
@@ -35,7 +36,7 @@ class AweAPIClient {
     _dio.interceptors.add(
       AuthInterceptor(
         authEvents: authEvents,
-        tokensStorage: tokensStorage,
+        authInfoManager: authInfoManager,
         requestBaseOptions: _dio.options,
       ),
     );
@@ -51,7 +52,7 @@ class AweAPIClient {
           .get(
             endpoint.path,
             data: null,
-            options: _makeOptions(additionalHeaders),
+            options: additionalHeaders?.dioOptions,
             queryParameters: params?.toJson(),
           )
           .then((value) => APIResponse<T>.fromJson(value.data, parser))
@@ -67,7 +68,7 @@ class AweAPIClient {
           .post(
             endpoint.path,
             data: params?.toJson(),
-            options: _makeOptions(additionalHeaders),
+            options: additionalHeaders?.dioOptions,
           )
           .then((value) => APIResponse<T>.fromJson(
               value.statusCode == HttpStatus.noContent ? {} : value.data,
@@ -81,10 +82,10 @@ class AweAPIClient {
     Map<String, dynamic>? additionalHeaders,
   }) =>
       _dio
-          .post(
+          .put(
             endpoint.path,
             data: params?.toJson(),
-            options: _makeOptions(additionalHeaders),
+            options: additionalHeaders?.dioOptions,
           )
           .then((value) => APIResponse<T>.fromJson(value.data, parser))
           .then(handleResponse);
@@ -99,7 +100,7 @@ class AweAPIClient {
           .delete(
             endpoint.path,
             data: data?.toJson(),
-            options: _makeOptions(additionalHeaders),
+            options: additionalHeaders?.dioOptions,
           )
           .then((value) => APIResponse<T>.fromJson(value.data, parser))
           .then(handleResponse);
@@ -112,14 +113,7 @@ class AweAPIClient {
     return data!;
   }
 
-  Options? _makeOptions(Map<String, dynamic>? additionalHeaders) {
-    if (additionalHeaders == null) {
-      return null;
-    }
-    return Options(headers: additionalHeaders!);
-  }
-
   bool _validateStatus(int? status) {
-    return true;
+    return status != 401;
   }
 }

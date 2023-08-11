@@ -1,7 +1,6 @@
+import 'package:areweeven/global_providers/auth_info_manager_provider.dart';
 import 'package:areweeven/global_providers/awe_api_client_provider.dart';
-import 'package:areweeven/global_providers/device_id_provider.dart';
 import 'package:areweeven/global_providers/global_error_provider.dart';
-import 'package:areweeven/global_providers/token_storage_provider.dart';
 import 'package:awe_api/awe_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -11,12 +10,8 @@ part 'auth_provider.g.dart';
 class Auth extends _$Auth {
   @override
   FutureOr<bool> build() async {
-    final tokens = await ref.read(tokenStorageProvider).getTokens();
+    final tokens = await ref.read(authInfoManagerProvider).getTokens();
     return tokens.accessToken != null;
-  }
-
-  void setLoggedIn(bool isLoggedIn) {
-    state = AsyncData(isLoggedIn);
   }
 
   Future<void> login(
@@ -29,9 +24,8 @@ class Auth extends _$Auth {
             password: password,
           ),
           null,
-          await deviceId,
         );
-    setLoggedIn(true);
+    _setLoggedIn(true);
   }
 
   Future<void> loginWithExternalProvider(
@@ -43,18 +37,15 @@ class Auth extends _$Auth {
             idToken: idToken,
           ),
           loginType,
-          await deviceId,
         );
-    setLoggedIn(true);
+    _setLoggedIn(true);
   }
 
   Future<void> logout() async {
     try {
-      state = const AsyncLoading();
-      await ref.read(aweApiClientProvider).logout(await deviceId);
-      setLoggedIn(false);
+      await ref.read(aweApiClientProvider).logout();
+      _setLoggedIn(false);
     } catch (e) {
-      setLoggedIn(true);
       ref.read(globalErrorProvider.notifier).showError(e);
     }
   }
@@ -68,10 +59,15 @@ class Auth extends _$Auth {
             password: password,
             email: email,
           ),
-          await deviceId,
         );
-    setLoggedIn(true);
+    _setLoggedIn(true);
   }
 
-  Future<String> get deviceId => ref.read(deviceIdProvider.future);
+  void forceLogout() {
+    _setLoggedIn(false);
+  }
+
+  void _setLoggedIn(bool isLoggedIn) {
+    state = AsyncData(isLoggedIn);
+  }
 }

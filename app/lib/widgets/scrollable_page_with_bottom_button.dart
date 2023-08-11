@@ -48,17 +48,19 @@ class ScrollablePageWithBottomButton extends ConsumerWidget {
               title: Text(title!),
             )
           : null,
-      body: ScrollableContent(
-        scrollContent: children,
-        bottomView: bottomAdditionalViews != null
-            ? Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  ...bottomAdditionalViews!,
-                  _makeBottomButton(context),
-                ],
-              )
-            : _makeBottomButton(context),
+      body: SafeArea(
+        child: ScrollableContent(
+          scrollContent: children,
+          bottomView: bottomAdditionalViews != null
+              ? Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    ...bottomAdditionalViews!,
+                    _makeBottomButton(context),
+                  ],
+                )
+              : _makeBottomButton(context),
+        ),
       ),
     );
   }

@@ -8,6 +8,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get or => 'or';
 
   @override
+  String get save => 'save';
+
+  @override
+  String get logout => 'Logout';
+
+  @override
   String get loginButtonWithEmailTitle => 'Login with email';
 
   @override
@@ -33,4 +39,34 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get repeatPasswordPlaceholder => 'Repeat password';
+
+  @override
+  String get homeTabTitle => 'Home';
+
+  @override
+  String get settingsTabTitle => 'Settings';
+
+  @override
+  String get groupsTabTitle => 'Groups';
+
+  @override
+  String get appearanceTitle => 'Appearance';
+
+  @override
+  String get profileTitle => 'Profile';
+
+  @override
+  String get namePlaceholder => 'Name';
+
+  @override
+  String get surnamePlaceholder => 'Surname';
+
+  @override
+  String get middleNamePlaceholder => 'Middle name';
+
+  @override
+  String get updatePersonalInfoTitle => 'Update basic info';
+
+  @override
+  String get updateAddresses => 'Update addresses';
 }

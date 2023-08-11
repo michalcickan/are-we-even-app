@@ -1,3 +1,4 @@
+import 'package:areweeven/global_providers/current_user_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'auth_provider.dart';
@@ -15,5 +16,6 @@ bool appStartup(AppStartupRef ref) {
         data: (_) => true,
         orElse: () => false,
       );
+  ref.read(currentUserProvider);
   return authInitialized && infoInitialized;
 }

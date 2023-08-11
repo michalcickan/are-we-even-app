@@ -1,16 +1,23 @@
 import 'package:awe_api/awe_api.dart';
 import 'package:awe_api/src/endpoint.dart';
+import 'package:awe_api/src/extensions/map_dio.dart';
 import 'package:awe_api/src/header_field.dart';
 import 'package:dio/dio.dart';
 
-class AuthInterceptor extends InterceptorsWrapper {
-  final TokensStorage tokensStorage;
+final class AuthInterceptor extends InterceptorsWrapper {
+  final AuthInfoManager authInfoManager;
   final AuthEvents? authEvents;
   final BaseOptions requestBaseOptions;
+  final Set _needsDeviceId = {
+    Endpoint.register().path,
+    Endpoint.logout().path,
+    Endpoint.login(null).path,
+    Endpoint.token().path
+  };
   TokensHolder? _tokensHolder;
 
   AuthInterceptor({
-    required this.tokensStorage,
+    required this.authInfoManager,
     required this.authEvents,
     required this.requestBaseOptions,
   });
@@ -20,10 +27,14 @@ class AuthInterceptor extends InterceptorsWrapper {
     RequestOptions options,
     RequestInterceptorHandler handler,
   ) async {
-    _tokensHolder ??= await tokensStorage.getTokens();
+    _tokensHolder ??= await authInfoManager.getTokens();
     if (_tokensHolder!.accessToken != null) {
       options.headers[HeaderField.authorization.value] =
           "Bearer ${_tokensHolder!.accessToken}";
+    }
+    if (_needsDeviceId.contains(options.uri.pathSegments[0])) {
+      options.headers[HeaderField.deviceId.value] =
+          await authInfoManager.deviceId;
     }
     return handler.next(options);
   }
@@ -89,7 +100,7 @@ class AuthInterceptor extends InterceptorsWrapper {
     return handler.next(e);
   }
 
-  Future<AccessToken?> fetchRefreshToken(Dio dio) {
+  Future<AccessToken?> fetchRefreshToken(Dio dio) async {
     return dio
         .post(
           Endpoint.token().path,
@@ -97,6 +108,9 @@ class AuthInterceptor extends InterceptorsWrapper {
             refreshToken: _tokensHolder!.refreshToken!,
             clientId: "",
           ).toJson(),
+          options: {
+            HeaderField.deviceId.value: await authInfoManager.deviceId,
+          }.dioOptions,
         )
         .then(
           (value) => APIResponse<AccessToken>.fromJson(
@@ -108,8 +122,8 @@ class AuthInterceptor extends InterceptorsWrapper {
 
   void setTokens(TokensHolder holder) {
     _tokensHolder = holder;
-    tokensStorage.saveAccessToken(holder.accessToken);
-    tokensStorage.saveRefreshToken(holder.refreshToken);
+    authInfoManager.saveAccessToken(holder.accessToken);
+    authInfoManager.saveRefreshToken(holder.refreshToken);
   }
 }
 

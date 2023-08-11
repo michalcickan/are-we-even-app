@@ -7,9 +7,9 @@ extension UserRequests on AweAPIClient {
         User.fromJson,
       );
 
-  Future<GenericResult> updateUser(UpdateUserParameters parameters) => put(
+  Future<User> updateUser(UpdateUserParameters parameters) => put(
         Endpoint.user(),
-        GenericResult.fromJson,
+        User.fromJson,
         params: parameters,
       );
 

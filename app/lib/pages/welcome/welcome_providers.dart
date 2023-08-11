@@ -35,10 +35,10 @@ class WelcomeTexts {
 
 @riverpod
 WelcomeTexts welcomeTexts(WelcomeTextsRef ref) {
-  final translation = ref.watch(localizationProvider);
+  final localization = ref.watch(localizationProvider);
   return WelcomeTexts(
-    loginRegistrationDeliminatorText: "------- ${translation.or} -------",
-    signUpButtonTitle: translation.registerButtonWithEmailTitle,
+    loginRegistrationDeliminatorText: "------- ${localization.or} -------",
+    signUpButtonTitle: localization.registerButtonWithEmailTitle,
   );
 }
 

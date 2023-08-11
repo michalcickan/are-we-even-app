@@ -19,6 +19,6 @@ class _AuthEvents extends AuthEvents {
 
   @override
   void onLoggedOut() {
-    ref.read(authProvider.notifier).setLoggedIn(false);
+    ref.read(authProvider.notifier).forceLogout();
   }
 }

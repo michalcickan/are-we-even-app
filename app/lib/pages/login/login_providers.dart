@@ -24,12 +24,12 @@ class LoginTexts {
 
 @riverpod
 LoginTexts loginTexts(LoginTextsRef ref) {
-  final translation = ref.watch(localizationProvider);
+  final localization = ref.watch(localizationProvider);
   return LoginTexts(
-    bottomButtonTitle: translation.loginButtonTitle,
-    title: translation.loginTitle,
-    emailPlaceholder: translation.emailPlaceholder,
-    passwordPlaceholder: translation.passwordPlaceholder,
+    bottomButtonTitle: localization.loginButtonTitle,
+    title: localization.loginTitle,
+    emailPlaceholder: localization.emailPlaceholder,
+    passwordPlaceholder: localization.passwordPlaceholder,
   );
 }
 
