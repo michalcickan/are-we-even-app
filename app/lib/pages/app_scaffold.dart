@@ -1,11 +1,8 @@
-import 'dart:math';
-
 import 'package:areweeven/global_providers/localization_provider.dart';
 import 'package:areweeven/routes/routes.dart';
 import 'package:areweeven/routes/tab_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:go_router/go_router.dart';
 
 class AppScaffold extends ConsumerStatefulWidget {
   const AppScaffold({Key? key, required this.child}) : super(key: key);
@@ -17,26 +14,27 @@ class AppScaffold extends ConsumerStatefulWidget {
 
 class _AppScaffoldState extends ConsumerState<AppScaffold> {
   late List<_TabInfo> _tabs;
+  int _currentIndex = 0;
 
   @override
   void initState() {
-    final localization = ref.read(localizationProvider);
+    final localizations = ref.read(localizationProvider);
     _tabs = [
       _TabInfo(
         location: const HomeRoute().location,
-        name: localization.homeTabTitle,
+        name: localizations.homeTabTitle,
         icon: Icons.home,
         go: const HomeRoute().go,
       ),
       _TabInfo(
         location: const GroupsRoute().location,
-        name: localization.groupsTabTitle,
+        name: localizations.groupsTabTitle,
         icon: Icons.group,
         go: const GroupsRoute().go,
       ),
       _TabInfo(
         location: const SettingsRoute().location,
-        name: localization.settingsTabTitle,
+        name: localizations.settingsTabTitle,
         icon: Icons.settings,
         go: const SettingsRoute().go,
       ),
@@ -45,12 +43,16 @@ class _AppScaffoldState extends ConsumerState<AppScaffold> {
 
   @override
   Widget build(BuildContext context) {
-    final currentIndex = _tabs.getIndexOf(GoRouter.of(context).location);
     return Scaffold(
       body: widget.child,
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (index) => _tabs[index].go(context),
+        currentIndex: _currentIndex,
+        onTap: (index) {
+          _tabs[index].go(context);
+          setState(() {
+            _currentIndex = index;
+          });
+        },
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: _tabs
@@ -64,13 +66,6 @@ class _AppScaffoldState extends ConsumerState<AppScaffold> {
       ),
     );
   }
-}
-
-extension _Helpers on List<_TabInfo> {
-  int getIndexOf(String location) => max(
-        indexWhere((element) => element.location == location),
-        0,
-      );
 }
 
 class _TabInfo {

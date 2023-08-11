@@ -109,6 +109,12 @@ abstract class AppLocalizations {
   /// **'Logout'**
   String get logout;
 
+  /// No description provided for @add.
+  ///
+  /// In en, this message translates to:
+  /// **'Add'**
+  String get add;
+
   /// No description provided for @loginButtonWithEmailTitle.
   ///
   /// In en, this message translates to:
@@ -217,11 +223,77 @@ abstract class AppLocalizations {
   /// **'Update basic info'**
   String get updatePersonalInfoTitle;
 
-  /// No description provided for @updateAddresses.
+  /// No description provided for @addresses.
   ///
   /// In en, this message translates to:
-  /// **'Update addresses'**
-  String get updateAddresses;
+  /// **'Addresses'**
+  String get addresses;
+
+  /// No description provided for @warning.
+  ///
+  /// In en, this message translates to:
+  /// **'Warning'**
+  String get warning;
+
+  /// No description provided for @logoutWarningText.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you really want to logout?'**
+  String get logoutWarningText;
+
+  /// No description provided for @chooseThemeTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose theme'**
+  String get chooseThemeTitle;
+
+  /// No description provided for @dark.
+  ///
+  /// In en, this message translates to:
+  /// **'Dark'**
+  String get dark;
+
+  /// No description provided for @light.
+  ///
+  /// In en, this message translates to:
+  /// **'Light'**
+  String get light;
+
+  /// No description provided for @system.
+  ///
+  /// In en, this message translates to:
+  /// **'System'**
+  String get system;
+
+  /// No description provided for @noAddressesText.
+  ///
+  /// In en, this message translates to:
+  /// **'You have not provided any address so far.'**
+  String get noAddressesText;
+
+  /// No description provided for @addAddressTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add address'**
+  String get addAddressTitle;
+
+  /// No description provided for @zip.
+  ///
+  /// In en, this message translates to:
+  /// **'ZIP'**
+  String get zip;
+
+  /// No description provided for @street.
+  ///
+  /// In en, this message translates to:
+  /// **'Street'**
+  String get street;
+
+  /// No description provided for @country.
+  ///
+  /// In en, this message translates to:
+  /// **'Country'**
+  String get country;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -22,6 +22,9 @@ class AWEListView extends StatelessWidget {
   Widget build(BuildContext context) {
     final sidePadding = type.padding;
     return ListView.builder(
+      padding: const EdgeInsets.symmetric(
+        vertical: Sizes.small,
+      ),
       itemBuilder: (context, index) {
         final child = itemBuilder(context, index);
         return sidePadding != null
@@ -38,8 +41,8 @@ extension _Styles on ListViewType {
     switch (this) {
       case ListViewType.defaultIndentation:
         return const EdgeInsets.only(
-          right: Sizes.medium,
-          left: Sizes.medium,
+          right: Sizes.small,
+          left: Sizes.small,
           bottom: Sizes.small,
         );
     }

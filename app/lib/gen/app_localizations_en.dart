@@ -14,6 +14,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get logout => 'Logout';
 
   @override
+  String get add => 'Add';
+
+  @override
   String get loginButtonWithEmailTitle => 'Login with email';
 
   @override
@@ -68,5 +71,38 @@ class AppLocalizationsEn extends AppLocalizations {
   String get updatePersonalInfoTitle => 'Update basic info';
 
   @override
-  String get updateAddresses => 'Update addresses';
+  String get addresses => 'Addresses';
+
+  @override
+  String get warning => 'Warning';
+
+  @override
+  String get logoutWarningText => 'Do you really want to logout?';
+
+  @override
+  String get chooseThemeTitle => 'Choose theme';
+
+  @override
+  String get dark => 'Dark';
+
+  @override
+  String get light => 'Light';
+
+  @override
+  String get system => 'System';
+
+  @override
+  String get noAddressesText => 'You have not provided any address so far.';
+
+  @override
+  String get addAddressTitle => 'Add address';
+
+  @override
+  String get zip => 'ZIP';
+
+  @override
+  String get street => 'Street';
+
+  @override
+  String get country => 'Country';
 }

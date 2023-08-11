@@ -21,18 +21,21 @@ mixin _$ListItemTrailingType {
     required TResult Function() navigation,
     required TResult Function(bool value, void Function(bool) onValueChanged)
         switcher,
+    required TResult Function() checkbox,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigation,
     TResult? Function(bool value, void Function(bool) onValueChanged)? switcher,
+    TResult? Function()? checkbox,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? navigation,
     TResult Function(bool value, void Function(bool) onValueChanged)? switcher,
+    TResult Function()? checkbox,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -40,18 +43,21 @@ mixin _$ListItemTrailingType {
   TResult map<TResult extends Object?>({
     required TResult Function(ArrowRight value) navigation,
     required TResult Function(Switcher value) switcher,
+    required TResult Function(Checkbox value) checkbox,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ArrowRight value)? navigation,
     TResult? Function(Switcher value)? switcher,
+    TResult? Function(Checkbox value)? checkbox,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ArrowRight value)? navigation,
     TResult Function(Switcher value)? switcher,
+    TResult Function(Checkbox value)? checkbox,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -117,6 +123,7 @@ class _$ArrowRight implements ArrowRight {
     required TResult Function() navigation,
     required TResult Function(bool value, void Function(bool) onValueChanged)
         switcher,
+    required TResult Function() checkbox,
   }) {
     return navigation();
   }
@@ -126,6 +133,7 @@ class _$ArrowRight implements ArrowRight {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigation,
     TResult? Function(bool value, void Function(bool) onValueChanged)? switcher,
+    TResult? Function()? checkbox,
   }) {
     return navigation?.call();
   }
@@ -135,6 +143,7 @@ class _$ArrowRight implements ArrowRight {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? navigation,
     TResult Function(bool value, void Function(bool) onValueChanged)? switcher,
+    TResult Function()? checkbox,
     required TResult orElse(),
   }) {
     if (navigation != null) {
@@ -148,6 +157,7 @@ class _$ArrowRight implements ArrowRight {
   TResult map<TResult extends Object?>({
     required TResult Function(ArrowRight value) navigation,
     required TResult Function(Switcher value) switcher,
+    required TResult Function(Checkbox value) checkbox,
   }) {
     return navigation(this);
   }
@@ -157,6 +167,7 @@ class _$ArrowRight implements ArrowRight {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ArrowRight value)? navigation,
     TResult? Function(Switcher value)? switcher,
+    TResult? Function(Checkbox value)? checkbox,
   }) {
     return navigation?.call(this);
   }
@@ -166,6 +177,7 @@ class _$ArrowRight implements ArrowRight {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ArrowRight value)? navigation,
     TResult Function(Switcher value)? switcher,
+    TResult Function(Checkbox value)? checkbox,
     required TResult orElse(),
   }) {
     if (navigation != null) {
@@ -254,6 +266,7 @@ class _$Switcher implements Switcher {
     required TResult Function() navigation,
     required TResult Function(bool value, void Function(bool) onValueChanged)
         switcher,
+    required TResult Function() checkbox,
   }) {
     return switcher(value, onValueChanged);
   }
@@ -263,6 +276,7 @@ class _$Switcher implements Switcher {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? navigation,
     TResult? Function(bool value, void Function(bool) onValueChanged)? switcher,
+    TResult? Function()? checkbox,
   }) {
     return switcher?.call(value, onValueChanged);
   }
@@ -272,6 +286,7 @@ class _$Switcher implements Switcher {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? navigation,
     TResult Function(bool value, void Function(bool) onValueChanged)? switcher,
+    TResult Function()? checkbox,
     required TResult orElse(),
   }) {
     if (switcher != null) {
@@ -285,6 +300,7 @@ class _$Switcher implements Switcher {
   TResult map<TResult extends Object?>({
     required TResult Function(ArrowRight value) navigation,
     required TResult Function(Switcher value) switcher,
+    required TResult Function(Checkbox value) checkbox,
   }) {
     return switcher(this);
   }
@@ -294,6 +310,7 @@ class _$Switcher implements Switcher {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ArrowRight value)? navigation,
     TResult? Function(Switcher value)? switcher,
+    TResult? Function(Checkbox value)? checkbox,
   }) {
     return switcher?.call(this);
   }
@@ -303,6 +320,7 @@ class _$Switcher implements Switcher {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ArrowRight value)? navigation,
     TResult Function(Switcher value)? switcher,
+    TResult Function(Checkbox value)? checkbox,
     required TResult orElse(),
   }) {
     if (switcher != null) {
@@ -321,4 +339,112 @@ abstract class Switcher implements ListItemTrailingType {
   @JsonKey(ignore: true)
   _$$SwitcherCopyWith<_$Switcher> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$CheckboxCopyWith<$Res> {
+  factory _$$CheckboxCopyWith(
+          _$Checkbox value, $Res Function(_$Checkbox) then) =
+      __$$CheckboxCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$$CheckboxCopyWithImpl<$Res>
+    extends _$ListItemTrailingTypeCopyWithImpl<$Res, _$Checkbox>
+    implements _$$CheckboxCopyWith<$Res> {
+  __$$CheckboxCopyWithImpl(_$Checkbox _value, $Res Function(_$Checkbox) _then)
+      : super(_value, _then);
+}
+
+/// @nodoc
+
+class _$Checkbox implements Checkbox {
+  const _$Checkbox();
+
+  @override
+  String toString() {
+    return 'ListItemTrailingType.checkbox()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _$Checkbox);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() navigation,
+    required TResult Function(bool value, void Function(bool) onValueChanged)
+        switcher,
+    required TResult Function() checkbox,
+  }) {
+    return checkbox();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? navigation,
+    TResult? Function(bool value, void Function(bool) onValueChanged)? switcher,
+    TResult? Function()? checkbox,
+  }) {
+    return checkbox?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? navigation,
+    TResult Function(bool value, void Function(bool) onValueChanged)? switcher,
+    TResult Function()? checkbox,
+    required TResult orElse(),
+  }) {
+    if (checkbox != null) {
+      return checkbox();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ArrowRight value) navigation,
+    required TResult Function(Switcher value) switcher,
+    required TResult Function(Checkbox value) checkbox,
+  }) {
+    return checkbox(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ArrowRight value)? navigation,
+    TResult? Function(Switcher value)? switcher,
+    TResult? Function(Checkbox value)? checkbox,
+  }) {
+    return checkbox?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ArrowRight value)? navigation,
+    TResult Function(Switcher value)? switcher,
+    TResult Function(Checkbox value)? checkbox,
+    required TResult orElse(),
+  }) {
+    if (checkbox != null) {
+      return checkbox(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Checkbox implements ListItemTrailingType {
+  const factory Checkbox() = _$Checkbox;
 }

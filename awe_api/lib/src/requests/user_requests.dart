@@ -13,7 +13,7 @@ extension UserRequests on AweAPIClient {
         params: parameters,
       );
 
-  Future<Address> addAddress(UpdateUserParameters parameters) => post(
+  Future<Address> addAddress(CreateUserAddressParameters parameters) => post(
         Endpoint.userAddress(),
         Address.fromJson,
         params: parameters,

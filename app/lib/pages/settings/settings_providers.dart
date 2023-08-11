@@ -3,13 +3,16 @@ import 'dart:ui';
 import 'package:areweeven/extensions/go_router_context.dart';
 import 'package:areweeven/gen/app_localizations.dart';
 import 'package:areweeven/global_providers/auth_provider.dart';
+import 'package:areweeven/global_providers/dialog_provider.dart';
 import 'package:areweeven/global_providers/go_router_provider.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
+import 'package:areweeven/pages/choose_option/choose_option_providers.dart';
 import 'package:areweeven/routes/routes.dart';
 import 'package:areweeven/routes/settings_routes.dart';
-import 'package:areweeven/utils/settings_item_type.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
+part 'settings_providers.freezed.dart';
 part 'settings_providers.g.dart';
 
 enum SettingsSection {
@@ -36,7 +39,19 @@ class SettingsActions extends _$SettingsActions
   void build() {}
 
   void logout() {
-    ref.read(authProvider.notifier).logout();
+    final localizations = ref.read(localizationProvider);
+    ref.read(dialogProvider.notifier).state = DialogInfo(
+      localizations.warning,
+      text: localizations.logoutWarningText,
+      actionItems: [
+        DialogActionItem(
+          localizations.logout,
+          () {
+            ref.read(authProvider.notifier).logout();
+          },
+        ),
+      ],
+    );
   }
 }
 
@@ -98,7 +113,9 @@ List<SettingListItem> _makeMainSectionItems(
     SettingListItem(
       localizations.appearanceTitle,
       const SettingItemType.appearance(),
-      onNavPressed(const AppearanceRoute().location),
+      onNavPressed(
+        const ChooseOptionRoute(ChooseOptionType.theme).location,
+      ),
     ),
     SettingListItem(
       localizations.logout,
@@ -119,9 +136,38 @@ List<SettingListItem> _makeProfileSectionItems(
       onNavPressed(const UpdateProfileRoute().location),
     ),
     SettingListItem(
-      localizations.updateAddresses,
-      const SettingItemType.appearance(),
-      onNavPressed(const UpdateAddresses().location),
+      localizations.addresses,
+      const SettingItemType.addresses(),
+      onNavPressed(const AddressesRoute().location),
     ),
   ];
+}
+
+@freezed
+class SettingItemType with _$SettingItemType {
+  const factory SettingItemType.profile() = Profile;
+
+  // const factory SettingItemType.darkMode(
+  //   bool value,
+  //   void Function(bool) onValueChanged,
+  // ) = Appearance;
+  const factory SettingItemType.appearance() = Appearance;
+
+  const factory SettingItemType.updateProfileInfo() = UpdateProfileInfo;
+
+  const factory SettingItemType.addresses() = Addresses;
+
+  const factory SettingItemType.logout() = Logout;
+}
+
+class SettingListItem {
+  final String title;
+  final SettingItemType type;
+  final Function() onPressed;
+
+  SettingListItem(
+    this.title,
+    this.type,
+    this.onPressed,
+  );
 }

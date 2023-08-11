@@ -27,13 +27,13 @@ class RegistrationTexts {
 
 @riverpod
 RegistrationTexts registrationTexts(RegistrationTextsRef ref) {
-  final localization = ref.watch(localizationProvider);
+  final localizations = ref.watch(localizationProvider);
   return RegistrationTexts(
-    title: localization.registrationTitle,
-    bottomButtonTitle: localization.registerButtonWithEmailTitle,
-    emailPlaceholder: localization.emailPlaceholder,
-    passwordPlaceholder: localization.passwordPlaceholder,
-    repeatPasswordPlaceholder: localization.repeatPasswordPlaceholder,
+    title: localizations.registrationTitle,
+    bottomButtonTitle: localizations.registerButtonWithEmailTitle,
+    emailPlaceholder: localizations.emailPlaceholder,
+    passwordPlaceholder: localizations.passwordPlaceholder,
+    repeatPasswordPlaceholder: localizations.repeatPasswordPlaceholder,
   );
 }
 

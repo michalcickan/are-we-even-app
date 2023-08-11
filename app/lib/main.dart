@@ -1,4 +1,5 @@
 import 'package:areweeven/global_providers/app_startup_provider.dart';
+import 'package:areweeven/global_providers/theme_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -24,6 +25,9 @@ class MyApp extends ConsumerWidget {
     final router = ref.watch(goRouterProvider);
     return ref.watch(appStartupProvider)
         ? MaterialApp.router(
+            themeMode: ref.watch(themeProvider),
+            darkTheme: ThemeData.dark(),
+            theme: ThemeData.light(),
             routerConfig: router,
           )
         : const MaterialApp(

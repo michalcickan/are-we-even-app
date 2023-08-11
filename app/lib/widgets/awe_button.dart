@@ -27,7 +27,7 @@ class AWETextButton extends StatelessWidget {
         onPressed: onPressed,
         style: type.style(context),
         child: Text(
-          text,
+          text.toUpperCase(),
         ),
       );
 }

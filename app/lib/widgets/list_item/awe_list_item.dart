@@ -17,6 +17,8 @@ class ListItemTrailingType with _$ListItemTrailingType {
     bool value,
     void Function(bool) onValueChanged,
   ) = Switcher;
+
+  const factory ListItemTrailingType.checkbox() = Checkbox;
 }
 
 class AWEListItem extends StatelessWidget {
@@ -67,5 +69,6 @@ extension _Widgets on ListItemTrailingType {
           value: value,
           onChanged: onValueChanged,
         ),
+        checkbox: () => const Icon(Icons.check),
       );
 }

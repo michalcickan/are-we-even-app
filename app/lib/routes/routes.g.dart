@@ -56,8 +56,16 @@ RouteBase get $rootRoute => GoRouteData.$route(
           factory: $UpdateProfileRouteExtension._fromState,
         ),
         GoRouteData.$route(
-          path: 'update-addresses',
-          factory: $UpdateAddressesExtension._fromState,
+          path: 'add-address',
+          factory: $AddAddressRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'choose-option',
+          factory: $ChooseOptionRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'addresses',
+          factory: $AddressesRouteExtension._fromState,
         ),
       ],
     );
@@ -240,12 +248,12 @@ extension $UpdateProfileRouteExtension on UpdateProfileRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $UpdateAddressesExtension on UpdateAddresses {
-  static UpdateAddresses _fromState(GoRouterState state) =>
-      const UpdateAddresses();
+extension $AddAddressRouteExtension on AddAddressRoute {
+  static AddAddressRoute _fromState(GoRouterState state) =>
+      const AddAddressRoute();
 
   String get location => GoRouteData.$location(
-        '/update-addresses',
+        '/add-address',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -256,4 +264,54 @@ extension $UpdateAddressesExtension on UpdateAddresses {
       context.pushReplacement(location);
 
   void replace(BuildContext context) => context.replace(location);
+}
+
+extension $ChooseOptionRouteExtension on ChooseOptionRoute {
+  static ChooseOptionRoute _fromState(GoRouterState state) => ChooseOptionRoute(
+        _$ChooseOptionTypeEnumMap
+            ._$fromName(state.uri.queryParameters['type']!),
+      );
+
+  String get location => GoRouteData.$location(
+        '/choose-option',
+        queryParams: {
+          'type': _$ChooseOptionTypeEnumMap[type],
+        },
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+const _$ChooseOptionTypeEnumMap = {
+  ChooseOptionType.theme: 'theme',
+};
+
+extension $AddressesRouteExtension on AddressesRoute {
+  static AddressesRoute _fromState(GoRouterState state) =>
+      const AddressesRoute();
+
+  String get location => GoRouteData.$location(
+        '/addresses',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension<T extends Enum> on Map<T, String> {
+  T _$fromName(String value) =>
+      entries.singleWhere((element) => element.value == value).key;
 }

@@ -2,6 +2,7 @@
   "or": "or",
   "save": "save",
   "logout": "Logout",
+  "add": "Add",
   "loginButtonWithEmailTitle": "Login with email",
   "loginButtonWithGoogleTitle": "Login with Google",
   "registerButtonWithEmailTitle": "Sign up",
@@ -20,5 +21,16 @@
   "surnamePlaceholder": "Surname",
   "middleNamePlaceholder": "Middle name",
   "updatePersonalInfoTitle": "Update basic info",
-  "updateAddresses": "Update addresses"
+  "addresses": "Addresses",
+  "warning": "Warning",
+  "logoutWarningText": "Do you really want to logout?",
+  "chooseThemeTitle": "Choose theme",
+  "dark": "Dark",
+  "light": "Light",
+  "system": "System",
+  "noAddressesText": "You have not provided any address so far.",
+  "addAddressTitle": "Add address",
+  "zip": "ZIP",
+  "street": "Street",
+  "country": "Country"
 }

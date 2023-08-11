@@ -22,6 +22,12 @@ class CurrentUser extends _$CurrentUser {
     state = user;
   }
 
+  void addAddress(Address address) {
+    List<Address> addresses = state?.addresses ?? [];
+    addresses.add(address);
+    state = state?.copyWith(addresses: addresses);
+  }
+
   void clearUser() {
     state = null;
   }

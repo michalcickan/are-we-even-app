@@ -28,13 +28,13 @@ class UpdateProfileTexts {
 
 @riverpod
 UpdateProfileTexts updateProfileTexts(UpdateProfileTextsRef ref) {
-  final localization = ref.watch(localizationProvider);
+  final localizations = ref.watch(localizationProvider);
   return UpdateProfileTexts(
-      title: localization.profileTitle,
-      bottomButtonTitle: localization.save,
-      middleNamePlaceholder: localization.middleNamePlaceholder,
-      surnamePlaceholder: localization.surnamePlaceholder,
-      namePlaceholder: localization.namePlaceholder);
+      title: localizations.profileTitle,
+      bottomButtonTitle: localizations.save,
+      middleNamePlaceholder: localizations.middleNamePlaceholder,
+      surnamePlaceholder: localizations.surnamePlaceholder,
+      namePlaceholder: localizations.namePlaceholder);
 }
 
 @riverpod
@@ -47,12 +47,12 @@ class UpdateProfileActions extends _$UpdateProfileActions
     try {
       final user = ref.read(updateProfileUserProvider)!;
       final newUser = await ref.read(aweApiClientProvider).updateUser(
-            UpdateUserParameters(
-              name: user.name,
-              middleName: user.middleName,
-              surname: user.surname,
-            ),
-          );
+        UpdateUserParameters(
+          name: user.name,
+          middleName: user.middleName,
+          surname: user.surname,
+        ),
+      );
       ref.read(currentUserProvider.notifier).setUser(newUser);
     } catch (e) {
       ref.read(globalErrorProvider.notifier).showError(e);

@@ -1,5 +1,6 @@
 import 'package:areweeven/global_providers/global_error_provider.dart';
 import 'package:areweeven/widgets/awe_button.dart';
+import 'package:areweeven/widgets/awe_page_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -42,25 +43,19 @@ class ScrollablePageWithBottomButton extends ConsumerWidget {
         );
       },
     );
-    return Scaffold(
-      appBar: title != null
-          ? AppBar(
-              title: Text(title!),
-            )
-          : null,
-      body: SafeArea(
-        child: ScrollableContent(
-          scrollContent: children,
-          bottomView: bottomAdditionalViews != null
-              ? Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    ...bottomAdditionalViews!,
-                    _makeBottomButton(context),
-                  ],
-                )
-              : _makeBottomButton(context),
-        ),
+    return AWEPageScaffold(
+      title: title,
+      body: ScrollableContent(
+        scrollContent: children,
+        bottomView: bottomAdditionalViews != null
+            ? Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  ...bottomAdditionalViews!,
+                  _makeBottomButton(context),
+                ],
+              )
+            : _makeBottomButton(context),
       ),
     );
   }

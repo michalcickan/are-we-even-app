@@ -1,4 +1,5 @@
 import 'package:areweeven/global_providers/current_user_provider.dart';
+import 'package:areweeven/global_providers/theme_provider.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 import 'auth_provider.dart';
@@ -17,5 +18,6 @@ bool appStartup(AppStartupRef ref) {
         orElse: () => false,
       );
   ref.read(currentUserProvider);
+  ref.read(themeProvider);
   return authInitialized && infoInitialized;
 }

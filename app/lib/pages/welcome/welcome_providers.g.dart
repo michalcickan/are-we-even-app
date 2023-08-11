@@ -6,7 +6,7 @@ part of 'welcome_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$welcomeTextsHash() => r'63e6213eba3b0b23e36de025a6512555fee0f7e6';
+String _$welcomeTextsHash() => r'79b260526d92bf51d116fd6de57e0a17fc2caef4';
 
 /// See also [welcomeTexts].
 @ProviderFor(welcomeTexts)

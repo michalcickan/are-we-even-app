@@ -3,7 +3,7 @@
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
-part of 'settings_item_type.dart';
+part of 'settings_providers.dart';
 
 // **************************************************************************
 // FreezedGenerator
@@ -21,7 +21,7 @@ mixin _$SettingItemType {
     required TResult Function() profile,
     required TResult Function() appearance,
     required TResult Function() updateProfileInfo,
-    required TResult Function() addAddress,
+    required TResult Function() addresses,
     required TResult Function() logout,
   }) =>
       throw _privateConstructorUsedError;
@@ -30,7 +30,7 @@ mixin _$SettingItemType {
     TResult? Function()? profile,
     TResult? Function()? appearance,
     TResult? Function()? updateProfileInfo,
-    TResult? Function()? addAddress,
+    TResult? Function()? addresses,
     TResult? Function()? logout,
   }) =>
       throw _privateConstructorUsedError;
@@ -39,7 +39,7 @@ mixin _$SettingItemType {
     TResult Function()? profile,
     TResult Function()? appearance,
     TResult Function()? updateProfileInfo,
-    TResult Function()? addAddress,
+    TResult Function()? addresses,
     TResult Function()? logout,
     required TResult orElse(),
   }) =>
@@ -49,7 +49,7 @@ mixin _$SettingItemType {
     required TResult Function(Profile value) profile,
     required TResult Function(Appearance value) appearance,
     required TResult Function(UpdateProfileInfo value) updateProfileInfo,
-    required TResult Function(AddAddress value) addAddress,
+    required TResult Function(Addresses value) addresses,
     required TResult Function(Logout value) logout,
   }) =>
       throw _privateConstructorUsedError;
@@ -58,7 +58,7 @@ mixin _$SettingItemType {
     TResult? Function(Profile value)? profile,
     TResult? Function(Appearance value)? appearance,
     TResult? Function(UpdateProfileInfo value)? updateProfileInfo,
-    TResult? Function(AddAddress value)? addAddress,
+    TResult? Function(Addresses value)? addresses,
     TResult? Function(Logout value)? logout,
   }) =>
       throw _privateConstructorUsedError;
@@ -67,7 +67,7 @@ mixin _$SettingItemType {
     TResult Function(Profile value)? profile,
     TResult Function(Appearance value)? appearance,
     TResult Function(UpdateProfileInfo value)? updateProfileInfo,
-    TResult Function(AddAddress value)? addAddress,
+    TResult Function(Addresses value)? addresses,
     TResult Function(Logout value)? logout,
     required TResult orElse(),
   }) =>
@@ -131,7 +131,7 @@ class _$Profile implements Profile {
     required TResult Function() profile,
     required TResult Function() appearance,
     required TResult Function() updateProfileInfo,
-    required TResult Function() addAddress,
+    required TResult Function() addresses,
     required TResult Function() logout,
   }) {
     return profile();
@@ -143,7 +143,7 @@ class _$Profile implements Profile {
     TResult? Function()? profile,
     TResult? Function()? appearance,
     TResult? Function()? updateProfileInfo,
-    TResult? Function()? addAddress,
+    TResult? Function()? addresses,
     TResult? Function()? logout,
   }) {
     return profile?.call();
@@ -155,7 +155,7 @@ class _$Profile implements Profile {
     TResult Function()? profile,
     TResult Function()? appearance,
     TResult Function()? updateProfileInfo,
-    TResult Function()? addAddress,
+    TResult Function()? addresses,
     TResult Function()? logout,
     required TResult orElse(),
   }) {
@@ -171,7 +171,7 @@ class _$Profile implements Profile {
     required TResult Function(Profile value) profile,
     required TResult Function(Appearance value) appearance,
     required TResult Function(UpdateProfileInfo value) updateProfileInfo,
-    required TResult Function(AddAddress value) addAddress,
+    required TResult Function(Addresses value) addresses,
     required TResult Function(Logout value) logout,
   }) {
     return profile(this);
@@ -183,7 +183,7 @@ class _$Profile implements Profile {
     TResult? Function(Profile value)? profile,
     TResult? Function(Appearance value)? appearance,
     TResult? Function(UpdateProfileInfo value)? updateProfileInfo,
-    TResult? Function(AddAddress value)? addAddress,
+    TResult? Function(Addresses value)? addresses,
     TResult? Function(Logout value)? logout,
   }) {
     return profile?.call(this);
@@ -195,7 +195,7 @@ class _$Profile implements Profile {
     TResult Function(Profile value)? profile,
     TResult Function(Appearance value)? appearance,
     TResult Function(UpdateProfileInfo value)? updateProfileInfo,
-    TResult Function(AddAddress value)? addAddress,
+    TResult Function(Addresses value)? addresses,
     TResult Function(Logout value)? logout,
     required TResult orElse(),
   }) {
@@ -251,7 +251,7 @@ class _$Appearance implements Appearance {
     required TResult Function() profile,
     required TResult Function() appearance,
     required TResult Function() updateProfileInfo,
-    required TResult Function() addAddress,
+    required TResult Function() addresses,
     required TResult Function() logout,
   }) {
     return appearance();
@@ -263,7 +263,7 @@ class _$Appearance implements Appearance {
     TResult? Function()? profile,
     TResult? Function()? appearance,
     TResult? Function()? updateProfileInfo,
-    TResult? Function()? addAddress,
+    TResult? Function()? addresses,
     TResult? Function()? logout,
   }) {
     return appearance?.call();
@@ -275,7 +275,7 @@ class _$Appearance implements Appearance {
     TResult Function()? profile,
     TResult Function()? appearance,
     TResult Function()? updateProfileInfo,
-    TResult Function()? addAddress,
+    TResult Function()? addresses,
     TResult Function()? logout,
     required TResult orElse(),
   }) {
@@ -291,7 +291,7 @@ class _$Appearance implements Appearance {
     required TResult Function(Profile value) profile,
     required TResult Function(Appearance value) appearance,
     required TResult Function(UpdateProfileInfo value) updateProfileInfo,
-    required TResult Function(AddAddress value) addAddress,
+    required TResult Function(Addresses value) addresses,
     required TResult Function(Logout value) logout,
   }) {
     return appearance(this);
@@ -303,7 +303,7 @@ class _$Appearance implements Appearance {
     TResult? Function(Profile value)? profile,
     TResult? Function(Appearance value)? appearance,
     TResult? Function(UpdateProfileInfo value)? updateProfileInfo,
-    TResult? Function(AddAddress value)? addAddress,
+    TResult? Function(Addresses value)? addresses,
     TResult? Function(Logout value)? logout,
   }) {
     return appearance?.call(this);
@@ -315,7 +315,7 @@ class _$Appearance implements Appearance {
     TResult Function(Profile value)? profile,
     TResult Function(Appearance value)? appearance,
     TResult Function(UpdateProfileInfo value)? updateProfileInfo,
-    TResult Function(AddAddress value)? addAddress,
+    TResult Function(Addresses value)? addresses,
     TResult Function(Logout value)? logout,
     required TResult orElse(),
   }) {
@@ -371,7 +371,7 @@ class _$UpdateProfileInfo implements UpdateProfileInfo {
     required TResult Function() profile,
     required TResult Function() appearance,
     required TResult Function() updateProfileInfo,
-    required TResult Function() addAddress,
+    required TResult Function() addresses,
     required TResult Function() logout,
   }) {
     return updateProfileInfo();
@@ -383,7 +383,7 @@ class _$UpdateProfileInfo implements UpdateProfileInfo {
     TResult? Function()? profile,
     TResult? Function()? appearance,
     TResult? Function()? updateProfileInfo,
-    TResult? Function()? addAddress,
+    TResult? Function()? addresses,
     TResult? Function()? logout,
   }) {
     return updateProfileInfo?.call();
@@ -395,7 +395,7 @@ class _$UpdateProfileInfo implements UpdateProfileInfo {
     TResult Function()? profile,
     TResult Function()? appearance,
     TResult Function()? updateProfileInfo,
-    TResult Function()? addAddress,
+    TResult Function()? addresses,
     TResult Function()? logout,
     required TResult orElse(),
   }) {
@@ -411,7 +411,7 @@ class _$UpdateProfileInfo implements UpdateProfileInfo {
     required TResult Function(Profile value) profile,
     required TResult Function(Appearance value) appearance,
     required TResult Function(UpdateProfileInfo value) updateProfileInfo,
-    required TResult Function(AddAddress value) addAddress,
+    required TResult Function(Addresses value) addresses,
     required TResult Function(Logout value) logout,
   }) {
     return updateProfileInfo(this);
@@ -423,7 +423,7 @@ class _$UpdateProfileInfo implements UpdateProfileInfo {
     TResult? Function(Profile value)? profile,
     TResult? Function(Appearance value)? appearance,
     TResult? Function(UpdateProfileInfo value)? updateProfileInfo,
-    TResult? Function(AddAddress value)? addAddress,
+    TResult? Function(Addresses value)? addresses,
     TResult? Function(Logout value)? logout,
   }) {
     return updateProfileInfo?.call(this);
@@ -435,7 +435,7 @@ class _$UpdateProfileInfo implements UpdateProfileInfo {
     TResult Function(Profile value)? profile,
     TResult Function(Appearance value)? appearance,
     TResult Function(UpdateProfileInfo value)? updateProfileInfo,
-    TResult Function(AddAddress value)? addAddress,
+    TResult Function(Addresses value)? addresses,
     TResult Function(Logout value)? logout,
     required TResult orElse(),
   }) {
@@ -451,35 +451,35 @@ abstract class UpdateProfileInfo implements SettingItemType {
 }
 
 /// @nodoc
-abstract class _$$AddAddressCopyWith<$Res> {
-  factory _$$AddAddressCopyWith(
-          _$AddAddress value, $Res Function(_$AddAddress) then) =
-      __$$AddAddressCopyWithImpl<$Res>;
+abstract class _$$AddressesCopyWith<$Res> {
+  factory _$$AddressesCopyWith(
+          _$Addresses value, $Res Function(_$Addresses) then) =
+      __$$AddressesCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$$AddAddressCopyWithImpl<$Res>
-    extends _$SettingItemTypeCopyWithImpl<$Res, _$AddAddress>
-    implements _$$AddAddressCopyWith<$Res> {
-  __$$AddAddressCopyWithImpl(
-      _$AddAddress _value, $Res Function(_$AddAddress) _then)
+class __$$AddressesCopyWithImpl<$Res>
+    extends _$SettingItemTypeCopyWithImpl<$Res, _$Addresses>
+    implements _$$AddressesCopyWith<$Res> {
+  __$$AddressesCopyWithImpl(
+      _$Addresses _value, $Res Function(_$Addresses) _then)
       : super(_value, _then);
 }
 
 /// @nodoc
 
-class _$AddAddress implements AddAddress {
-  const _$AddAddress();
+class _$Addresses implements Addresses {
+  const _$Addresses();
 
   @override
   String toString() {
-    return 'SettingItemType.addAddress()';
+    return 'SettingItemType.addresses()';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$AddAddress);
+        (other.runtimeType == runtimeType && other is _$Addresses);
   }
 
   @override
@@ -491,10 +491,10 @@ class _$AddAddress implements AddAddress {
     required TResult Function() profile,
     required TResult Function() appearance,
     required TResult Function() updateProfileInfo,
-    required TResult Function() addAddress,
+    required TResult Function() addresses,
     required TResult Function() logout,
   }) {
-    return addAddress();
+    return addresses();
   }
 
   @override
@@ -503,10 +503,10 @@ class _$AddAddress implements AddAddress {
     TResult? Function()? profile,
     TResult? Function()? appearance,
     TResult? Function()? updateProfileInfo,
-    TResult? Function()? addAddress,
+    TResult? Function()? addresses,
     TResult? Function()? logout,
   }) {
-    return addAddress?.call();
+    return addresses?.call();
   }
 
   @override
@@ -515,12 +515,12 @@ class _$AddAddress implements AddAddress {
     TResult Function()? profile,
     TResult Function()? appearance,
     TResult Function()? updateProfileInfo,
-    TResult Function()? addAddress,
+    TResult Function()? addresses,
     TResult Function()? logout,
     required TResult orElse(),
   }) {
-    if (addAddress != null) {
-      return addAddress();
+    if (addresses != null) {
+      return addresses();
     }
     return orElse();
   }
@@ -531,10 +531,10 @@ class _$AddAddress implements AddAddress {
     required TResult Function(Profile value) profile,
     required TResult Function(Appearance value) appearance,
     required TResult Function(UpdateProfileInfo value) updateProfileInfo,
-    required TResult Function(AddAddress value) addAddress,
+    required TResult Function(Addresses value) addresses,
     required TResult Function(Logout value) logout,
   }) {
-    return addAddress(this);
+    return addresses(this);
   }
 
   @override
@@ -543,10 +543,10 @@ class _$AddAddress implements AddAddress {
     TResult? Function(Profile value)? profile,
     TResult? Function(Appearance value)? appearance,
     TResult? Function(UpdateProfileInfo value)? updateProfileInfo,
-    TResult? Function(AddAddress value)? addAddress,
+    TResult? Function(Addresses value)? addresses,
     TResult? Function(Logout value)? logout,
   }) {
-    return addAddress?.call(this);
+    return addresses?.call(this);
   }
 
   @override
@@ -555,19 +555,19 @@ class _$AddAddress implements AddAddress {
     TResult Function(Profile value)? profile,
     TResult Function(Appearance value)? appearance,
     TResult Function(UpdateProfileInfo value)? updateProfileInfo,
-    TResult Function(AddAddress value)? addAddress,
+    TResult Function(Addresses value)? addresses,
     TResult Function(Logout value)? logout,
     required TResult orElse(),
   }) {
-    if (addAddress != null) {
-      return addAddress(this);
+    if (addresses != null) {
+      return addresses(this);
     }
     return orElse();
   }
 }
 
-abstract class AddAddress implements SettingItemType {
-  const factory AddAddress() = _$AddAddress;
+abstract class Addresses implements SettingItemType {
+  const factory Addresses() = _$Addresses;
 }
 
 /// @nodoc
@@ -609,7 +609,7 @@ class _$Logout implements Logout {
     required TResult Function() profile,
     required TResult Function() appearance,
     required TResult Function() updateProfileInfo,
-    required TResult Function() addAddress,
+    required TResult Function() addresses,
     required TResult Function() logout,
   }) {
     return logout();
@@ -621,7 +621,7 @@ class _$Logout implements Logout {
     TResult? Function()? profile,
     TResult? Function()? appearance,
     TResult? Function()? updateProfileInfo,
-    TResult? Function()? addAddress,
+    TResult? Function()? addresses,
     TResult? Function()? logout,
   }) {
     return logout?.call();
@@ -633,7 +633,7 @@ class _$Logout implements Logout {
     TResult Function()? profile,
     TResult Function()? appearance,
     TResult Function()? updateProfileInfo,
-    TResult Function()? addAddress,
+    TResult Function()? addresses,
     TResult Function()? logout,
     required TResult orElse(),
   }) {
@@ -649,7 +649,7 @@ class _$Logout implements Logout {
     required TResult Function(Profile value) profile,
     required TResult Function(Appearance value) appearance,
     required TResult Function(UpdateProfileInfo value) updateProfileInfo,
-    required TResult Function(AddAddress value) addAddress,
+    required TResult Function(Addresses value) addresses,
     required TResult Function(Logout value) logout,
   }) {
     return logout(this);
@@ -661,7 +661,7 @@ class _$Logout implements Logout {
     TResult? Function(Profile value)? profile,
     TResult? Function(Appearance value)? appearance,
     TResult? Function(UpdateProfileInfo value)? updateProfileInfo,
-    TResult? Function(AddAddress value)? addAddress,
+    TResult? Function(Addresses value)? addresses,
     TResult? Function(Logout value)? logout,
   }) {
     return logout?.call(this);
@@ -673,7 +673,7 @@ class _$Logout implements Logout {
     TResult Function(Profile value)? profile,
     TResult Function(Appearance value)? appearance,
     TResult Function(UpdateProfileInfo value)? updateProfileInfo,
-    TResult Function(AddAddress value)? addAddress,
+    TResult Function(Addresses value)? addresses,
     TResult Function(Logout value)? logout,
     required TResult orElse(),
   }) {

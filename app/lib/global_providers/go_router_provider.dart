@@ -12,7 +12,7 @@ GoRouter goRouter(GoRouterRef ref) {
   return GoRouter(
     routes: $appRoutes,
     redirect: (context, state) {
-      switch (state.location) {
+      switch (state.uri.toString()) {
         case "/":
           return isLoggedIn.value ?? false ? "/home" : "/welcome";
         default:

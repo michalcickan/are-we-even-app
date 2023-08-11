@@ -7,7 +7,7 @@ part of 'update_profile_providers.dart';
 // **************************************************************************
 
 String _$updateProfileTextsHash() =>
-    r'f6c0a28ecd0975e19c1ef79aa5152d5407692117';
+    r'40c63d553d21ef339fedbe614a9294775331ef83';
 
 /// See also [updateProfileTexts].
 @ProviderFor(updateProfileTexts)
