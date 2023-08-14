@@ -75,12 +75,14 @@ class AddressesRoute extends GoRouteData {
 }
 
 class ChooseOptionRoute extends GoRouteData {
-  final ChooseOptionType type;
+  final ChooseOptionType? type;
 
   const ChooseOptionRoute(this.type);
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return ChooseOptionPage(type);
+    return ChooseOptionPage(
+      type ?? ChooseOptionType.theme,
+    );
   }
 }

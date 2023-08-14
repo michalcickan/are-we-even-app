@@ -3,36 +3,41 @@ import 'package:areweeven/pages/groups/groups_page.dart';
 import 'package:areweeven/pages/home/home_page.dart';
 import 'package:areweeven/pages/settings/settings_page.dart';
 import 'package:areweeven/pages/settings/settings_providers.dart';
+import 'package:areweeven/routes/settings_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-const tabRoutes = [
-  TypedShellRoute<AppScaffoldRoute>(
-    routes: [
+const tabRoutes = TypedStatefulShellRoute<AppScaffoldShellRoute>(
+  branches: [
+    TypedStatefulShellBranch(routes: [
       TypedGoRoute<HomeRoute>(
         path: "home",
       ),
-      TypedGoRoute<SettingsRoute>(
-        path: "settings",
-      ),
+    ]),
+    TypedStatefulShellBranch(routes: [
       TypedGoRoute<GroupsRoute>(
         path: "groups",
-      )
-    ],
-  ),
-];
+      ),
+    ]),
+    TypedStatefulShellBranch<SettingsBranch>(routes: [
+      TypedGoRoute<SettingsRoute>(
+        path: "settings",
+        routes: settingsRoutes,
+      ),
+    ])
+  ],
+);
 
-class AppScaffoldRoute extends ShellRouteData {
-  const AppScaffoldRoute();
+class AppScaffoldShellRoute extends StatefulShellRouteData {
+  const AppScaffoldShellRoute();
+
+  static final GlobalKey<NavigatorState> $navigatorKey = GlobalKey();
 
   @override
-  Widget builder(
-    BuildContext context,
-    GoRouterState state,
-    Widget navigator,
-  ) {
+  Widget builder(BuildContext context, GoRouterState state,
+      StatefulNavigationShell navigationShell) {
     return AppScaffold(
-      child: navigator,
+      navigationShell: navigationShell,
     );
   }
 }
@@ -67,4 +72,10 @@ class GroupsRoute extends GoRouteData {
   Widget build(BuildContext context, GoRouterState state) {
     return const GroupsPage();
   }
+}
+
+class SettingsBranch extends StatefulShellBranchData {
+  const SettingsBranch();
+
+  static final GlobalKey<NavigatorState> $navigatorKey = GlobalKey();
 }

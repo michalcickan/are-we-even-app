@@ -26,46 +26,61 @@ RouteBase get $rootRoute => GoRouteData.$route(
           path: 'registration',
           factory: $RegistrationRouteExtension._fromState,
         ),
-        ShellRouteData.$route(
-          factory: $AppScaffoldRouteExtension._fromState,
-          routes: [
-            GoRouteData.$route(
-              path: 'home',
-              factory: $HomeRouteExtension._fromState,
+        StatefulShellRouteData.$route(
+          factory: $AppScaffoldShellRouteExtension._fromState,
+          branches: [
+            StatefulShellBranchData.$branch(
+              routes: [
+                GoRouteData.$route(
+                  path: 'home',
+                  factory: $HomeRouteExtension._fromState,
+                ),
+              ],
             ),
-            GoRouteData.$route(
-              path: 'settings',
-              factory: $SettingsRouteExtension._fromState,
+            StatefulShellBranchData.$branch(
+              routes: [
+                GoRouteData.$route(
+                  path: 'groups',
+                  factory: $GroupsRouteExtension._fromState,
+                ),
+              ],
             ),
-            GoRouteData.$route(
-              path: 'groups',
-              factory: $GroupsRouteExtension._fromState,
+            StatefulShellBranchData.$branch(
+              navigatorKey: SettingsBranch.$navigatorKey,
+              routes: [
+                GoRouteData.$route(
+                  path: 'settings',
+                  factory: $SettingsRouteExtension._fromState,
+                  routes: [
+                    GoRouteData.$route(
+                      path: 'profile',
+                      factory: $ProfileRouteExtension._fromState,
+                    ),
+                    GoRouteData.$route(
+                      path: 'appearance',
+                      factory: $AppearanceRouteExtension._fromState,
+                    ),
+                    GoRouteData.$route(
+                      path: 'update-profile',
+                      factory: $UpdateProfileRouteExtension._fromState,
+                    ),
+                    GoRouteData.$route(
+                      path: 'add-address',
+                      factory: $AddAddressRouteExtension._fromState,
+                    ),
+                    GoRouteData.$route(
+                      path: 'choose-option',
+                      factory: $ChooseOptionRouteExtension._fromState,
+                    ),
+                    GoRouteData.$route(
+                      path: 'addresses',
+                      factory: $AddressesRouteExtension._fromState,
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
-        ),
-        GoRouteData.$route(
-          path: 'profile',
-          factory: $ProfileRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'appearance',
-          factory: $AppearanceRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'update-profile',
-          factory: $UpdateProfileRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'add-address',
-          factory: $AddAddressRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'choose-option',
-          factory: $ChooseOptionRouteExtension._fromState,
-        ),
-        GoRouteData.$route(
-          path: 'addresses',
-          factory: $AddressesRouteExtension._fromState,
         ),
       ],
     );
@@ -139,9 +154,9 @@ extension $RegistrationRouteExtension on RegistrationRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $AppScaffoldRouteExtension on AppScaffoldRoute {
-  static AppScaffoldRoute _fromState(GoRouterState state) =>
-      const AppScaffoldRoute();
+extension $AppScaffoldShellRouteExtension on AppScaffoldShellRoute {
+  static AppScaffoldShellRoute _fromState(GoRouterState state) =>
+      const AppScaffoldShellRoute();
 }
 
 extension $HomeRouteExtension on HomeRoute {
@@ -149,23 +164,6 @@ extension $HomeRouteExtension on HomeRoute {
 
   String get location => GoRouteData.$location(
         '/home',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
-
-extension $SettingsRouteExtension on SettingsRoute {
-  static SettingsRoute _fromState(GoRouterState state) => const SettingsRoute();
-
-  String get location => GoRouteData.$location(
-        '/settings',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -195,11 +193,28 @@ extension $GroupsRouteExtension on GroupsRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
+extension $SettingsRouteExtension on SettingsRoute {
+  static SettingsRoute _fromState(GoRouterState state) => const SettingsRoute();
+
+  String get location => GoRouteData.$location(
+        '/settings',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
 extension $ProfileRouteExtension on ProfileRoute {
   static ProfileRoute _fromState(GoRouterState state) => const ProfileRoute();
 
   String get location => GoRouteData.$location(
-        '/profile',
+        '/settings/profile',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -217,7 +232,7 @@ extension $AppearanceRouteExtension on AppearanceRoute {
       const AppearanceRoute();
 
   String get location => GoRouteData.$location(
-        '/appearance',
+        '/settings/appearance',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -235,7 +250,7 @@ extension $UpdateProfileRouteExtension on UpdateProfileRoute {
       const UpdateProfileRoute();
 
   String get location => GoRouteData.$location(
-        '/update-profile',
+        '/settings/update-profile',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -253,7 +268,7 @@ extension $AddAddressRouteExtension on AddAddressRoute {
       const AddAddressRoute();
 
   String get location => GoRouteData.$location(
-        '/add-address',
+        '/settings/add-address',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -268,14 +283,14 @@ extension $AddAddressRouteExtension on AddAddressRoute {
 
 extension $ChooseOptionRouteExtension on ChooseOptionRoute {
   static ChooseOptionRoute _fromState(GoRouterState state) => ChooseOptionRoute(
-        _$ChooseOptionTypeEnumMap
-            ._$fromName(state.uri.queryParameters['type']!),
+        _$convertMapValue('type', state.uri.queryParameters,
+            _$ChooseOptionTypeEnumMap._$fromName),
       );
 
   String get location => GoRouteData.$location(
-        '/choose-option',
+        '/settings/choose-option',
         queryParams: {
-          'type': _$ChooseOptionTypeEnumMap[type],
+          if (type != null) 'type': _$ChooseOptionTypeEnumMap[type!],
         },
       );
 
@@ -298,7 +313,7 @@ extension $AddressesRouteExtension on AddressesRoute {
       const AddressesRoute();
 
   String get location => GoRouteData.$location(
-        '/addresses',
+        '/settings/addresses',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -309,6 +324,15 @@ extension $AddressesRouteExtension on AddressesRoute {
       context.pushReplacement(location);
 
   void replace(BuildContext context) => context.replace(location);
+}
+
+T? _$convertMapValue<T>(
+  String key,
+  Map<String, String> map,
+  T Function(String) converter,
+) {
+  final value = map[key];
+  return value == null ? null : converter(value);
 }
 
 extension<T extends Enum> on Map<T, String> {

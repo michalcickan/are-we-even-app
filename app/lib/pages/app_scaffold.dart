@@ -1,58 +1,36 @@
+import 'package:areweeven/gen/app_localizations.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
-import 'package:areweeven/routes/routes.dart';
-import 'package:areweeven/routes/tab_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:go_router/go_router.dart';
 
-class AppScaffold extends ConsumerStatefulWidget {
-  const AppScaffold({Key? key, required this.child}) : super(key: key);
-  final Widget child;
+class AppScaffold extends ConsumerWidget {
+  final StatefulNavigationShell navigationShell;
 
-  @override
-  ConsumerState<AppScaffold> createState() => _AppScaffoldState();
-}
+  AppScaffold({
+    Key? key,
+    required this.navigationShell,
+  }) : super(key: key);
 
-class _AppScaffoldState extends ConsumerState<AppScaffold> {
-  late List<_TabInfo> _tabs;
-  int _currentIndex = 0;
-
-  @override
-  void initState() {
-    final localizations = ref.read(localizationProvider);
-    _tabs = [
-      _TabInfo(
-        location: const HomeRoute().location,
-        name: localizations.homeTabTitle,
-        icon: Icons.home,
-        go: const HomeRoute().go,
-      ),
-      _TabInfo(
-        location: const GroupsRoute().location,
-        name: localizations.groupsTabTitle,
-        icon: Icons.group,
-        go: const GroupsRoute().go,
-      ),
-      _TabInfo(
-        location: const SettingsRoute().location,
-        name: localizations.settingsTabTitle,
-        icon: Icons.settings,
-        go: const SettingsRoute().go,
-      ),
-    ];
-  }
+  final List<_TabInfo> _tabs = [];
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    if (_tabs.isEmpty) {
+      _tabs.addAll(
+        _makeTabs(
+          ref.watch(
+            localizationProvider,
+          ),
+        ),
+      );
+    }
+
     return Scaffold(
-      body: widget.child,
+      body: navigationShell,
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          _tabs[index].go(context);
-          setState(() {
-            _currentIndex = index;
-          });
-        },
+        currentIndex: navigationShell.currentIndex,
+        onTap: _onTap,
         showSelectedLabels: false,
         showUnselectedLabels: false,
         items: _tabs
@@ -66,18 +44,43 @@ class _AppScaffoldState extends ConsumerState<AppScaffold> {
       ),
     );
   }
+
+  void _onTap(int index) {
+    // When navigating to a new branch, it's recommended to use the goBranch
+    // method, as doing so makes sure the last navigation state of the
+    // Navigator for the branch is restored.
+    navigationShell.goBranch(
+      index,
+      // A common pattern when using bottom navigation bars is to support
+      // navigating to the initial location when tapping the item that is
+      // already active. This example demonstrates how to support this behavior,
+      // using the initialLocation parameter of goBranch.
+      initialLocation: index == navigationShell.currentIndex,
+    );
+  }
+
+  Iterable<_TabInfo> _makeTabs(AppLocalizations localizations) => [
+        _TabInfo(
+          name: localizations.homeTabTitle,
+          icon: Icons.home,
+        ),
+        _TabInfo(
+          name: localizations.groupsTabTitle,
+          icon: Icons.group,
+        ),
+        _TabInfo(
+          name: localizations.settingsTabTitle,
+          icon: Icons.settings,
+        ),
+      ];
 }
 
 class _TabInfo {
-  final String location;
   final String name;
   final IconData icon;
-  final void Function(BuildContext) go;
 
   const _TabInfo({
-    required this.location,
     required this.name,
     required this.icon,
-    required this.go,
   });
 }
