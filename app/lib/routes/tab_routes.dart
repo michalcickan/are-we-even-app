@@ -1,5 +1,5 @@
 import 'package:areweeven/pages/app_scaffold.dart';
-import 'package:areweeven/pages/groups/groups_page.dart';
+import 'package:areweeven/pages/groups_list/groups_list_page.dart';
 import 'package:areweeven/pages/home/home_page.dart';
 import 'package:areweeven/pages/settings/settings_page.dart';
 import 'package:areweeven/pages/settings/settings_providers.dart';
@@ -70,7 +70,7 @@ class GroupsRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const GroupsPage();
+    return const GroupsListPage();
   }
 }
 

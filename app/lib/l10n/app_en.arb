@@ -32,5 +32,6 @@
   "addAddressTitle": "Add address",
   "zip": "ZIP",
   "street": "Street",
-  "country": "Country"
+  "country": "Country",
+  "emptyGroupsPlaceholder": "You have no groups"
 }

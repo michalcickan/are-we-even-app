@@ -294,6 +294,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Country'**
   String get country;
+
+  /// No description provided for @emptyGroupsPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'You have no groups'**
+  String get emptyGroupsPlaceholder;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -105,4 +105,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get country => 'Country';
+
+  @override
+  String get emptyGroupsPlaceholder => 'You have no groups';
 }

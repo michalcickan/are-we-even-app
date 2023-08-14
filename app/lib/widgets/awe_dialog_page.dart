@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 // https://croxx5f.hashnode.dev/adding-modal-routes-to-your-gorouter
 /// A dialog page with Material entrance and exit animations, modal barrier color,
 /// and modal barrier behavior (dialog is dismissible with a tap on the barrier).
-class DialogPage<T> extends Page<T> {
+class AWEDialogPage<T> extends Page<T> {
   final Offset? anchorPoint;
   final Color? barrierColor;
   final bool barrierDismissible;
@@ -12,7 +12,7 @@ class DialogPage<T> extends Page<T> {
   final CapturedThemes? themes;
   final WidgetBuilder builder;
 
-  const DialogPage({
+  const AWEDialogPage({
     required this.builder,
     this.anchorPoint,
     this.barrierColor = Colors.black54,

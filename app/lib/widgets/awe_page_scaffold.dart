@@ -5,13 +5,31 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'awe_dialog.dart';
 
+enum FloatingButtonType {
+  add,
+}
+
+class FloatingButton {
+  final String? title;
+  final FloatingButtonType type;
+  final VoidCallback onPressed;
+
+  FloatingButton(
+    this.type, {
+    this.title,
+    required this.onPressed,
+  });
+}
+
 class AWEPageScaffold extends ConsumerWidget {
   final String? title;
   final Widget body;
+  final FloatingButton? floatingButton;
 
   const AWEPageScaffold({
     required this.body,
     this.title,
+    this.floatingButton,
     super.key,
   });
 
@@ -23,11 +41,11 @@ class AWEPageScaffold extends ConsumerWidget {
       dismissAction() => ref.read(goRouterProvider).pop();
       List<DialogAction> allActionItems = next.showCancelButton
           ? [
-        DialogAction(
-          "cancel",
-          dismissAction,
-        ),
-      ]
+              DialogAction(
+                "cancel",
+                dismissAction,
+              ),
+            ]
           : [];
       if (next.actionItems != null) {
         allActionItems.addAll(
@@ -36,36 +54,59 @@ class AWEPageScaffold extends ConsumerWidget {
       }
       showDialog(
         context: context,
-        builder: (context) =>
-            AWEDialog(
-              title: next.title,
-              text: next.text,
-              actions: allActionItems.toList(),
-            ),
+        builder: (context) => AWEDialog(
+          title: next.title,
+          text: next.text,
+          actions: allActionItems.toList(),
+        ),
       );
     });
 
     return Scaffold(
       appBar: title != null
           ? AppBar(
-        title: Text(title!),
-      )
+              title: Text(title!),
+            )
           : null,
       body: SafeArea(child: body),
+      floatingActionButton:
+          floatingButton != null ? _makeFloatingButton(floatingButton!) : null,
     );
   }
+
+  Widget _makeFloatingButton(FloatingButton button) => button.title == null
+      ? FloatingActionButton(
+          onPressed: button.onPressed,
+          child: Icon(
+            button.type.iconData,
+          ),
+        )
+      : FloatingActionButton.extended(
+          onPressed: button.onPressed,
+          label: Text(button.title!),
+          icon: Icon(
+            button.type.iconData,
+          ),
+        );
 }
 
 extension _DialogAction on List<DialogActionItem> {
-  Iterable<DialogAction> convertItems(VoidCallback dismissAction) =>
-      map(
-            (e) =>
-            DialogAction(
-              e.text,
-                  () {
-                dismissAction;
-                e.action();
-              },
-            ),
+  Iterable<DialogAction> convertItems(VoidCallback dismissAction) => map(
+        (e) => DialogAction(
+          e.text,
+          () {
+            dismissAction;
+            e.action();
+          },
+        ),
       );
+}
+
+extension _UI on FloatingButtonType {
+  IconData get iconData {
+    switch (this) {
+      case FloatingButtonType.add:
+        return Icons.add;
+    }
+  }
 }

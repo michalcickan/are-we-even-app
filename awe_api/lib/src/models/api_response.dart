@@ -14,7 +14,7 @@ class APIResponse<T> {
     Map<String, dynamic> json,
     T Function(Map<String, dynamic> json) fromJsonT,
   ) {
-    final data = json["data"] as Map<String, dynamic>?;
+    final data = json["data"];
     if (data == null) {
       if (json["error"] != null) {
         return APIResponse(
@@ -31,6 +31,11 @@ class APIResponse<T> {
         );
       }
     }
+    if (data is List) {
+      final adjustedFromJsonT = fromJsonT as Function(List<dynamic>);
+      return APIResponse(data: adjustedFromJsonT(data));
+    }
+
     return data["error"] != null
         ? APIResponse(error: APIError.fromJson(data))
         : APIResponse(data: fromJsonT(data));

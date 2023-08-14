@@ -51,7 +51,10 @@ final class AuthInterceptor extends InterceptorsWrapper {
       return handler.next(response);
     }
     final data = response.data?["data"];
-    if (data == null || data["accessToken"] == null) {
+    if (data == null || data is List) {
+      return handler.next(response);
+    }
+    if (data["accessToken"] == null) {
       return handler.next(response);
     }
     final accessToken = AccessToken.fromJson(data);
@@ -115,7 +118,7 @@ final class AuthInterceptor extends InterceptorsWrapper {
         .then(
           (value) => APIResponse<AccessToken>.fromJson(
             value.data,
-            AccessToken.fromJson,
+            AccessToken.fromJson as AccessToken Function(dynamic),
           ).data,
         );
   }

@@ -9,8 +9,8 @@ extension GroupRequests on AweAPIClient {
         params: parameters,
       );
 
-  Future<List<Group>> getAllGroups(int groupId) => get(
-        Endpoint.group(),
+  Future<List<Group>> getAllGroups() => get(
+        Endpoint.groups(),
         <Group>[].fromJson(Group.fromJson),
       );
 }

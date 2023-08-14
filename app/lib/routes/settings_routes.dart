@@ -6,7 +6,7 @@ import 'package:areweeven/pages/registration/registration_page.dart';
 import 'package:areweeven/pages/settings/settings_page.dart';
 import 'package:areweeven/pages/settings/settings_providers.dart';
 import 'package:areweeven/pages/update_profile/update_profile_page.dart';
-import 'package:areweeven/widgets/AWETransitionPage.dart';
+import 'package:areweeven/widgets/awe_dialog_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -61,7 +61,7 @@ class AddAddressRoute extends GoRouteData {
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {
-    return DialogPage(builder: (_) => const AddAddressPage());
+    return AWEDialogPage(builder: (_) => const AddAddressPage());
   }
 }
 
