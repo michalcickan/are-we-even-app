@@ -1,8 +1,9 @@
 import 'package:areweeven/pages/app_scaffold.dart';
-import 'package:areweeven/pages/groups_list/groups_list_page.dart';
+import 'package:areweeven/pages/group_list/group_list_page.dart';
 import 'package:areweeven/pages/home/home_page.dart';
 import 'package:areweeven/pages/settings/settings_page.dart';
 import 'package:areweeven/pages/settings/settings_providers.dart';
+import 'package:areweeven/routes/groups_routes.dart';
 import 'package:areweeven/routes/settings_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -15,8 +16,9 @@ const tabRoutes = TypedStatefulShellRoute<AppScaffoldShellRoute>(
       ),
     ]),
     TypedStatefulShellBranch(routes: [
-      TypedGoRoute<GroupsRoute>(
+      TypedGoRoute<GroupListRoute>(
         path: "groups",
+        routes: groupsRoutes,
       ),
     ]),
     TypedStatefulShellBranch<SettingsBranch>(routes: [
@@ -65,12 +67,12 @@ class SettingsRoute extends GoRouteData {
   }
 }
 
-class GroupsRoute extends GoRouteData {
-  const GroupsRoute();
+class GroupListRoute extends GoRouteData {
+  const GroupListRoute();
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const GroupsListPage();
+    return const GroupListPage();
   }
 }
 

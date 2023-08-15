@@ -5,30 +5,30 @@ import 'package:awe_api/awe_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'addresses_providers.dart';
+import 'address_list_providers.dart';
 
-class AddressesPage extends ConsumerWidget {
-  const AddressesPage({
+class AddressListPage extends ConsumerWidget {
+  const AddressListPage({
     super.key,
   });
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final texts = ref.read(addressesTextsProvider);
-    final addresses = ref.watch(addressesProvider);
+    final texts = ref.read(addressListTextsProvider);
+    final addressList = ref.watch(addressListProvider);
     return ScrollablePageWithBottomButton(
       title: texts.title,
       bottomButtonTitle: texts.bottomButtonTitle,
-      bottomButtonOnPressed: () {
-        ref.read(addressesActionsProvider.notifier).didTapBottomButton();
+      onBottomButtonPressed: () {
+        ref.read(addressListActionsProvider.notifier).didTapBottomButton();
       },
-      children: addresses.isEmpty
+      children: addressList.isEmpty
           ? [
               Center(
                 child: Text(texts.emptyText),
               ),
             ]
-          : addresses
+          : addressList
               .map(
                 _makeItem(context),
               )

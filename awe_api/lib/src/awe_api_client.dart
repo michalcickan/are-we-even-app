@@ -6,7 +6,8 @@ import 'package:awe_api/src/extensions/map_dio.dart';
 import 'package:awe_api/src/interceptors/auth_interceptor.dart';
 import 'package:dio/dio.dart';
 
-/// Checks if you are awesome. Spoiler: you are.
+typedef Parser<T> = T Function(Map<String, dynamic> json);
+
 final class AweAPIClient {
   late final Dio _dio;
 
@@ -55,12 +56,12 @@ final class AweAPIClient {
             options: additionalHeaders?.dioOptions,
             queryParameters: params?.toJson(),
           )
-          .then((value) => APIResponse<T>.fromJson(value.data, parser))
+          .then(parseResponse(parser))
           .then(handleResponse);
 
   Future<T> post<T>(
     Endpoint endpoint,
-    T Function(Map<String, dynamic> json) parser, {
+    Parser<T> parser, {
     JsonConvertible? params,
     Map<String, dynamic>? additionalHeaders,
   }) =>
@@ -70,14 +71,12 @@ final class AweAPIClient {
             data: params?.toJson(),
             options: additionalHeaders?.dioOptions,
           )
-          .then((value) => APIResponse<T>.fromJson(
-              value.statusCode == HttpStatus.noContent ? {} : value.data,
-              parser))
+          .then(parseResponse(parser))
           .then(handleResponse);
 
   Future<T> put<T>(
     Endpoint endpoint,
-    T Function(Map<String, dynamic> json) parser, {
+    Parser<T> parser, {
     JsonConvertible? params,
     Map<String, dynamic>? additionalHeaders,
   }) =>
@@ -87,12 +86,12 @@ final class AweAPIClient {
             data: params?.toJson(),
             options: additionalHeaders?.dioOptions,
           )
-          .then((value) => APIResponse<T>.fromJson(value.data, parser))
+          .then(parseResponse(parser))
           .then(handleResponse);
 
   Future<T> delete<T>(
     Endpoint endpoint,
-    T Function(Map<String, dynamic> json) parser, {
+    Parser<T> parser, {
     JsonConvertible? data,
     Map<String, dynamic>? additionalHeaders,
   }) =>
@@ -102,7 +101,7 @@ final class AweAPIClient {
             data: data?.toJson(),
             options: additionalHeaders?.dioOptions,
           )
-          .then((value) => APIResponse<T>.fromJson(value.data, parser))
+          .then(parseResponse(parser))
           .then(handleResponse);
 
   T handleResponse<T>(APIResponse<T> response) {
@@ -112,6 +111,13 @@ final class AweAPIClient {
     }
     return data!;
   }
+
+  APIResponse<T> Function(Response<dynamic>) parseResponse<T>(
+          Parser<T> parser) =>
+      (value) => APIResponse<T>.fromJson(
+            value.statusCode == HttpStatus.noContent ? {} : value.data,
+            parser,
+          );
 
   bool _validateStatus(int? status) {
     return status != 401;

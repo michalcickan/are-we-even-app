@@ -41,7 +41,13 @@ RouteBase get $rootRoute => GoRouteData.$route(
               routes: [
                 GoRouteData.$route(
                   path: 'groups',
-                  factory: $GroupsRouteExtension._fromState,
+                  factory: $GroupListRouteExtension._fromState,
+                  routes: [
+                    GoRouteData.$route(
+                      path: 'create-group',
+                      factory: $CreateGroupRouteExtension._fromState,
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -176,11 +182,30 @@ extension $HomeRouteExtension on HomeRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $GroupsRouteExtension on GroupsRoute {
-  static GroupsRoute _fromState(GoRouterState state) => const GroupsRoute();
+extension $GroupListRouteExtension on GroupListRoute {
+  static GroupListRoute _fromState(GoRouterState state) =>
+      const GroupListRoute();
 
   String get location => GoRouteData.$location(
         '/groups',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $CreateGroupRouteExtension on CreateGroupRoute {
+  static CreateGroupRoute _fromState(GoRouterState state) =>
+      const CreateGroupRoute();
+
+  String get location => GoRouteData.$location(
+        '/groups/create-group',
       );
 
   void go(BuildContext context) => context.go(location);

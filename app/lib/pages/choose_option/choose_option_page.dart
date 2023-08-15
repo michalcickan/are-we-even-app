@@ -1,6 +1,6 @@
 import 'package:areweeven/widgets/awe_list_view.dart';
-import 'package:areweeven/widgets/awe_page_scaffold.dart';
 import 'package:areweeven/widgets/list_item/awe_list_item.dart';
+import 'package:areweeven/widgets/page_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,7 +20,7 @@ class ChooseOptionPage extends ConsumerWidget {
     final texts = ref.watch(chooseOptionTextsProvider(type));
     final items = ref.watch(chooseOptionItemsProvider(type));
 
-    return AWEPageScaffold(
+    return PageScaffold(
       title: texts.title,
       body: AWEListView(
         ListViewType.defaultIndentation,

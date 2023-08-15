@@ -21,7 +21,7 @@ class UpdateProfilePage extends ConsumerWidget {
     return ScrollablePageWithBottomButton(
       title: texts.title,
       bottomButtonTitle: texts.bottomButtonTitle,
-      bottomButtonOnPressed: () =>
+      onBottomButtonPressed: () =>
           ref.read(updateProfileActionsProvider.notifier).didTapBottomButton(),
       children: [
         AWETextField(

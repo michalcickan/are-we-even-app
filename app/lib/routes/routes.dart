@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../pages/choose_option/choose_option_providers.dart';
+import 'groups_routes.dart';
 import 'tab_routes.dart';
 
 part 'routes.g.dart';

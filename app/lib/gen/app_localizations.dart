@@ -265,11 +265,11 @@ abstract class AppLocalizations {
   /// **'System'**
   String get system;
 
-  /// No description provided for @noAddressesText.
+  /// No description provided for @noAddressText.
   ///
   /// In en, this message translates to:
   /// **'You have not provided any address so far.'**
-  String get noAddressesText;
+  String get noAddressText;
 
   /// No description provided for @addAddressTitle.
   ///
@@ -295,11 +295,23 @@ abstract class AppLocalizations {
   /// **'Country'**
   String get country;
 
-  /// No description provided for @emptyGroupsPlaceholder.
+  /// No description provided for @emptyGroupListPlaceholder.
   ///
   /// In en, this message translates to:
   /// **'You have no groups'**
-  String get emptyGroupsPlaceholder;
+  String get emptyGroupListPlaceholder;
+
+  /// No description provided for @createGroupTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Create group'**
+  String get createGroupTitle;
+
+  /// No description provided for @groupNamePlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'Group name'**
+  String get groupNamePlaceholder;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

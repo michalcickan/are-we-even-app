@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:awe_api/awe_api.dart';
 import 'package:awe_api/src/endpoint.dart';
 import 'package:awe_api/src/extensions/map_dio.dart';
@@ -44,6 +46,9 @@ final class AuthInterceptor extends InterceptorsWrapper {
     Response response,
     ResponseInterceptorHandler handler,
   ) async {
+    if (response.statusCode == HttpStatus.noContent) {
+      return handler.next(response);
+    }
     if (response.realUri.pathSegments.contains(Endpoint.logout().path)) {
       setTokens(
         TokensHolder(null, null),

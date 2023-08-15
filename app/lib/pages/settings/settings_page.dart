@@ -1,7 +1,7 @@
 import 'package:areweeven/pages/settings/settings_providers.dart';
 import 'package:areweeven/widgets/awe_list_view.dart';
-import 'package:areweeven/widgets/awe_page_scaffold.dart';
 import 'package:areweeven/widgets/list_item/awe_list_item.dart';
+import 'package:areweeven/widgets/page_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,7 +20,7 @@ class SettingsPage extends ConsumerWidget {
   ) {
     final texts = ref.watch(settingsTextsProvider(section));
     final items = ref.watch(settingListItemsProvider(section));
-    return AWEPageScaffold(
+    return PageScaffold(
       title: texts.title,
       body: AWEListView(
         ListViewType.defaultIndentation,

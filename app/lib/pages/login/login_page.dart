@@ -13,7 +13,7 @@ class LoginPage extends ConsumerWidget {
     return ScrollablePageWithBottomButton(
       title: texts.title,
       bottomButtonTitle: texts.bottomButtonTitle,
-      bottomButtonOnPressed: ref.watch(loginIsButtonEnabledProvider)
+      onBottomButtonPressed: ref.watch(loginIsButtonEnabledProvider)
           ? () => ref.read(loginActionsProvider.notifier).didTapBottomButton()
           : null,
       children: [

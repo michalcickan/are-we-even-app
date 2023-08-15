@@ -30,6 +30,8 @@ class Endpoint {
   factory Endpoint.groupExpenses(int groupId) =>
       Endpoint("groups/$groupId/expenses");
 
+  factory Endpoint.groupWithId(int groupId) => Endpoint("groups/$groupId");
+
   factory Endpoint.group() => const Endpoint("group");
 
   factory Endpoint.groups() => const Endpoint("groups");

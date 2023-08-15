@@ -3,6 +3,7 @@ import 'package:areweeven/global_providers/awe_api_client_provider.dart';
 import 'package:areweeven/global_providers/global_error_provider.dart';
 import 'package:areweeven/global_providers/go_router_provider.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
+import 'package:areweeven/utils/update_value_mixin.dart';
 import 'package:awe_api/awe_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -56,12 +57,6 @@ class AddAddressActions extends _$AddAddressActions
     } catch (e) {
       ref.read(globalErrorProvider.notifier).showError(e);
     }
-  }
-}
-
-mixin UpdateValue<T> on AutoDisposeNotifier<T> {
-  void updateValue(T value) {
-    state = value;
   }
 }
 

@@ -21,12 +21,12 @@ class FloatingButton {
   });
 }
 
-class AWEPageScaffold extends ConsumerWidget {
+class PageScaffold extends ConsumerWidget {
   final String? title;
   final Widget body;
   final FloatingButton? floatingButton;
 
-  const AWEPageScaffold({
+  const PageScaffold({
     required this.body,
     this.title,
     this.floatingButton,

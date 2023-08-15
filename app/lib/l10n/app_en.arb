@@ -28,10 +28,12 @@
   "dark": "Dark",
   "light": "Light",
   "system": "System",
-  "noAddressesText": "You have not provided any address so far.",
+  "noAddressText": "You have not provided any address so far.",
   "addAddressTitle": "Add address",
   "zip": "ZIP",
   "street": "Street",
   "country": "Country",
-  "emptyGroupsPlaceholder": "You have no groups"
+  "emptyGroupListPlaceholder": "You have no groups",
+  "createGroupTitle": "Create group",
+  "groupNamePlaceholder": "Group name"
 }

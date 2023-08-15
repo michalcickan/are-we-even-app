@@ -1,5 +1,5 @@
 import 'package:areweeven/pages/add_address/add_address.dart';
-import 'package:areweeven/pages/addresses/addresses_page.dart';
+import 'package:areweeven/pages/address_list/address_list_page.dart';
 import 'package:areweeven/pages/choose_option/choose_option_page.dart';
 import 'package:areweeven/pages/choose_option/choose_option_providers.dart';
 import 'package:areweeven/pages/registration/registration_page.dart';
@@ -70,7 +70,7 @@ class AddressesRoute extends GoRouteData {
 
   @override
   Widget build(BuildContext context, GoRouterState state) {
-    return const AddressesPage();
+    return const AddressListPage();
   }
 }
 

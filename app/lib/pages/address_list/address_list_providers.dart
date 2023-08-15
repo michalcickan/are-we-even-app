@@ -6,14 +6,14 @@ import 'package:areweeven/routes/settings_routes.dart';
 import 'package:awe_api/awe_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'addresses_providers.g.dart';
+part 'address_list_providers.g.dart';
 
-class AddressesTexts {
+class AddressListTexts {
   final String title;
   final String emptyText;
   final String bottomButtonTitle;
 
-  AddressesTexts({
+  AddressListTexts({
     required this.title,
     required this.emptyText,
     required this.bottomButtonTitle,
@@ -21,29 +21,30 @@ class AddressesTexts {
 }
 
 @riverpod
-AddressesTexts addressesTexts(AddressesTextsRef ref) {
+AddressListTexts addressListTexts(AddressListTextsRef ref) {
   final localizations = ref.watch(localizationProvider);
-  return AddressesTexts(
+  return AddressListTexts(
     title: localizations.addresses,
-    emptyText: localizations.noAddressesText,
+    emptyText: localizations.noAddressText,
     bottomButtonTitle: localizations.add,
   );
 }
 
 @riverpod
-class AddressesActions extends _$AddressesActions
+class AddressListActions extends _$AddressListActions
     with ProviderRouterContextMixin {
   @override
   void build() {}
 
   Future<void> didTapBottomButton() async {
     final address = await const AddAddressRoute().push(context);
+    if (address == null) return;
     ref.read(currentUserProvider.notifier).addAddress(address);
   }
 }
 
 @riverpod
-List<Address> addresses(AddressesRef ref) {
-  final addresses = ref.watch(currentUserProvider)?.addresses ?? [];
-  return addresses;
+List<Address> addressList(AddressListRef ref) {
+  final addressList = ref.watch(currentUserProvider)?.addresses ?? [];
+  return addressList;
 }

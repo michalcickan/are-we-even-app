@@ -1,6 +1,6 @@
 import 'package:areweeven/global_providers/global_error_provider.dart';
 import 'package:areweeven/widgets/awe_button.dart';
-import 'package:areweeven/widgets/awe_page_scaffold.dart';
+import 'package:areweeven/widgets/page_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -16,7 +16,7 @@ class ScrollablePageWithBottomButton extends ConsumerWidget {
 
   /// Title for the bottom button
   final String bottomButtonTitle;
-  final VoidCallback? bottomButtonOnPressed;
+  final VoidCallback? onBottomButtonPressed;
   final List<Widget> children;
 
   const ScrollablePageWithBottomButton({
@@ -24,7 +24,7 @@ class ScrollablePageWithBottomButton extends ConsumerWidget {
     required this.bottomButtonTitle,
     this.description,
     this.bottomAdditionalViews,
-    this.bottomButtonOnPressed,
+    this.onBottomButtonPressed,
     required this.children,
     super.key,
   });
@@ -43,7 +43,7 @@ class ScrollablePageWithBottomButton extends ConsumerWidget {
         );
       },
     );
-    return AWEPageScaffold(
+    return PageScaffold(
       title: title,
       body: ScrollableContent(
         scrollContent: children,
@@ -63,6 +63,6 @@ class ScrollablePageWithBottomButton extends ConsumerWidget {
   Widget _makeBottomButton(BuildContext context) => AWETextButton(
         TextButtonType.primary,
         text: bottomButtonTitle,
-        onPressed: bottomButtonOnPressed,
+        onPressed: onBottomButtonPressed,
       );
 }

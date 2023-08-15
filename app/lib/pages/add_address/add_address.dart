@@ -17,7 +17,7 @@ class AddAddressPage extends ConsumerWidget {
     return ScrollablePageWithBottomButton(
       title: texts.title,
       bottomButtonTitle: texts.bottomButtonTitle,
-      bottomButtonOnPressed: ref.watch(addAddressEnableBottomButtonProvider)
+      onBottomButtonPressed: ref.watch(addAddressEnableBottomButtonProvider)
           ? () =>
               ref.read(addAddressActionsProvider.notifier).didTapBottomButton()
           : null,

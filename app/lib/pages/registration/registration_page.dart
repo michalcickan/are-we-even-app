@@ -13,7 +13,7 @@ class RegistrationPage extends ConsumerWidget {
     return ScrollablePageWithBottomButton(
       title: texts.title,
       bottomButtonTitle: texts.bottomButtonTitle,
-      bottomButtonOnPressed: ref.watch(registrationBottomButtonEnabledProvider)
+      onBottomButtonPressed: ref.watch(registrationBottomButtonEnabledProvider)
           ? () => ref
               .read(registrationActionsProvider.notifier)
               .didTapBottomButton()

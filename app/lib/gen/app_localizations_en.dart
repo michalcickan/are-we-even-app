@@ -92,7 +92,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get system => 'System';
 
   @override
-  String get noAddressesText => 'You have not provided any address so far.';
+  String get noAddressText => 'You have not provided any address so far.';
 
   @override
   String get addAddressTitle => 'Add address';
@@ -107,5 +107,11 @@ class AppLocalizationsEn extends AppLocalizations {
   String get country => 'Country';
 
   @override
-  String get emptyGroupsPlaceholder => 'You have no groups';
+  String get emptyGroupListPlaceholder => 'You have no groups';
+
+  @override
+  String get createGroupTitle => 'Create group';
+
+  @override
+  String get groupNamePlaceholder => 'Group name';
 }
