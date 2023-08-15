@@ -3,6 +3,7 @@
   "save": "save",
   "logout": "Logout",
   "add": "Add",
+  "cancel": "Cancel",
   "loginButtonWithEmailTitle": "Login with email",
   "loginButtonWithGoogleTitle": "Login with Google",
   "registerButtonWithEmailTitle": "Sign up",

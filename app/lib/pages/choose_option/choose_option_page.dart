@@ -24,7 +24,7 @@ class ChooseOptionPage extends ConsumerWidget {
       title: texts.title,
       body: AWEListView(
         ListViewType.defaultIndentation,
-        itemCount: items.length,
+        itemsCount: items.length,
         itemBuilder: (context, index) => _makeItem(
           items[index],
         ),

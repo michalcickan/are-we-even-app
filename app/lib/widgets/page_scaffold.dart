@@ -1,22 +1,21 @@
+import 'package:areweeven/gen/app_localizations.dart';
 import 'package:areweeven/global_providers/dialog_provider.dart';
+import 'package:areweeven/global_providers/global_error_provider.dart';
 import 'package:areweeven/global_providers/go_router_provider.dart';
+import 'package:areweeven/global_providers/localization_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'awe_dialog.dart';
 
-enum FloatingButtonType {
-  add,
-}
-
 class FloatingButton {
   final String? title;
-  final FloatingButtonType type;
+  final IconData iconData;
   final VoidCallback onPressed;
 
-  FloatingButton(
-    this.type, {
+  FloatingButton({
     this.title,
+    required this.iconData,
     required this.onPressed,
   });
 }
@@ -35,14 +34,74 @@ class PageScaffold extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    ref.listen(dialogProvider, (previous, next) {
-      if (next == null) return;
+    final localizations = ref.watch(localizationProvider);
+    ref.registerErrorListener();
+    ref.registerDialogListener(localizations);
 
-      dismissAction() => ref.read(goRouterProvider).pop();
+    return Scaffold(
+      appBar: title != null
+          ? AppBar(
+              title: Text(title!),
+            )
+          : null,
+      body: SafeArea(child: body),
+      floatingActionButton:
+          floatingButton != null ? _makeFloatingButton(floatingButton!) : null,
+    );
+  }
+
+  Widget _makeFloatingButton(FloatingButton button) => button.title == null
+      ? FloatingActionButton(
+          onPressed: button.onPressed,
+          child: Icon(
+            button.iconData,
+          ),
+        )
+      : FloatingActionButton.extended(
+          onPressed: button.onPressed,
+          label: Text(button.title!),
+          icon: Icon(
+            button.iconData,
+          ),
+        );
+}
+
+extension _DialogAction on List<DialogActionItem> {
+  Iterable<DialogAction> convertItems(VoidCallback dismissAction) => map(
+        (e) => DialogAction(
+          e.text,
+          () {
+            dismissAction;
+            e.action();
+          },
+        ),
+      );
+}
+
+extension _Listeners on WidgetRef {
+  void registerErrorListener() {
+    listen(
+      globalErrorProvider,
+      (_, text) {
+        if (text == null) return;
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(
+            content: Text(text),
+            duration: const Duration(seconds: 3),
+          ),
+        );
+      },
+    );
+  }
+
+  void registerDialogListener(AppLocalizations localizations) {
+    listen(dialogProvider, (previous, next) {
+      if (next == null) return;
+      dismissAction() => read(goRouterProvider).pop();
       List<DialogAction> allActionItems = next.showCancelButton
           ? [
               DialogAction(
-                "cancel",
+                localizations.cancel,
                 dismissAction,
               ),
             ]
@@ -61,52 +120,5 @@ class PageScaffold extends ConsumerWidget {
         ),
       );
     });
-
-    return Scaffold(
-      appBar: title != null
-          ? AppBar(
-              title: Text(title!),
-            )
-          : null,
-      body: SafeArea(child: body),
-      floatingActionButton:
-          floatingButton != null ? _makeFloatingButton(floatingButton!) : null,
-    );
-  }
-
-  Widget _makeFloatingButton(FloatingButton button) => button.title == null
-      ? FloatingActionButton(
-          onPressed: button.onPressed,
-          child: Icon(
-            button.type.iconData,
-          ),
-        )
-      : FloatingActionButton.extended(
-          onPressed: button.onPressed,
-          label: Text(button.title!),
-          icon: Icon(
-            button.type.iconData,
-          ),
-        );
-}
-
-extension _DialogAction on List<DialogActionItem> {
-  Iterable<DialogAction> convertItems(VoidCallback dismissAction) => map(
-        (e) => DialogAction(
-          e.text,
-          () {
-            dismissAction;
-            e.action();
-          },
-        ),
-      );
-}
-
-extension _UI on FloatingButtonType {
-  IconData get iconData {
-    switch (this) {
-      case FloatingButtonType.add:
-        return Icons.add;
-    }
   }
 }

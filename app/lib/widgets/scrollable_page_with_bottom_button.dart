@@ -11,9 +11,6 @@ class ScrollablePageWithBottomButton extends ConsumerWidget {
   final String? title;
   final String? description;
 
-  /// use for views, which should be above the bottom button
-  final List<Widget>? bottomAdditionalViews;
-
   /// Title for the bottom button
   final String bottomButtonTitle;
   final VoidCallback? onBottomButtonPressed;
@@ -23,7 +20,6 @@ class ScrollablePageWithBottomButton extends ConsumerWidget {
     this.title,
     required this.bottomButtonTitle,
     this.description,
-    this.bottomAdditionalViews,
     this.onBottomButtonPressed,
     required this.children,
     super.key,
@@ -47,22 +43,12 @@ class ScrollablePageWithBottomButton extends ConsumerWidget {
       title: title,
       body: ScrollableContent(
         scrollContent: children,
-        bottomView: bottomAdditionalViews != null
-            ? Column(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
-                children: [
-                  ...bottomAdditionalViews!,
-                  _makeBottomButton(context),
-                ],
-              )
-            : _makeBottomButton(context),
+        bottomView: AWETextButton(
+          TextButtonType.primary,
+          text: bottomButtonTitle,
+          onPressed: onBottomButtonPressed,
+        ),
       ),
     );
   }
-
-  Widget _makeBottomButton(BuildContext context) => AWETextButton(
-        TextButtonType.primary,
-        text: bottomButtonTitle,
-        onPressed: onBottomButtonPressed,
-      );
 }

@@ -23,7 +23,7 @@ class GroupListPage extends ConsumerWidget {
     return PageScaffold(
       title: texts.title,
       floatingButton: FloatingButton(
-        FloatingButtonType.add,
+        iconData: Icons.group_add,
         onPressed: () =>
             ref.read(groupListActionsProvider.notifier).didTapAdd(),
       ),
@@ -35,7 +35,7 @@ class GroupListPage extends ConsumerWidget {
               )
             : AWEListView(
                 ListViewType.defaultIndentation,
-                itemCount: data.length,
+                itemsCount: data.length,
                 itemBuilder: (context, index) => _makeItem(
                   data[index],
                   ref,

@@ -18,4 +18,14 @@ extension GroupRequests on AweAPIClient {
         Endpoint.groupWithId(groupId),
         EmptyResponse.fromJson,
       );
+
+  Future<Group> getDefaultGroup() => get(
+        Endpoint.groupDefault(null),
+        Group.fromJson,
+      );
+
+  Future<EmptyResponse> setDefaultGroup(int groupId) => put(
+        Endpoint.groupDefault(groupId),
+        EmptyResponse.fromJson,
+      );
 }

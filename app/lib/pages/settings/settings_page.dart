@@ -24,7 +24,7 @@ class SettingsPage extends ConsumerWidget {
       title: texts.title,
       body: AWEListView(
         ListViewType.defaultIndentation,
-        itemCount: items.length,
+        itemsCount: items.length,
         itemBuilder: (BuildContext context, int index) {
           final item = items[index];
           final data = item.type.info;

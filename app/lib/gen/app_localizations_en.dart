@@ -17,6 +17,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get add => 'Add';
 
   @override
+  String get cancel => 'Cancel';
+
+  @override
   String get loginButtonWithEmailTitle => 'Login with email';
 
   @override

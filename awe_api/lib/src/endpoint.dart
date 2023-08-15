@@ -32,6 +32,10 @@ class Endpoint {
 
   factory Endpoint.groupWithId(int groupId) => Endpoint("groups/$groupId");
 
+  factory Endpoint.groupDefault(int? groupId) => groupId == null
+      ? Endpoint("groups/default")
+      : Endpoint("groups/$groupId/default");
+
   factory Endpoint.group() => const Endpoint("group");
 
   factory Endpoint.groups() => const Endpoint("groups");

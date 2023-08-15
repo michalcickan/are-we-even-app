@@ -9,12 +9,12 @@ enum ListViewType {
 class AWEListView extends StatelessWidget {
   final ListViewType type;
   final Widget? Function(BuildContext, int) itemBuilder;
-  final int? itemCount;
+  final int? itemsCount;
 
   const AWEListView(
     this.type, {
     required this.itemBuilder,
-    this.itemCount,
+    this.itemsCount,
     Key? key,
   }) : super(key: key);
 
@@ -31,7 +31,7 @@ class AWEListView extends StatelessWidget {
             ? Padding(padding: sidePadding!, child: child)
             : child;
       },
-      itemCount: itemCount,
+      itemCount: itemsCount,
     );
   }
 }
