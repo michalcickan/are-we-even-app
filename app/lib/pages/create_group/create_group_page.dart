@@ -12,7 +12,7 @@ class CreateGroup extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final texts = ref.read(createGroupTextsProvider);
+    final texts = ref.watch(createGroupTextsProvider);
 
     return ScrollablePageWithBottomButton(
       title: texts.title,
@@ -23,6 +23,7 @@ class CreateGroup extends ConsumerWidget {
           : null,
       children: [
         AWETextField(
+          TextFieldType.basic,
           hintText: texts.groupNamePlaceholder,
           onValueChanged: (value) =>
               ref.read(createGroupNameProvider.notifier).updateValue(value),

@@ -1,5 +1,6 @@
 import 'package:awe_api/awe_api.dart';
 import 'package:awe_api/src/endpoint.dart';
+import 'package:awe_api/src/extensions/list_for_serialization.dart';
 
 extension UserRequests on AweAPIClient {
   Future<User> getUser() => get(
@@ -19,9 +20,9 @@ extension UserRequests on AweAPIClient {
         params: parameters,
       );
 
-  Future<GenericResult> searchUsers(UserSearchParameters parameters) => get(
-        Endpoint.userAddress(),
-        GenericResult.fromJson,
+  Future<List<User>> searchUsers(UserSearchParameters parameters) => get(
+        Endpoint.usersSearch(),
+        <User>[].fromJson(User.fromJson),
         params: parameters,
       );
 }

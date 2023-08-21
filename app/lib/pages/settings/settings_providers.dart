@@ -1,6 +1,5 @@
 import 'dart:ui';
 
-import 'package:areweeven/extensions/go_router_context.dart';
 import 'package:areweeven/gen/app_localizations.dart';
 import 'package:areweeven/global_providers/auth_provider.dart';
 import 'package:areweeven/global_providers/dialog_provider.dart';
@@ -9,6 +8,7 @@ import 'package:areweeven/global_providers/localization_provider.dart';
 import 'package:areweeven/pages/choose_option/choose_option_providers.dart';
 import 'package:areweeven/routes/routes.dart';
 import 'package:areweeven/routes/settings_routes.dart';
+import 'package:areweeven/utils/extensions/go_router_context.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

@@ -1,12 +1,10 @@
+import 'package:areweeven/utils/extensions/build_context_themes.dart';
 import 'package:areweeven/widgets/sizes.dart';
 import 'package:flutter/material.dart';
 
 import 'awe_border_radius.dart';
 
-enum TextButtonType {
-  primary,
-  secondary,
-}
+enum TextButtonType { primary, secondary, bar }
 
 class AWETextButton extends StatelessWidget {
   final TextButtonType type;
@@ -43,6 +41,19 @@ extension _Styles on TextButtonType {
               (colorScheme) => colorScheme.primary,
             ),
           ),
+          foregroundColor: MaterialStatePropertyAll(
+            context.colorScheme.onPrimary,
+          ),
+          shape: MaterialStatePropertyAll(
+            RoundedRectangleBorder(
+              borderRadius: AWEBorderRadius.roundXxxl(),
+            ),
+          ),
+        );
+      case TextButtonType.bar:
+        return const _CommonButtonStyle().copyWith(
+          backgroundColor: const MaterialStatePropertyAll(Colors.transparent),
+          textStyle: MaterialStatePropertyAll(context.textTheme.labelSmall),
           foregroundColor: MaterialStatePropertyAll(
             Theme.of(context).colorScheme.onPrimary,
           ),

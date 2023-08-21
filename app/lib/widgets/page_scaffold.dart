@@ -3,6 +3,8 @@ import 'package:areweeven/global_providers/dialog_provider.dart';
 import 'package:areweeven/global_providers/global_error_provider.dart';
 import 'package:areweeven/global_providers/go_router_provider.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
+import 'package:areweeven/widgets/awe_button.dart';
+import 'package:areweeven/widgets/awe_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,15 +22,34 @@ class FloatingButton {
   });
 }
 
+class AppBarAction {
+  final String? title;
+  final IconData? iconData;
+  final Function() onPressed;
+
+  AppBarAction({
+    this.title,
+    this.iconData,
+    required this.onPressed,
+  }) : assert(
+          iconData != null || title != null,
+          "You must set either iconData or title in order to show AppBarAction",
+        );
+}
+
 class PageScaffold extends ConsumerWidget {
   final String? title;
+  final AWETextField? appBarSearchField;
   final Widget body;
   final FloatingButton? floatingButton;
+  final List<AppBarAction>? rightAppBarActions;
 
   const PageScaffold({
     required this.body,
     this.title,
     this.floatingButton,
+    this.rightAppBarActions,
+    this.appBarSearchField,
     super.key,
   });
 
@@ -38,10 +59,12 @@ class PageScaffold extends ConsumerWidget {
     ref.registerErrorListener();
     ref.registerDialogListener(localizations);
 
+    final showAppBar = title != null || appBarSearchField != null;
     return Scaffold(
-      appBar: title != null
+      appBar: showAppBar
           ? AppBar(
-              title: Text(title!),
+              title: title != null ? Text(title!) : appBarSearchField,
+              actions: rightAppBarActions?.map(_makeAppBarAction).toList(),
             )
           : null,
       body: SafeArea(child: body),
@@ -63,6 +86,16 @@ class PageScaffold extends ConsumerWidget {
           icon: Icon(
             button.iconData,
           ),
+        );
+
+  Widget _makeAppBarAction(AppBarAction action) => action.title != null
+      ? AWETextButton(
+          TextButtonType.primary,
+          text: action.title!,
+        )
+      : IconButton(
+          onPressed: action.onPressed,
+          icon: Icon(action.iconData!),
         );
 }
 

@@ -121,6 +121,12 @@ abstract class AppLocalizations {
   /// **'Cancel'**
   String get cancel;
 
+  /// No description provided for @switchToButtonTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Switch to'**
+  String get switchToButtonTitle;
+
   /// No description provided for @loginButtonWithEmailTitle.
   ///
   /// In en, this message translates to:
@@ -318,6 +324,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Group name'**
   String get groupNamePlaceholder;
+
+  /// No description provided for @current.
+  ///
+  /// In en, this message translates to:
+  /// **'Current'**
+  String get current;
+
+  /// No description provided for @addGroupMember.
+  ///
+  /// In en, this message translates to:
+  /// **'Add group member'**
+  String get addGroupMember;
+
+  /// No description provided for @searchUserHint.
+  ///
+  /// In en, this message translates to:
+  /// **'email or name'**
+  String get searchUserHint;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

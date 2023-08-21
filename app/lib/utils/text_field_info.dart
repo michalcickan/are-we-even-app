@@ -18,6 +18,7 @@ extension Inputs on List<TextFieldInfo> {
   List<Widget> get inputs => expand(
         (e) => [
           AWETextField(
+            TextFieldType.basic,
             hintText: e.hint,
             onValueChanged: e.onChangeValue,
             obscureText: e.isSecure,

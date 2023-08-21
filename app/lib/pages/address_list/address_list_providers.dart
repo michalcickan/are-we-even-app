@@ -1,8 +1,8 @@
-import 'package:areweeven/extensions/go_router_context.dart';
 import 'package:areweeven/global_providers/current_user_provider.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
 import 'package:areweeven/routes/routes.dart';
 import 'package:areweeven/routes/settings_routes.dart';
+import 'package:areweeven/utils/extensions/go_router_context.dart';
 import 'package:awe_api/awe_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 

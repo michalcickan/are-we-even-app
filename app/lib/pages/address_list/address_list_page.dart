@@ -1,4 +1,4 @@
-import 'package:areweeven/extensions/build_context_themes.dart';
+import 'package:areweeven/utils/extensions/build_context_themes.dart';
 import 'package:areweeven/widgets/scrollable_page_with_bottom_button.dart';
 import 'package:areweeven/widgets/sizes.dart';
 import 'package:awe_api/awe_api.dart';
@@ -14,7 +14,7 @@ class AddressListPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final texts = ref.read(addressListTextsProvider);
+    final texts = ref.watch(addressListTextsProvider);
     final addressList = ref.watch(addressListProvider);
     return ScrollablePageWithBottomButton(
       title: texts.title,

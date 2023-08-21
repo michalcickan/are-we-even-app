@@ -1,4 +1,4 @@
-import 'package:areweeven/extensions/go_router_context.dart';
+import 'package:areweeven/utils/extensions/go_router_context.dart';
 import 'package:areweeven/gen/app_localizations.dart';
 import 'package:areweeven/global_providers/auth_provider.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';

@@ -20,6 +20,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get cancel => 'Cancel';
 
   @override
+  String get switchToButtonTitle => 'Switch to';
+
+  @override
   String get loginButtonWithEmailTitle => 'Login with email';
 
   @override
@@ -117,4 +120,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get groupNamePlaceholder => 'Group name';
+
+  @override
+  String get current => 'Current';
+
+  @override
+  String get addGroupMember => 'Add group member';
+
+  @override
+  String get searchUserHint => 'email or name';
 }

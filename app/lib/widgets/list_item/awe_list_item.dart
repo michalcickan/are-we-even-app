@@ -1,4 +1,4 @@
-import 'package:areweeven/extensions/build_context_themes.dart';
+import 'package:areweeven/utils/extensions/build_context_themes.dart';
 import 'package:areweeven/widgets/awe_border_radius.dart';
 import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
@@ -7,6 +7,7 @@ part 'awe_list_item.freezed.dart';
 
 enum ListItemType {
   option,
+  selectionIndicator,
 }
 
 @freezed
@@ -23,6 +24,7 @@ class ListItemTrailingType with _$ListItemTrailingType {
 
 class AWEListItem extends StatelessWidget {
   final String title;
+  final String? subtitle;
   final IconData? iconData;
   final ListItemType type;
   final VoidCallback? onPressed;
@@ -34,6 +36,7 @@ class AWEListItem extends StatelessWidget {
     this.iconData,
     this.onPressed,
     this.trailingType,
+    this.subtitle,
     super.key,
   });
 
@@ -44,6 +47,12 @@ class AWEListItem extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: AWEBorderRadius.roundM(),
       ),
+      subtitle: subtitle != null
+          ? Text(
+              subtitle!,
+              style: type.subtitleTextStyle(context),
+            )
+          : null,
       tileColor: context.colorScheme.surface,
       title: Text(
         title,
@@ -71,4 +80,17 @@ extension _Widgets on ListItemTrailingType {
         ),
         checkbox: () => const Icon(Icons.check),
       );
+}
+
+extension _Styles on ListItemType {
+  TextStyle? subtitleTextStyle(BuildContext context) {
+    switch (this) {
+      case ListItemType.selectionIndicator:
+        return context.textTheme.labelSmall?.copyWith(
+          color: context.colorScheme.secondary,
+        );
+      case ListItemType.option:
+        return context.textTheme.bodySmall;
+    }
+  }
 }

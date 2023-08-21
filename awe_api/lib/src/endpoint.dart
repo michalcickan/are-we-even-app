@@ -5,6 +5,8 @@ class Endpoint {
 
   factory Endpoint.userAddress() => const Endpoint("user/address");
 
+  factory Endpoint.usersSearch() => const Endpoint("users/search");
+
   factory Endpoint.login(LoginType? loginType) => loginType != null
       ? Endpoint("login/${loginType.name}")
       : const Endpoint("login");

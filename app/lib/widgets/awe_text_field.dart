@@ -1,4 +1,4 @@
-import 'package:areweeven/extensions/build_context_themes.dart';
+import 'package:areweeven/utils/extensions/build_context_themes.dart';
 import 'package:areweeven/widgets/sizes.dart';
 import 'package:flutter/material.dart';
 
@@ -6,7 +6,10 @@ import 'awe_border_radius.dart';
 
 typedef OnValueChanged = void Function(String);
 
+enum TextFieldType { basic, search }
+
 class AWETextField extends StatefulWidget {
+  final TextFieldType type;
   final String? hintText;
   final OnValueChanged? onValueChanged;
   final bool showRemoveButton;
@@ -14,7 +17,8 @@ class AWETextField extends StatefulWidget {
   final String? initialValue;
   final bool obscureText;
 
-  const AWETextField({
+  const AWETextField(
+    this.type, {
     this.hintText,
     this.onValueChanged,
     this.showRemoveButton = true,
@@ -49,9 +53,11 @@ class _AWETextFieldState extends State<AWETextField>
 
   @override
   Widget build(BuildContext context) {
+    final shouldHaveFloatLabel =
+        widget.type.floatingLabelStyle(context) != null;
     return Material(
       color: context.colorScheme.surface,
-      borderRadius: _borderRadius,
+      borderRadius: widget.type.borderRadius,
       child: Focus(
         onFocusChange: widget.onFocusChanged,
         child: TextField(
@@ -62,7 +68,8 @@ class _AWETextFieldState extends State<AWETextField>
             contentPadding: const EdgeInsets.all(
               Sizes.large,
             ),
-            labelText: widget.hintText,
+            labelText: shouldHaveFloatLabel ? widget.hintText : null,
+            hintText: !shouldHaveFloatLabel ? widget.hintText : null,
             suffixIcon: widget.showRemoveButton
                 ? IconButton(
                     icon: const Icon(
@@ -71,19 +78,19 @@ class _AWETextFieldState extends State<AWETextField>
                     onPressed: _cleanText,
                   )
                 : null,
-            floatingLabelStyle: context.textTheme.labelSmall!.copyWith(
-              color: context.colorScheme.primary,
-            ),
+            floatingLabelStyle: widget.type.floatingLabelStyle(context),
             labelStyle: context.textTheme.bodyMedium!.copyWith(
               color: context.colorScheme.onSurface.withAlpha(
                 128,
               ),
             ),
-            focusedBorder: _makeOutlinedBorder(
-              context.colorScheme.primary,
+            focusedBorder: widget.type.border(
+              context,
+              true,
             ),
-            enabledBorder: _makeOutlinedBorder(
-              context.colorScheme.onBackground,
+            enabledBorder: widget.type.border(
+              context,
+              false,
             ),
           ),
           style: context.textTheme.bodyMedium?.copyWith(
@@ -94,16 +101,6 @@ class _AWETextFieldState extends State<AWETextField>
     );
   }
 
-  AWEBorderRadius get _borderRadius => AWEBorderRadius.roundM();
-
-  OutlineInputBorder _makeOutlinedBorder(Color color) => OutlineInputBorder(
-        borderSide: BorderSide(
-          width: 2,
-          color: color,
-        ),
-        borderRadius: _borderRadius,
-      );
-
   void _textEditingListener() {
     widget.onValueChanged?.call(_textEditingController.text);
   }
@@ -112,4 +109,36 @@ class _AWETextFieldState extends State<AWETextField>
     _textEditingController.text = "";
     widget.onValueChanged?.call("");
   }
+}
+
+extension _Style on TextFieldType {
+  TextStyle? floatingLabelStyle(BuildContext context) {
+    switch (this) {
+      case TextFieldType.basic:
+        return context.textTheme.labelSmall!.copyWith(
+          color: context.colorScheme.primary,
+        );
+      case TextFieldType.search:
+        return null;
+    }
+  }
+
+  OutlineInputBorder? border(BuildContext context, bool isFocused) {
+    switch (this) {
+      case TextFieldType.basic:
+        return OutlineInputBorder(
+          borderSide: BorderSide(
+            width: 2,
+            color: isFocused
+                ? context.colorScheme.primary
+                : context.colorScheme.onBackground,
+          ),
+          borderRadius: borderRadius,
+        );
+      case TextFieldType.search:
+        return null;
+    }
+  }
+
+  AWEBorderRadius get borderRadius => AWEBorderRadius.roundM();
 }

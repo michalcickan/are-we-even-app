@@ -14,6 +14,11 @@ extension GroupRequests on AweAPIClient {
         <Group>[].fromJson(Group.fromJson),
       );
 
+  Future<Group> getGroup(int groupId) => get(
+        Endpoint.groupWithId(groupId),
+        Group.fromJson,
+      );
+
   Future<EmptyResponse> deleteGroup(int groupId) => delete(
         Endpoint.groupWithId(groupId),
         EmptyResponse.fromJson,

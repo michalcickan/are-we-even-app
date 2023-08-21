@@ -1,9 +1,11 @@
-import 'package:areweeven/extensions/go_router_context.dart';
+import 'package:areweeven/gen/app_localizations.dart';
 import 'package:areweeven/global_providers/awe_api_client_provider.dart';
+import 'package:areweeven/global_providers/current_group_provider.dart';
 import 'package:areweeven/global_providers/global_error_provider.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
 import 'package:areweeven/routes/groups_routes.dart';
 import 'package:areweeven/routes/routes.dart';
+import 'package:areweeven/utils/extensions/go_router_context.dart';
 import 'package:awe_api/awe_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -48,17 +50,55 @@ class GroupListActions extends _$GroupListActions
       ref.read(globalErrorProvider.notifier).showError(e);
     }
   }
+
+  void didTapGroup(Group group) {
+    GroupDetailRoute(group.id).push(context);
+  }
+}
+
+class GroupItem {
+  Function() onDidTapRemove;
+  Function() onPressed;
+  int id;
+  String title;
+  String? stateIndicatingSubtitle;
+
+  GroupItem({
+    required this.onDidTapRemove,
+    required this.onPressed,
+    required this.id,
+    required this.title,
+    this.stateIndicatingSubtitle,
+  });
 }
 
 @riverpod
 class GroupListItems extends _$GroupListItems {
   @override
-  Future<List<Group>> build() {
-    return ref.watch(aweApiClientProvider).getAllGroups();
+  Future<List<GroupItem>> build() {
+    ref.watch(currentGroupProvider);
+    return ref
+        .watch(aweApiClientProvider)
+        .getAllGroups()
+        .then((groups) => groups.map(_makeItem).toList());
   }
 
+  GroupItem _makeItem(Group group) => GroupItem(
+        onDidTapRemove: () => ref.actions.didTapRemoveGroup(group),
+        onPressed: () => ref.actions.didTapGroup(group),
+        title: group.name,
+        stateIndicatingSubtitle:
+            group.isDefault ?? false ? ref.localizations.current : null,
+        id: group.id,
+      );
+
   void addGroup(Group group) {
-    state = AsyncValue.data([...(state.value ?? []), group]);
+    state = AsyncValue.data(
+      [
+        ...(state.value ?? []),
+        _makeItem(group),
+      ],
+    );
   }
 
   void removeGroup(Group group) {
@@ -66,4 +106,10 @@ class GroupListItems extends _$GroupListItems {
     groups.removeWhere((element) => element.id == group.id);
     state = AsyncValue.data(groups);
   }
+}
+
+extension _Actions<T> on AsyncNotifierProviderRef<T> {
+  GroupListActions get actions => read(groupListActionsProvider.notifier);
+
+  AppLocalizations get localizations => read(localizationProvider);
 }

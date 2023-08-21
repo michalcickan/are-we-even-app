@@ -1,8 +1,8 @@
 import 'package:areweeven/exceptions/validation_exception.dart';
-import 'package:areweeven/extensions/go_router_context.dart';
 import 'package:areweeven/global_providers/auth_provider.dart';
 import 'package:areweeven/global_providers/global_error_provider.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
+import 'package:areweeven/utils/extensions/go_router_context.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'registration_providers.g.dart';

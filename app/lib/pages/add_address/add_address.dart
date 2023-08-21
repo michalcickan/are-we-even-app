@@ -13,7 +13,7 @@ class AddAddressPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final texts = ref.read(addAddressTextsProvider);
+    final texts = ref.watch(addAddressTextsProvider);
     return ScrollablePageWithBottomButton(
       title: texts.title,
       bottomButtonTitle: texts.bottomButtonTitle,
@@ -23,22 +23,26 @@ class AddAddressPage extends ConsumerWidget {
           : null,
       children: [
         AWETextField(
+          TextFieldType.basic,
           hintText: texts.streetPlaceholder,
           onValueChanged:
               ref.read(addAddressStreetProvider.notifier).updateValue,
         ),
         _spacer,
         AWETextField(
+          TextFieldType.basic,
           hintText: texts.countryPlaceholder,
           onValueChanged: ref.read(addAddressCityProvider.notifier).updateValue,
         ),
         _spacer,
         AWETextField(
+          TextFieldType.basic,
           hintText: texts.zipPlaceholder,
           onValueChanged: ref.read(addAddressZipProvider.notifier).updateValue,
         ),
         _spacer,
         AWETextField(
+          TextFieldType.basic,
           hintText: texts.countryPlaceholder,
           onValueChanged:
               ref.read(addAddressCountryProvider.notifier).updateValue,

@@ -1,8 +1,8 @@
-import 'package:areweeven/extensions/go_router_context.dart';
 import 'package:areweeven/global_providers/awe_api_client_provider.dart';
 import 'package:areweeven/global_providers/current_user_provider.dart';
 import 'package:areweeven/global_providers/global_error_provider.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
+import 'package:areweeven/utils/extensions/go_router_context.dart';
 import 'package:awe_api/awe_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -47,12 +47,12 @@ class UpdateProfileActions extends _$UpdateProfileActions
     try {
       final user = ref.read(updateProfileUserProvider)!;
       final newUser = await ref.read(aweApiClientProvider).updateUser(
-        UpdateUserParameters(
-          name: user.name,
-          middleName: user.middleName,
-          surname: user.surname,
-        ),
-      );
+            UpdateUserParameters(
+              name: user.name,
+              middleName: user.middleName,
+              surname: user.surname,
+            ),
+          );
       ref.read(currentUserProvider.notifier).setUser(newUser);
     } catch (e) {
       ref.read(globalErrorProvider.notifier).showError(e);

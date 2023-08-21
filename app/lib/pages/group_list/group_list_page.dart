@@ -3,7 +3,6 @@ import 'package:areweeven/widgets/awe_list_view.dart';
 import 'package:areweeven/widgets/list_item/awe_list_item.dart';
 import 'package:areweeven/widgets/page_scaffold.dart';
 import 'package:areweeven/widgets/sizes.dart';
-import 'package:awe_api/awe_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -38,7 +37,6 @@ class GroupListPage extends ConsumerWidget {
                 itemsCount: data.length,
                 itemBuilder: (context, index) => _makeItem(
                   data[index],
-                  ref,
                 ),
               ),
         error: (object, stackTrace) => Center(
@@ -53,15 +51,16 @@ class GroupListPage extends ConsumerWidget {
     );
   }
 
-  Widget _makeItem(Group group, WidgetRef ref) => Dismissible(
+  Widget _makeItem(
+    GroupItem groupItem,
+  ) =>
+      Dismissible(
         key: Key(
-          group.id.toString(),
+          groupItem.id.toString(),
         ),
         direction: DismissDirection.endToStart,
         confirmDismiss: (direction) {
-          ref.read(groupListActionsProvider.notifier).didTapRemoveGroup(
-                group,
-              );
+          groupItem.onDidTapRemove();
           return Future.value(false);
         },
         background: Container(
@@ -76,9 +75,12 @@ class GroupListPage extends ConsumerWidget {
           ),
         ),
         child: AWEListItem(
-          ListItemType.option,
-          title: group.name,
-          key: ValueKey(group.id),
+          ListItemType.selectionIndicator,
+          title: groupItem.title,
+          onPressed: groupItem.onPressed,
+          subtitle: groupItem.stateIndicatingSubtitle,
+          key: ValueKey(groupItem.id),
+          trailingType: const ListItemTrailingType.navigation(),
         ),
       );
 }

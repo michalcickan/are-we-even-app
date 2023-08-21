@@ -123,7 +123,7 @@ final class AuthInterceptor extends InterceptorsWrapper {
         .then(
           (value) => APIResponse<AccessToken>.fromJson(
             value.data,
-            AccessToken.fromJson as AccessToken Function(dynamic),
+            AccessToken.fromJson,
           ).data,
         );
   }

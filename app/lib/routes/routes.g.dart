@@ -47,6 +47,14 @@ RouteBase get $rootRoute => GoRouteData.$route(
                       path: 'create-group',
                       factory: $CreateGroupRouteExtension._fromState,
                     ),
+                    GoRouteData.$route(
+                      path: 'group-detail',
+                      factory: $GroupDetailRouteExtension._fromState,
+                    ),
+                    GoRouteData.$route(
+                      path: 'add-group-member',
+                      factory: $AddGroupMemberRouteExtension._fromState,
+                    ),
                   ],
                 ),
               ],
@@ -206,6 +214,51 @@ extension $CreateGroupRouteExtension on CreateGroupRoute {
 
   String get location => GoRouteData.$location(
         '/groups/create-group',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $GroupDetailRouteExtension on GroupDetailRoute {
+  static GroupDetailRoute _fromState(GoRouterState state) => GroupDetailRoute(
+        int.parse(state.uri.queryParameters['group-id']!),
+      );
+
+  String get location => GoRouteData.$location(
+        '/groups/group-detail',
+        queryParams: {
+          'group-id': groupId.toString(),
+        },
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $AddGroupMemberRouteExtension on AddGroupMemberRoute {
+  static AddGroupMemberRoute _fromState(GoRouterState state) =>
+      AddGroupMemberRoute(
+        int.parse(state.uri.queryParameters['group-id']!),
+      );
+
+  String get location => GoRouteData.$location(
+        '/groups/add-group-member',
+        queryParams: {
+          'group-id': groupId.toString(),
+        },
       );
 
   void go(BuildContext context) => context.go(location);

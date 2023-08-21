@@ -4,6 +4,7 @@
   "logout": "Logout",
   "add": "Add",
   "cancel": "Cancel",
+  "switchToButtonTitle": "Switch to",
   "loginButtonWithEmailTitle": "Login with email",
   "loginButtonWithGoogleTitle": "Login with Google",
   "registerButtonWithEmailTitle": "Sign up",
@@ -36,5 +37,8 @@
   "country": "Country",
   "emptyGroupListPlaceholder": "You have no groups",
   "createGroupTitle": "Create group",
-  "groupNamePlaceholder": "Group name"
+  "groupNamePlaceholder": "Group name",
+  "current": "Current",
+  "addGroupMember": "Add group member",
+  "searchUserHint": "email or name"
 }

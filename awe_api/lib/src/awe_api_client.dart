@@ -120,6 +120,6 @@ final class AweAPIClient {
           );
 
   bool _validateStatus(int? status) {
-    return status != 401;
+    return status != 401 && status != 500;
   }
 }

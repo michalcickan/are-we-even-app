@@ -16,6 +16,12 @@ class CurrentGroup extends _$CurrentGroup {
         );
   }
 
+  Future<void> setDefaultGroup(int groupId) async {
+    final client = ref.read(aweApiClientProvider);
+    await client.setDefaultGroup(groupId);
+    state = AsyncValue.data(await client.getGroup(groupId));
+  }
+
   Future<Group?> _fetchDefaultGroup(bool logged) {
     return logged
         ? ref.read(aweApiClientProvider).getDefaultGroup()
