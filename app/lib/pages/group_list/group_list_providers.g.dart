@@ -37,12 +37,12 @@ final groupListActionsProvider =
 );
 
 typedef _$GroupListActions = AutoDisposeNotifier<void>;
-String _$groupListItemsHash() => r'dd3053e1aa3497da75967efbcadc228460dfcac3';
+String _$groupListItemsHash() => r'81aa47e68f14020348abc0f6f6df20908490242f';
 
 /// See also [GroupListItems].
 @ProviderFor(GroupListItems)
-final groupListItemsProvider =
-    AutoDisposeAsyncNotifierProvider<GroupListItems, List<GroupItem>>.internal(
+final groupListItemsProvider = AutoDisposeAsyncNotifierProvider<GroupListItems,
+    List<RemovableListItemViewModel<dynamic>>>.internal(
   GroupListItems.new,
   name: r'groupListItemsProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -52,6 +52,7 @@ final groupListItemsProvider =
   allTransitiveDependencies: null,
 );
 
-typedef _$GroupListItems = AutoDisposeAsyncNotifier<List<GroupItem>>;
+typedef _$GroupListItems
+    = AutoDisposeAsyncNotifier<List<RemovableListItemViewModel<dynamic>>>;
 // ignore_for_file: type=lint
 // ignore_for_file: subtype_of_sealed_class, invalid_use_of_internal_member

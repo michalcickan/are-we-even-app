@@ -1,4 +1,5 @@
 import 'package:areweeven/utils/extensions/build_context_themes.dart';
+import 'package:areweeven/widgets/page_scaffold.dart';
 import 'package:areweeven/widgets/scrollable_page_with_bottom_button.dart';
 import 'package:areweeven/widgets/sizes.dart';
 import 'package:awe_api/awe_api.dart';
@@ -17,7 +18,9 @@ class AddressListPage extends ConsumerWidget {
     final texts = ref.watch(addressListTextsProvider);
     final addressList = ref.watch(addressListProvider);
     return ScrollablePageWithBottomButton(
-      title: texts.title,
+      appBarData: AppBarData(
+        title: texts.title,
+      ),
       bottomButtonTitle: texts.bottomButtonTitle,
       onBottomButtonPressed: () {
         ref.read(addressListActionsProvider.notifier).didTapBottomButton();

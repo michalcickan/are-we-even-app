@@ -1,8 +1,6 @@
 import 'package:areweeven/widgets/awe_list_view.dart';
-import 'package:areweeven/widgets/awe_section_title.dart';
-import 'package:areweeven/widgets/list_item/awe_list_item.dart';
+import 'package:areweeven/widgets/list_item_builders/list_item_builder.dart';
 import 'package:areweeven/widgets/page_scaffold.dart';
-import 'package:awe_api/awe_api.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -24,13 +22,15 @@ class GroupDetailPage extends ConsumerWidget {
         ref.watch(groupDetailShowSwitchToProvider(groupId));
 
     return PageScaffold(
-      title: texts.title,
-      rightAppBarActions: [
-        AppBarAction(
-          onPressed: () => ref.actions.didTapAddUser(groupId),
-          iconData: Icons.person_add,
-        ),
-      ],
+      appBarData: AppBarData(
+        title: texts.title,
+        rightActions: [
+          AppBarAction(
+            onPressed: () => ref.actions.didTapAddUser(groupId),
+            iconData: Icons.person_add,
+          ),
+        ],
+      ),
       floatingButton: showFloatingButton
           ? FloatingButton(
               iconData: Icons.group,
@@ -41,12 +41,9 @@ class GroupDetailPage extends ConsumerWidget {
       body: members.maybeWhen(
         data: (section) => AWEListView(
           ListViewType.defaultIndentation,
-          itemsCount: section.data.length + 1,
-          itemBuilder: (BuildContext context, int index) =>
-              section.getDataItemAtIndex(index)?.listItem ??
-              AWESectionTitle(
-                section.title,
-              ),
+          listViewItemsBuilder: AppListItemsBuilder.fromSection(
+            section: section,
+          ),
         ),
         orElse: () => const Center(
           child: CircularProgressIndicator(),
@@ -54,14 +51,6 @@ class GroupDetailPage extends ConsumerWidget {
       ),
     );
   }
-}
-
-extension _ListItem on User {
-  Widget get listItem => AWEListItem(
-        ListItemType.option,
-        title: name ?? "",
-        subtitle: email,
-      );
 }
 
 extension _Actions on WidgetRef {

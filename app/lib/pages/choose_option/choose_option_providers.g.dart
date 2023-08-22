@@ -110,15 +110,16 @@ class ChooseOptionTextsProvider extends AutoDisposeProvider<ChooseOptionTexts> {
   }
 }
 
-String _$chooseOptionItemsHash() => r'e97e3d461ba14942a79aa1b06cf81f3f75809401';
-typedef ChooseOptionItemsRef = AutoDisposeProviderRef<List<ChooseOptionItem>>;
+String _$chooseOptionItemsHash() => r'cead2afe1f13dc3387d931c2325da9e8e05c2ad7';
+typedef ChooseOptionItemsRef
+    = AutoDisposeProviderRef<List<ListItemViewModel<dynamic>>>;
 
 /// See also [chooseOptionItems].
 @ProviderFor(chooseOptionItems)
 const chooseOptionItemsProvider = ChooseOptionItemsFamily();
 
 /// See also [chooseOptionItems].
-class ChooseOptionItemsFamily extends Family<List<ChooseOptionItem>> {
+class ChooseOptionItemsFamily extends Family<List<ListItemViewModel<dynamic>>> {
   /// See also [chooseOptionItems].
   const ChooseOptionItemsFamily();
 
@@ -157,7 +158,7 @@ class ChooseOptionItemsFamily extends Family<List<ChooseOptionItem>> {
 
 /// See also [chooseOptionItems].
 class ChooseOptionItemsProvider
-    extends AutoDisposeProvider<List<ChooseOptionItem>> {
+    extends AutoDisposeProvider<List<ListItemViewModel<dynamic>>> {
   /// See also [chooseOptionItems].
   ChooseOptionItemsProvider(
     this.type,

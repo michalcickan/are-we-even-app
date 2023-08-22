@@ -110,15 +110,16 @@ class SettingsTextsProvider extends AutoDisposeProvider<SettingsTexts> {
   }
 }
 
-String _$settingListItemsHash() => r'6b440fd7d04af7f11ee8bdff0106b95fbc764d27';
-typedef SettingListItemsRef = AutoDisposeProviderRef<List<SettingListItem>>;
+String _$settingListItemsHash() => r'f98708d49e1848a2b88c82fe2a07b4b51c043423';
+typedef SettingListItemsRef
+    = AutoDisposeProviderRef<List<ListItemViewModel<dynamic>>>;
 
 /// See also [settingListItems].
 @ProviderFor(settingListItems)
 const settingListItemsProvider = SettingListItemsFamily();
 
 /// See also [settingListItems].
-class SettingListItemsFamily extends Family<List<SettingListItem>> {
+class SettingListItemsFamily extends Family<List<ListItemViewModel<dynamic>>> {
   /// See also [settingListItems].
   const SettingListItemsFamily();
 
@@ -157,7 +158,7 @@ class SettingListItemsFamily extends Family<List<SettingListItem>> {
 
 /// See also [settingListItems].
 class SettingListItemsProvider
-    extends AutoDisposeProvider<List<SettingListItem>> {
+    extends AutoDisposeProvider<List<ListItemViewModel<dynamic>>> {
   /// See also [settingListItems].
   SettingListItemsProvider(
     this.section,

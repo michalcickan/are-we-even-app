@@ -129,4 +129,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get searchUserHint => 'email or name';
+
+  @override
+  String get unknown => 'Unknown';
 }

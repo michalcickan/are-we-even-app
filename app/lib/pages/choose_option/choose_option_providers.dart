@@ -1,7 +1,6 @@
 import 'package:areweeven/pages/choose_option/choose_theme.dart';
+import 'package:areweeven/view_models/list_item_view_models.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
-
-import 'choose_option_item.dart';
 
 part 'choose_option_providers.g.dart';
 
@@ -29,7 +28,7 @@ ChooseOptionTexts chooseOptionTexts(
 }
 
 @riverpod
-List<ChooseOptionItem> chooseOptionItems(
+List<ListItemViewModel> chooseOptionItems(
   ChooseOptionItemsRef ref,
   ChooseOptionType type,
 ) {

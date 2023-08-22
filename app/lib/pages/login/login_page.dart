@@ -1,5 +1,6 @@
 import 'package:areweeven/pages/login/login_providers.dart';
 import 'package:areweeven/utils/text_field_info.dart';
+import 'package:areweeven/widgets/page_scaffold.dart';
 import 'package:areweeven/widgets/scrollable_page_with_bottom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -11,7 +12,9 @@ class LoginPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final texts = ref.watch(loginTextsProvider);
     return ScrollablePageWithBottomButton(
-      title: texts.title,
+      appBarData: AppBarData(
+        title: texts.title,
+      ),
       bottomButtonTitle: texts.bottomButtonTitle,
       onBottomButtonPressed: ref.watch(loginIsButtonEnabledProvider)
           ? () => ref.read(loginActionsProvider.notifier).didTapBottomButton()

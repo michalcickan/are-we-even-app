@@ -22,6 +22,14 @@ class FloatingButton {
   });
 }
 
+class AppBarData {
+  final String? title;
+  final List<AppBarAction>? rightActions;
+  final AWETextField? searchField;
+
+  const AppBarData({this.title, this.rightActions, this.searchField});
+}
+
 class AppBarAction {
   final String? title;
   final IconData? iconData;
@@ -38,18 +46,14 @@ class AppBarAction {
 }
 
 class PageScaffold extends ConsumerWidget {
-  final String? title;
-  final AWETextField? appBarSearchField;
   final Widget body;
   final FloatingButton? floatingButton;
-  final List<AppBarAction>? rightAppBarActions;
+  final AppBarData? appBarData;
 
   const PageScaffold({
     required this.body,
-    this.title,
+    this.appBarData,
     this.floatingButton,
-    this.rightAppBarActions,
-    this.appBarSearchField,
     super.key,
   });
 
@@ -59,19 +63,18 @@ class PageScaffold extends ConsumerWidget {
     ref.registerErrorListener();
     ref.registerDialogListener(localizations);
 
-    final showAppBar = title != null || appBarSearchField != null;
     return Scaffold(
-      appBar: showAppBar
-          ? AppBar(
-              title: title != null ? Text(title!) : appBarSearchField,
-              actions: rightAppBarActions?.map(_makeAppBarAction).toList(),
-            )
-          : null,
+      appBar: appBarData != null ? _makeAppBar(appBarData!) : null,
       body: SafeArea(child: body),
       floatingActionButton:
           floatingButton != null ? _makeFloatingButton(floatingButton!) : null,
     );
   }
+
+  PreferredSizeWidget _makeAppBar(AppBarData data) => AppBar(
+        title: data.title != null ? Text(data.title!) : data.searchField,
+        actions: data.rightActions?.map(_makeAppBarAction).toList(),
+      );
 
   Widget _makeFloatingButton(FloatingButton button) => button.title == null
       ? FloatingActionButton(

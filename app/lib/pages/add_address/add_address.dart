@@ -1,4 +1,5 @@
 import 'package:areweeven/widgets/awe_text_field.dart';
+import 'package:areweeven/widgets/page_scaffold.dart';
 import 'package:areweeven/widgets/scrollable_page_with_bottom_button.dart';
 import 'package:areweeven/widgets/sizes.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +16,9 @@ class AddAddressPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final texts = ref.watch(addAddressTextsProvider);
     return ScrollablePageWithBottomButton(
-      title: texts.title,
+      appBarData: AppBarData(
+        title: texts.title,
+      ),
       bottomButtonTitle: texts.bottomButtonTitle,
       onBottomButtonPressed: ref.watch(addAddressEnableBottomButtonProvider)
           ? () =>

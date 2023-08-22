@@ -1,25 +1,10 @@
 import 'package:areweeven/utils/extensions/build_context_themes.dart';
 import 'package:areweeven/widgets/awe_border_radius.dart';
 import 'package:flutter/material.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
-
-part 'awe_list_item.freezed.dart';
 
 enum ListItemType {
   option,
   selectionIndicator,
-}
-
-@freezed
-class ListItemTrailingType with _$ListItemTrailingType {
-  const factory ListItemTrailingType.navigation() = ArrowRight;
-
-  const factory ListItemTrailingType.switcher(
-    bool value,
-    void Function(bool) onValueChanged,
-  ) = Switcher;
-
-  const factory ListItemTrailingType.checkbox() = Checkbox;
 }
 
 class AWEListItem extends StatelessWidget {
@@ -28,14 +13,14 @@ class AWEListItem extends StatelessWidget {
   final IconData? iconData;
   final ListItemType type;
   final VoidCallback? onPressed;
-  final ListItemTrailingType? trailingType;
+  final Widget? trailing;
 
   const AWEListItem(
     this.type, {
     required this.title,
     this.iconData,
     this.onPressed,
-    this.trailingType,
+    this.trailing,
     this.subtitle,
     super.key,
   });
@@ -62,24 +47,9 @@ class AWEListItem extends StatelessWidget {
               iconData,
             )
           : null,
-      trailing: trailingType?.widget(
-        context,
-      ),
+      trailing: trailing,
     );
   }
-}
-
-extension _Widgets on ListItemTrailingType {
-  Widget widget(BuildContext context) => when(
-        navigation: () => const Icon(
-          Icons.arrow_right,
-        ),
-        switcher: (value, onValueChanged) => Switch(
-          value: value,
-          onChanged: onValueChanged,
-        ),
-        checkbox: () => const Icon(Icons.check),
-      );
 }
 
 extension _Styles on ListItemType {

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:areweeven/gen/app_localizations.dart';
 import 'package:areweeven/global_providers/auth_provider.dart';
 import 'package:areweeven/global_providers/dialog_provider.dart';
@@ -9,10 +7,10 @@ import 'package:areweeven/pages/choose_option/choose_option_providers.dart';
 import 'package:areweeven/routes/routes.dart';
 import 'package:areweeven/routes/settings_routes.dart';
 import 'package:areweeven/utils/extensions/go_router_context.dart';
-import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:areweeven/view_models/list_item_view_models.dart';
+import 'package:flutter/material.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
-part 'settings_providers.freezed.dart';
 part 'settings_providers.g.dart';
 
 enum SettingsSection {
@@ -56,7 +54,7 @@ class SettingsActions extends _$SettingsActions
 }
 
 @riverpod
-List<SettingListItem> settingListItems(
+List<ListItemViewModel> settingListItems(
   SettingListItemsRef ref,
   SettingsSection section,
 ) {
@@ -99,75 +97,51 @@ extension _Data on SettingsSection {
 
 typedef ItemCallback = VoidCallback Function(String location);
 
-List<SettingListItem> _makeMainSectionItems(
+List<ListItemViewModel<String>> _makeMainSectionItems(
   ItemCallback onNavPressed,
   AppLocalizations localizations,
   SettingsActions actions,
 ) {
   return [
-    SettingListItem(
-      localizations.profileTitle,
-      const SettingItemType.profile(),
-      onNavPressed(const ProfileRoute().location),
+    ListItemViewModel(
+      "profile",
+      title: localizations.profileTitle,
+      iconData: Icons.person,
+      onPressed: onNavPressed(const ProfileRoute().location),
     ),
-    SettingListItem(
-      localizations.appearanceTitle,
-      const SettingItemType.appearance(),
-      onNavPressed(
+    ListItemViewModel(
+      "appearance",
+      title: localizations.appearanceTitle,
+      iconData: Icons.dark_mode,
+      onPressed: onNavPressed(
         const ChooseOptionRoute(ChooseOptionType.theme).location,
       ),
     ),
-    SettingListItem(
-      localizations.logout,
-      const SettingItemType.logout(),
-      actions.logout,
+    ListItemViewModel(
+      "logout",
+      title: localizations.logout,
+      iconData: Icons.logout,
+      onPressed: () => actions.logout,
     ),
   ];
 }
 
-List<SettingListItem> _makeProfileSectionItems(
+List<ListItemViewModel<String>> _makeProfileSectionItems(
   ItemCallback onNavPressed,
   AppLocalizations localizations,
 ) {
   return [
-    SettingListItem(
-      localizations.updatePersonalInfoTitle,
-      const SettingItemType.profile(),
-      onNavPressed(const UpdateProfileRoute().location),
+    ListItemViewModel(
+      "profile",
+      title: localizations.updatePersonalInfoTitle,
+      iconData: Icons.person,
+      onPressed: onNavPressed(const UpdateProfileRoute().location),
     ),
-    SettingListItem(
-      localizations.addresses,
-      const SettingItemType.addresses(),
-      onNavPressed(const AddressesRoute().location),
+    ListItemViewModel(
+      "addresses",
+      title: localizations.addresses,
+      iconData: Icons.home,
+      onPressed: onNavPressed(const AddressesRoute().location),
     ),
   ];
-}
-
-@freezed
-class SettingItemType with _$SettingItemType {
-  const factory SettingItemType.profile() = Profile;
-
-  // const factory SettingItemType.darkMode(
-  //   bool value,
-  //   void Function(bool) onValueChanged,
-  // ) = Appearance;
-  const factory SettingItemType.appearance() = Appearance;
-
-  const factory SettingItemType.updateProfileInfo() = UpdateProfileInfo;
-
-  const factory SettingItemType.addresses() = Addresses;
-
-  const factory SettingItemType.logout() = Logout;
-}
-
-class SettingListItem {
-  final String title;
-  final SettingItemType type;
-  final Function() onPressed;
-
-  SettingListItem(
-    this.title,
-    this.type,
-    this.onPressed,
-  );
 }

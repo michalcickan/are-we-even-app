@@ -24,12 +24,12 @@ final addGroupMemberTextsProvider =
 
 typedef AddGroupMemberTextsRef = AutoDisposeProviderRef<AddGroupMemberTexts>;
 String _$addGroupSearchResultsHash() =>
-    r'188d55e82cadf49f6afd8922e102c120c2933869';
+    r'e1ba6d0fae553604c2e8228bc371f7899f01631e';
 
 /// See also [addGroupSearchResults].
 @ProviderFor(addGroupSearchResults)
 final addGroupSearchResultsProvider =
-    AutoDisposeFutureProvider<List<User>>.internal(
+    AutoDisposeFutureProvider<List<ListItemViewModel<dynamic>>>.internal(
   addGroupSearchResults,
   name: r'addGroupSearchResultsProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
@@ -39,9 +39,10 @@ final addGroupSearchResultsProvider =
   allTransitiveDependencies: null,
 );
 
-typedef AddGroupSearchResultsRef = AutoDisposeFutureProviderRef<List<User>>;
+typedef AddGroupSearchResultsRef
+    = AutoDisposeFutureProviderRef<List<ListItemViewModel<dynamic>>>;
 String _$addGroupMemberActionsHash() =>
-    r'0e710c623a6a34d63480d350c5f5113a28f41fd0';
+    r'36e59df8c7185622d00db91ae747bc7154448523';
 
 /// See also [AddGroupMemberActions].
 @ProviderFor(AddGroupMemberActions)

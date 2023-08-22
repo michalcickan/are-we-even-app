@@ -11,6 +11,8 @@ UserSearchParameters _$UserSearchParametersFromJson(
     UserSearchParameters(
       column: $enumDecodeNullable(_$UserFilterColumnEnumMap, json['column']),
       query: json['query'] as String,
+      limit: json['limit'] as int,
+      offset: json['offset'] as int,
     );
 
 Map<String, dynamic> _$UserSearchParametersToJson(
@@ -25,6 +27,8 @@ Map<String, dynamic> _$UserSearchParametersToJson(
 
   writeNotNull('column', _$UserFilterColumnEnumMap[instance.column]);
   val['query'] = instance.query;
+  val['offset'] = instance.offset;
+  val['limit'] = instance.limit;
   return val;
 }
 

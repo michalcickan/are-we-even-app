@@ -193,17 +193,16 @@ class _GroupDetailProvider extends AutoDisposeFutureProvider<Group> {
 }
 
 String _$groupDetailMembersHash() =>
-    r'e665683f20ad80fd6019db269f8e62258c82bf2f';
+    r'71b89c381d1d00cc0a85770f0de400872314d832';
 typedef GroupDetailMembersRef
-    = AutoDisposeFutureProviderRef<ListSection<String, User>>;
+    = AutoDisposeFutureProviderRef<ListSection<String>>;
 
 /// See also [groupDetailMembers].
 @ProviderFor(groupDetailMembers)
 const groupDetailMembersProvider = GroupDetailMembersFamily();
 
 /// See also [groupDetailMembers].
-class GroupDetailMembersFamily
-    extends Family<AsyncValue<ListSection<String, User>>> {
+class GroupDetailMembersFamily extends Family<AsyncValue<ListSection<String>>> {
   /// See also [groupDetailMembers].
   const GroupDetailMembersFamily();
 
@@ -242,7 +241,7 @@ class GroupDetailMembersFamily
 
 /// See also [groupDetailMembers].
 class GroupDetailMembersProvider
-    extends AutoDisposeFutureProvider<ListSection<String, User>> {
+    extends AutoDisposeFutureProvider<ListSection<String>> {
   /// See also [groupDetailMembers].
   GroupDetailMembersProvider(
     this.groupId,

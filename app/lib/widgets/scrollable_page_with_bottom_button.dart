@@ -8,7 +8,7 @@ import 'scrollable_content.dart';
 
 class ScrollablePageWithBottomButton extends ConsumerWidget {
   /// Title below progress bar, not app bar title
-  final String? title;
+  final AppBarData? appBarData;
   final String? description;
 
   /// Title for the bottom button
@@ -17,7 +17,7 @@ class ScrollablePageWithBottomButton extends ConsumerWidget {
   final List<Widget> children;
 
   const ScrollablePageWithBottomButton({
-    this.title,
+    this.appBarData,
     required this.bottomButtonTitle,
     this.description,
     this.onBottomButtonPressed,
@@ -40,7 +40,7 @@ class ScrollablePageWithBottomButton extends ConsumerWidget {
       },
     );
     return PageScaffold(
-      title: title,
+      appBarData: appBarData,
       body: ScrollableContent(
         scrollContent: children,
         bottomView: AWETextButton(

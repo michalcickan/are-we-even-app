@@ -6,15 +6,23 @@ enum ListViewType {
   defaultIndentation,
 }
 
+abstract class ListViewItemsBuilder {
+  final int itemsCount;
+  final Widget Function(BuildContext, int) buildItem;
+
+  ListViewItemsBuilder(
+    this.itemsCount,
+    this.buildItem,
+  );
+}
+
 class AWEListView extends StatelessWidget {
   final ListViewType type;
-  final Widget? Function(BuildContext, int) itemBuilder;
-  final int? itemsCount;
+  final ListViewItemsBuilder listViewItemsBuilder;
 
   const AWEListView(
     this.type, {
-    required this.itemBuilder,
-    this.itemsCount,
+    required this.listViewItemsBuilder,
     Key? key,
   }) : super(key: key);
 
@@ -26,12 +34,12 @@ class AWEListView extends StatelessWidget {
         vertical: Sizes.small,
       ),
       itemBuilder: (context, index) {
-        final child = itemBuilder(context, index);
+        final child = listViewItemsBuilder.buildItem(context, index);
         return sidePadding != null
             ? Padding(padding: sidePadding!, child: child)
             : child;
       },
-      itemCount: itemsCount,
+      itemCount: listViewItemsBuilder.itemsCount,
     );
   }
 }

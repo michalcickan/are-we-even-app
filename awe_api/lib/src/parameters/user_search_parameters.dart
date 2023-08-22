@@ -9,10 +9,14 @@ part 'user_search_parameters.g.dart';
 class UserSearchParameters extends JsonConvertible {
   final UserFilterColumn? column;
   final String query;
+  final int offset;
+  final int limit;
 
   UserSearchParameters({
     this.column,
     required this.query,
+    required this.limit,
+    required this.offset,
   });
 
   factory UserSearchParameters.fromJson(Map<String, dynamic> json) =>

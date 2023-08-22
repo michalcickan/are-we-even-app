@@ -1,8 +1,7 @@
 import 'package:areweeven/widgets/awe_empty_placeholder.dart';
 import 'package:areweeven/widgets/awe_list_view.dart';
-import 'package:areweeven/widgets/list_item/awe_list_item.dart';
+import 'package:areweeven/widgets/list_item_builders/list_item_builder.dart';
 import 'package:areweeven/widgets/page_scaffold.dart';
-import 'package:areweeven/widgets/sizes.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -20,7 +19,9 @@ class GroupListPage extends ConsumerWidget {
     final items = ref.watch(groupListItemsProvider);
 
     return PageScaffold(
-      title: texts.title,
+      appBarData: AppBarData(
+        title: texts.title,
+      ),
       floatingButton: FloatingButton(
         iconData: Icons.group_add,
         onPressed: () =>
@@ -34,9 +35,8 @@ class GroupListPage extends ConsumerWidget {
               )
             : AWEListView(
                 ListViewType.defaultIndentation,
-                itemsCount: data.length,
-                itemBuilder: (context, index) => _makeItem(
-                  data[index],
+                listViewItemsBuilder: AppListItemsBuilder.fromViewModels(
+                  data,
                 ),
               ),
         error: (object, stackTrace) => Center(
@@ -50,37 +50,4 @@ class GroupListPage extends ConsumerWidget {
       ),
     );
   }
-
-  Widget _makeItem(
-    GroupItem groupItem,
-  ) =>
-      Dismissible(
-        key: Key(
-          groupItem.id.toString(),
-        ),
-        direction: DismissDirection.endToStart,
-        confirmDismiss: (direction) {
-          groupItem.onDidTapRemove();
-          return Future.value(false);
-        },
-        background: Container(
-          color: Colors.red, // Background color when swiped
-          alignment: Alignment.centerRight,
-          padding: const EdgeInsets.only(
-            right: Sizes.medium,
-          ),
-          child: const Icon(
-            Icons.delete,
-            color: Colors.white,
-          ),
-        ),
-        child: AWEListItem(
-          ListItemType.selectionIndicator,
-          title: groupItem.title,
-          onPressed: groupItem.onPressed,
-          subtitle: groupItem.stateIndicatingSubtitle,
-          key: ValueKey(groupItem.id),
-          trailingType: const ListItemTrailingType.navigation(),
-        ),
-      );
 }

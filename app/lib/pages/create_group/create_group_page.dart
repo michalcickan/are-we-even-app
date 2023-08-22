@@ -1,4 +1,5 @@
 import 'package:areweeven/widgets/awe_text_field.dart';
+import 'package:areweeven/widgets/page_scaffold.dart';
 import 'package:areweeven/widgets/scrollable_page_with_bottom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -15,7 +16,9 @@ class CreateGroup extends ConsumerWidget {
     final texts = ref.watch(createGroupTextsProvider);
 
     return ScrollablePageWithBottomButton(
-      title: texts.title,
+      appBarData: AppBarData(
+        title: texts.title,
+      ),
       bottomButtonTitle: texts.bottomButtonTitle,
       onBottomButtonPressed: ref.watch(createGroupBottomButtonEnabledProvider)
           ? () =>

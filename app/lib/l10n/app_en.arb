@@ -40,5 +40,6 @@
   "groupNamePlaceholder": "Group name",
   "current": "Current",
   "addGroupMember": "Add group member",
-  "searchUserHint": "email or name"
+  "searchUserHint": "email or name",
+  "unknown": "Unknown"
 }

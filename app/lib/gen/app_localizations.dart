@@ -342,6 +342,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'email or name'**
   String get searchUserHint;
+
+  /// No description provided for @unknown.
+  ///
+  /// In en, this message translates to:
+  /// **'Unknown'**
+  String get unknown;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

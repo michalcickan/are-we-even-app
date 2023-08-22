@@ -1,11 +1,15 @@
-class ListSection<S, D> {
+import 'package:areweeven/view_models/view_model.dart';
+
+class ListSection<S> {
   final S title;
-  final List<D> data;
+  final List<ViewModel<dynamic>> viewModels;
 
   const ListSection(
     this.title,
-    this.data,
+    this.viewModels,
   );
 
-  D? getDataItemAtIndex(int index) => index == 0 ? null : data[index - 1];
+  int get totalItemsCount => viewModels.length + 1;
+
+  int? getItemIndex(int index) => index == 0 ? null : index - 1;
 }

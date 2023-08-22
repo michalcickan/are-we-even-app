@@ -6,6 +6,7 @@ import 'package:areweeven/global_providers/localization_provider.dart';
 import 'package:areweeven/routes/groups_routes.dart';
 import 'package:areweeven/routes/routes.dart';
 import 'package:areweeven/utils/extensions/go_router_context.dart';
+import 'package:areweeven/view_models/list_item_view_models.dart';
 import 'package:awe_api/awe_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -56,26 +57,10 @@ class GroupListActions extends _$GroupListActions
   }
 }
 
-class GroupItem {
-  Function() onDidTapRemove;
-  Function() onPressed;
-  int id;
-  String title;
-  String? stateIndicatingSubtitle;
-
-  GroupItem({
-    required this.onDidTapRemove,
-    required this.onPressed,
-    required this.id,
-    required this.title,
-    this.stateIndicatingSubtitle,
-  });
-}
-
 @riverpod
 class GroupListItems extends _$GroupListItems {
   @override
-  Future<List<GroupItem>> build() {
+  Future<List<RemovableListItemViewModel>> build() {
     ref.watch(currentGroupProvider);
     return ref
         .watch(aweApiClientProvider)
@@ -83,13 +68,12 @@ class GroupListItems extends _$GroupListItems {
         .then((groups) => groups.map(_makeItem).toList());
   }
 
-  GroupItem _makeItem(Group group) => GroupItem(
-        onDidTapRemove: () => ref.actions.didTapRemoveGroup(group),
-        onPressed: () => ref.actions.didTapGroup(group),
-        title: group.name,
-        stateIndicatingSubtitle:
-            group.isDefault ?? false ? ref.localizations.current : null,
-        id: group.id,
+  RemovableListItemViewModel _makeItem(Group group) =>
+      RemovableListItemViewModel.fromGroup(
+        group,
+        localizations: ref.localizations,
+        onDidTapRemove: ref.actions.didTapRemoveGroup,
+        onPressed: ref.actions.didTapGroup,
       );
 
   void addGroup(Group group) {
