@@ -16,18 +16,16 @@ extension InvitationRequests on AweAPIClient {
         Group.fromJson,
       );
 
-  Future<List<Invitation>> getAllInvitations(AddExpenseParameters parameters) =>
-      get(
+  Future<List<Invitation>> getAllInvitations() => get(
         Endpoint.group(),
         <Invitation>[].fromJson(Invitation.fromJson),
-        params: parameters,
       );
 
-  Future<GenericResult> inviteUserToGroup(int userId, int groupId) => post(
-        Endpoint.groupUser(
+  Future<EmptyResponse> inviteUserToGroup(int userId, int groupId) => post(
+        Endpoint.groupInviteUser(
           groupId,
           userId,
         ),
-        GenericResult.fromJson,
+        EmptyResponse.fromJson,
       );
 }

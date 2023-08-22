@@ -247,6 +247,12 @@ abstract class AppLocalizations {
   /// **'Warning'**
   String get warning;
 
+  /// No description provided for @info.
+  ///
+  /// In en, this message translates to:
+  /// **'Info'**
+  String get info;
+
   /// No description provided for @logoutWarningText.
   ///
   /// In en, this message translates to:
@@ -348,6 +354,36 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Unknown'**
   String get unknown;
+
+  /// No description provided for @invitationSentText.
+  ///
+  /// In en, this message translates to:
+  /// **'Your invitation to group was successfully sent to {user_email}.'**
+  String invitationSentText(Object user_email);
+
+  /// No description provided for @noResultsFoundText.
+  ///
+  /// In en, this message translates to:
+  /// **'There are no results for this query.'**
+  String get noResultsFoundText;
+
+  /// No description provided for @searchMinimumHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Please provide me at least 3 characters'**
+  String get searchMinimumHint;
+
+  /// No description provided for @groupInvitationsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Group invitations'**
+  String get groupInvitationsTitle;
+
+  /// No description provided for @emptyInvitationListPlaceholder.
+  ///
+  /// In en, this message translates to:
+  /// **'You don\'t any invitation right now'**
+  String get emptyInvitationListPlaceholder;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

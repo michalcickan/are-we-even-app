@@ -1,4 +1,7 @@
 import 'package:areweeven/global_providers/awe_api_client_provider.dart';
+import 'package:areweeven/global_providers/dialog_provider.dart';
+import 'package:areweeven/global_providers/global_error_provider.dart';
+import 'package:areweeven/global_providers/go_router_provider.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
 import 'package:areweeven/utils/extensions/go_router_context.dart';
 import 'package:areweeven/utils/extensions/riverpod_ref_helpers.dart';
@@ -34,8 +37,26 @@ class AddGroupMemberActions extends _$AddGroupMemberActions
   @override
   void build() {}
 
-  void didSelectUser(User user) {
-    return;
+  Future<void> didSelectUser(
+    User user,
+    int groupId,
+  ) async {
+    try {
+      await ref.read(aweApiClientProvider).inviteUserToGroup(
+            user.id,
+            groupId,
+          );
+      final localizations = ref.read(localizationProvider);
+      ref.read(dialogProvider.notifier).showDialog(
+            DialogInfo(
+              localizations.info,
+              text: localizations.invitationSentText(user.name ?? user.email),
+              onDismiss: () => ref.read(goRouterProvider).pop(),
+            ),
+          );
+    } catch (e) {
+      ref.read(globalErrorProvider.notifier).showError(e);
+    }
   }
 }
 
@@ -50,7 +71,7 @@ class AddGroupMemberSearchQuery extends _$AddGroupMemberSearchQuery
 
 @riverpod
 Future<List<ListItemViewModel>> addGroupSearchResults(
-    AddGroupSearchResultsRef ref) async {
+    AddGroupSearchResultsRef ref, int groupId) async {
   final query = ref.watch(addGroupMemberSearchQueryProvider);
   await ref.debounce(const Duration(milliseconds: 500));
 
@@ -67,10 +88,21 @@ Future<List<ListItemViewModel>> addGroupSearchResults(
             (user) => ListItemViewModel.fromUser(
               user,
               localizations: ref.watch(localizationProvider),
-              onPressed: ref
+              onPressed: (user) => ref
                   .read(addGroupMemberActionsProvider.notifier)
-                  .didSelectUser,
+                  .didSelectUser(
+                    user,
+                    groupId,
+                  ),
             ),
           )
           .toList();
+}
+
+@riverpod
+String emptyListText(EmptyListTextRef ref) {
+  final localizations = ref.watch(localizationProvider);
+  return ref.watch(addGroupMemberSearchQueryProvider).length < 2
+      ? localizations.searchMinimumHint
+      : localizations.noResultsFoundText;
 }

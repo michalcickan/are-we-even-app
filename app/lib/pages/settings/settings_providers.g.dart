@@ -194,7 +194,7 @@ class SettingListItemsProvider
   }
 }
 
-String _$settingsActionsHash() => r'bc3b794d12788b3ed48330038fb0a27a295f3773';
+String _$settingsActionsHash() => r'81843e7ab0b9644148b76e4a98d8a047e712b9b2';
 
 /// See also [SettingsActions].
 @ProviderFor(SettingsActions)

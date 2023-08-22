@@ -22,6 +22,9 @@ class Endpoint {
 
   factory Endpoint.groupInvitations() => const Endpoint("groups/invitations");
 
+  factory Endpoint.groupInviteUser(int groupId, int inviteeId) =>
+      Endpoint("groups/$groupId/inviteUser/$inviteeId");
+
   factory Endpoint.groupsInvitationsResolution(
           int invitationId, InvitationResolution resolution) =>
       Endpoint("groups/invitations/$invitationId/$resolution");
@@ -41,9 +44,6 @@ class Endpoint {
   factory Endpoint.group() => const Endpoint("group");
 
   factory Endpoint.groups() => const Endpoint("groups");
-
-  factory Endpoint.groupUser(int groupId, int userId) =>
-      Endpoint("groups/$groupId/users/$userId");
 
   final String path;
 

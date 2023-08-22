@@ -25,6 +25,7 @@
   "updatePersonalInfoTitle": "Update basic info",
   "addresses": "Addresses",
   "warning": "Warning",
+  "info": "Info",
   "logoutWarningText": "Do you really want to logout?",
   "chooseThemeTitle": "Choose theme",
   "dark": "Dark",
@@ -41,5 +42,10 @@
   "current": "Current",
   "addGroupMember": "Add group member",
   "searchUserHint": "email or name",
-  "unknown": "Unknown"
+  "unknown": "Unknown",
+  "invitationSentText": "Your invitation to group was successfully sent to {user_email}.",
+  "noResultsFoundText": "There are no results for this query.",
+  "searchMinimumHint": "Please provide me at least 3 characters",
+  "groupInvitationsTitle": "Group invitations",
+  "emptyInvitationListPlaceholder": "You don't any invitation right now"
 }

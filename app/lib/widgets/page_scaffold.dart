@@ -61,7 +61,10 @@ class PageScaffold extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final localizations = ref.watch(localizationProvider);
     ref.registerErrorListener();
-    ref.registerDialogListener(localizations);
+    ref.registerDialogListener(
+      localizations,
+      context,
+    );
 
     return Scaffold(
       appBar: appBarData != null ? _makeAppBar(appBarData!) : null,
@@ -130,14 +133,20 @@ extension _Listeners on WidgetRef {
     );
   }
 
-  void registerDialogListener(AppLocalizations localizations) {
-    listen(dialogProvider, (previous, next) {
-      if (next == null) return;
-      dismissAction() => read(goRouterProvider).pop();
-      List<DialogAction> allActionItems = next.showCancelButton
+  void registerDialogListener(
+    AppLocalizations localizations,
+    BuildContext context,
+  ) {
+    listen(dialogProvider, (previous, next) async {
+      if (next == null || ModalRoute.of(context)?.isCurrent == false) return;
+      dismissAction() {
+        read(goRouterProvider).pop();
+      }
+
+      List<DialogAction> allActionItems = next.dismissDialogButtonType != null
           ? [
               DialogAction(
-                localizations.cancel,
+                next.dismissDialogButtonType!.title(localizations),
                 dismissAction,
               ),
             ]
@@ -147,7 +156,7 @@ extension _Listeners on WidgetRef {
           next!.actionItems!.convertItems(dismissAction),
         );
       }
-      showDialog(
+      await showDialog(
         context: context,
         builder: (context) => AWEDialog(
           title: next.title,
@@ -155,6 +164,21 @@ extension _Listeners on WidgetRef {
           actions: allActionItems.toList(),
         ),
       );
+
+      if (next.onDismiss != null) {
+        next.onDismiss!();
+      }
     });
+  }
+}
+
+extension _Text on DismissDialogButtonType {
+  String title(AppLocalizations localizations) {
+    switch (this) {
+      case DismissDialogButtonType.ok:
+        return localizations.add;
+      case DismissDialogButtonType.cancel:
+        return localizations.cancel;
+    }
   }
 }

@@ -83,6 +83,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get warning => 'Warning';
 
   @override
+  String get info => 'Info';
+
+  @override
   String get logoutWarningText => 'Do you really want to logout?';
 
   @override
@@ -132,4 +135,21 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get unknown => 'Unknown';
+
+  @override
+  String invitationSentText(Object user_email) {
+    return 'Your invitation to group was successfully sent to $user_email.';
+  }
+
+  @override
+  String get noResultsFoundText => 'There are no results for this query.';
+
+  @override
+  String get searchMinimumHint => 'Please provide me at least 3 characters';
+
+  @override
+  String get groupInvitationsTitle => 'Group invitations';
+
+  @override
+  String get emptyInvitationListPlaceholder => 'You don\'t any invitation right now';
 }

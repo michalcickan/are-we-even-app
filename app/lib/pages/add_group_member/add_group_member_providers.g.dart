@@ -24,25 +24,130 @@ final addGroupMemberTextsProvider =
 
 typedef AddGroupMemberTextsRef = AutoDisposeProviderRef<AddGroupMemberTexts>;
 String _$addGroupSearchResultsHash() =>
-    r'e1ba6d0fae553604c2e8228bc371f7899f01631e';
+    r'0b05506a9ae7fc906a0e3cda9e1bd82bfb105566';
+
+/// Copied from Dart SDK
+class _SystemHash {
+  _SystemHash._();
+
+  static int combine(int hash, int value) {
+    // ignore: parameter_assignments
+    hash = 0x1fffffff & (hash + value);
+    // ignore: parameter_assignments
+    hash = 0x1fffffff & (hash + ((0x0007ffff & hash) << 10));
+    return hash ^ (hash >> 6);
+  }
+
+  static int finish(int hash) {
+    // ignore: parameter_assignments
+    hash = 0x1fffffff & (hash + ((0x03ffffff & hash) << 3));
+    // ignore: parameter_assignments
+    hash = hash ^ (hash >> 11);
+    return 0x1fffffff & (hash + ((0x00003fff & hash) << 15));
+  }
+}
+
+typedef AddGroupSearchResultsRef
+    = AutoDisposeFutureProviderRef<List<ListItemViewModel<dynamic>>>;
 
 /// See also [addGroupSearchResults].
 @ProviderFor(addGroupSearchResults)
-final addGroupSearchResultsProvider =
-    AutoDisposeFutureProvider<List<ListItemViewModel<dynamic>>>.internal(
-  addGroupSearchResults,
-  name: r'addGroupSearchResultsProvider',
+const addGroupSearchResultsProvider = AddGroupSearchResultsFamily();
+
+/// See also [addGroupSearchResults].
+class AddGroupSearchResultsFamily
+    extends Family<AsyncValue<List<ListItemViewModel<dynamic>>>> {
+  /// See also [addGroupSearchResults].
+  const AddGroupSearchResultsFamily();
+
+  /// See also [addGroupSearchResults].
+  AddGroupSearchResultsProvider call(
+    int groupId,
+  ) {
+    return AddGroupSearchResultsProvider(
+      groupId,
+    );
+  }
+
+  @override
+  AddGroupSearchResultsProvider getProviderOverride(
+    covariant AddGroupSearchResultsProvider provider,
+  ) {
+    return call(
+      provider.groupId,
+    );
+  }
+
+  static const Iterable<ProviderOrFamily>? _dependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get dependencies => _dependencies;
+
+  static const Iterable<ProviderOrFamily>? _allTransitiveDependencies = null;
+
+  @override
+  Iterable<ProviderOrFamily>? get allTransitiveDependencies =>
+      _allTransitiveDependencies;
+
+  @override
+  String? get name => r'addGroupSearchResultsProvider';
+}
+
+/// See also [addGroupSearchResults].
+class AddGroupSearchResultsProvider
+    extends AutoDisposeFutureProvider<List<ListItemViewModel<dynamic>>> {
+  /// See also [addGroupSearchResults].
+  AddGroupSearchResultsProvider(
+    this.groupId,
+  ) : super.internal(
+          (ref) => addGroupSearchResults(
+            ref,
+            groupId,
+          ),
+          from: addGroupSearchResultsProvider,
+          name: r'addGroupSearchResultsProvider',
+          debugGetCreateSourceHash:
+              const bool.fromEnvironment('dart.vm.product')
+                  ? null
+                  : _$addGroupSearchResultsHash,
+          dependencies: AddGroupSearchResultsFamily._dependencies,
+          allTransitiveDependencies:
+              AddGroupSearchResultsFamily._allTransitiveDependencies,
+        );
+
+  final int groupId;
+
+  @override
+  bool operator ==(Object other) {
+    return other is AddGroupSearchResultsProvider && other.groupId == groupId;
+  }
+
+  @override
+  int get hashCode {
+    var hash = _SystemHash.combine(0, runtimeType.hashCode);
+    hash = _SystemHash.combine(hash, groupId.hashCode);
+
+    return _SystemHash.finish(hash);
+  }
+}
+
+String _$emptyListTextHash() => r'b1864c5388f5fd7c3497d58ac6162af4d2a71cb0';
+
+/// See also [emptyListText].
+@ProviderFor(emptyListText)
+final emptyListTextProvider = AutoDisposeProvider<String>.internal(
+  emptyListText,
+  name: r'emptyListTextProvider',
   debugGetCreateSourceHash: const bool.fromEnvironment('dart.vm.product')
       ? null
-      : _$addGroupSearchResultsHash,
+      : _$emptyListTextHash,
   dependencies: null,
   allTransitiveDependencies: null,
 );
 
-typedef AddGroupSearchResultsRef
-    = AutoDisposeFutureProviderRef<List<ListItemViewModel<dynamic>>>;
+typedef EmptyListTextRef = AutoDisposeProviderRef<String>;
 String _$addGroupMemberActionsHash() =>
-    r'36e59df8c7185622d00db91ae747bc7154448523';
+    r'e85db6e42e9e687e7e5f4393e0f71d5dcb920bd9';
 
 /// See also [AddGroupMemberActions].
 @ProviderFor(AddGroupMemberActions)

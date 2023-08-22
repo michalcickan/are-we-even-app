@@ -10,6 +10,10 @@ class Dialog extends _$Dialog {
   DialogInfo? build() {
     return null;
   }
+
+  void showDialog(DialogInfo dialogInfo) {
+    state = dialogInfo;
+  }
 }
 
 class DialogActionItem {
@@ -22,16 +26,23 @@ class DialogActionItem {
   );
 }
 
+enum DismissDialogButtonType {
+  cancel,
+  ok,
+}
+
 class DialogInfo {
   final String title;
   final String? text;
-  final bool showCancelButton;
+  final DismissDialogButtonType? dismissDialogButtonType;
+  final VoidCallback? onDismiss;
   final List<DialogActionItem>? actionItems;
 
   DialogInfo(
     this.title, {
     this.actionItems,
     this.text,
-    this.showCancelButton = true,
+    this.dismissDialogButtonType = DismissDialogButtonType.ok,
+    this.onDismiss,
   });
 }

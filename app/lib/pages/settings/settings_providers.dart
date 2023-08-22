@@ -38,18 +38,21 @@ class SettingsActions extends _$SettingsActions
 
   void logout() {
     final localizations = ref.read(localizationProvider);
-    ref.read(dialogProvider.notifier).state = DialogInfo(
-      localizations.warning,
-      text: localizations.logoutWarningText,
-      actionItems: [
-        DialogActionItem(
-          localizations.logout,
-          () {
-            ref.read(authProvider.notifier).logout();
-          },
-        ),
-      ],
-    );
+    ref.read(dialogProvider.notifier).showDialog(
+          DialogInfo(
+            localizations.warning,
+            text: localizations.logoutWarningText,
+            actionItems: [
+              DialogActionItem(
+                localizations.logout,
+                () {
+                  ref.read(authProvider.notifier).logout();
+                },
+              ),
+            ],
+            dismissDialogButtonType: DismissDialogButtonType.cancel,
+          ),
+        );
   }
 }
 
@@ -121,7 +124,7 @@ List<ListItemViewModel<String>> _makeMainSectionItems(
       "logout",
       title: localizations.logout,
       iconData: Icons.logout,
-      onPressed: () => actions.logout,
+      onPressed: actions.logout,
     ),
   ];
 }
