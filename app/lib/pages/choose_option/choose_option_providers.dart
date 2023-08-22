@@ -1,5 +1,5 @@
 import 'package:areweeven/pages/choose_option/choose_theme.dart';
-import 'package:areweeven/view_models/list_item_view_models.dart';
+import 'package:areweeven/view_models/list_item_view_model.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'choose_option_providers.g.dart';

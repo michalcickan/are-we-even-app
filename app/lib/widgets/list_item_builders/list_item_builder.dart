@@ -1,5 +1,6 @@
 import 'package:areweeven/utils/list_section.dart';
-import 'package:areweeven/view_models/list_item_view_models.dart';
+import 'package:areweeven/view_models/list_item_view_model.dart';
+import 'package:areweeven/view_models/removable_list_item_view_model.dart';
 import 'package:areweeven/widgets/awe_list_view.dart';
 import 'package:areweeven/widgets/awe_section_title.dart';
 import 'package:areweeven/widgets/list_item/awe_list_item.dart';
@@ -36,9 +37,11 @@ class AppListItemsBuilder extends ListViewItemsBuilder {
 
 extension _SimpleViewModelBuilders on ListItemViewModel {
   Widget get simpleListItem => AWEListItem(
-        ListItemType.selectionIndicator,
+        subtitle?.type == SubtitleType.selectionIndicator
+            ? ListItemType.selectionIndicator
+            : ListItemType.option,
         title: title,
-        subtitle: subtitle,
+        subtitle: subtitle?.text,
         onPressed: onPressed,
         iconData: iconData,
         key: ValueKey(id),

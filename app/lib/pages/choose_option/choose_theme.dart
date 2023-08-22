@@ -2,7 +2,7 @@ import 'package:areweeven/gen/app_localizations.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
 import 'package:areweeven/global_providers/theme_provider.dart';
 import 'package:areweeven/pages/choose_option/choose_option_providers.dart';
-import 'package:areweeven/view_models/list_item_view_models.dart';
+import 'package:areweeven/view_models/list_item_view_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

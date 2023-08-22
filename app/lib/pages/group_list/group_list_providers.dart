@@ -6,7 +6,7 @@ import 'package:areweeven/global_providers/localization_provider.dart';
 import 'package:areweeven/routes/groups_routes.dart';
 import 'package:areweeven/routes/routes.dart';
 import 'package:areweeven/utils/extensions/go_router_context.dart';
-import 'package:areweeven/view_models/list_item_view_models.dart';
+import 'package:areweeven/view_models/removable_list_item_view_model.dart';
 import 'package:awe_api/awe_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
