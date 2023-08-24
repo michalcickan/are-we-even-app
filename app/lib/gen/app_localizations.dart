@@ -337,6 +337,18 @@ abstract class AppLocalizations {
   /// **'Current'**
   String get current;
 
+  /// No description provided for @yourGroupsSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Your groups'**
+  String get yourGroupsSectionTitle;
+
+  /// No description provided for @groupsYouInvitedIn.
+  ///
+  /// In en, this message translates to:
+  /// **'Group Invitations'**
+  String get groupsYouInvitedIn;
+
   /// No description provided for @addGroupMember.
   ///
   /// In en, this message translates to:
@@ -384,6 +396,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You don\'t any invitation right now'**
   String get emptyInvitationListPlaceholder;
+
+  /// No description provided for @invitationAcceptInfoText.
+  ///
+  /// In en, this message translates to:
+  /// **'Do you want to accept the invitation?'**
+  String get invitationAcceptInfoText;
+
+  /// No description provided for @yes.
+  ///
+  /// In en, this message translates to:
+  /// **'yes'**
+  String get yes;
+
+  /// No description provided for @decline.
+  ///
+  /// In en, this message translates to:
+  /// **'decline'**
+  String get decline;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

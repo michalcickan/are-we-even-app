@@ -40,6 +40,8 @@
   "createGroupTitle": "Create group",
   "groupNamePlaceholder": "Group name",
   "current": "Current",
+  "yourGroupsSectionTitle": "Your groups",
+  "groupsYouInvitedIn": "Group Invitations",
   "addGroupMember": "Add group member",
   "searchUserHint": "email or name",
   "unknown": "Unknown",
@@ -47,5 +49,8 @@
   "noResultsFoundText": "There are no results for this query.",
   "searchMinimumHint": "Please provide me at least 3 characters",
   "groupInvitationsTitle": "Group invitations",
-  "emptyInvitationListPlaceholder": "You don't any invitation right now"
+  "emptyInvitationListPlaceholder": "You don't any invitation right now",
+  "invitationAcceptInfoText": "Do you want to accept the invitation?",
+  "yes": "yes",
+  "decline": "decline"
 }

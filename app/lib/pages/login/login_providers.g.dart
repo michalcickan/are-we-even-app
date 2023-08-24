@@ -36,7 +36,7 @@ final loginIsButtonEnabledProvider = AutoDisposeProvider<bool>.internal(
 );
 
 typedef LoginIsButtonEnabledRef = AutoDisposeProviderRef<bool>;
-String _$loginActionsHash() => r'1ab540c4db9a6434d1442406a526d270b8044936';
+String _$loginActionsHash() => r'b5b4c6d5cff8c74eea5c12a02e9976b03b06618e';
 
 /// See also [LoginActions].
 @ProviderFor(LoginActions)

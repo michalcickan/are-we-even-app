@@ -37,3 +37,4 @@ export 'src/requests/expense_requests.dart';
 export 'src/requests/group_requests.dart';
 export 'src/requests/invitation_requests.dart';
 export 'src/requests/user_requests.dart';
+export 'src/parameters/invitation_resolution.dart';

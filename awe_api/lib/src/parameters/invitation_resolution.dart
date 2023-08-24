@@ -1,0 +1,4 @@
+enum InvitationResolution {
+  accept,
+  decline,
+}

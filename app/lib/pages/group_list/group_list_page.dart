@@ -16,7 +16,7 @@ class GroupListPage extends ConsumerWidget {
     WidgetRef ref,
   ) {
     final texts = ref.watch(groupListTextsProvider);
-    final items = ref.watch(groupListItemsProvider);
+    final items = ref.watch(groupListSectionsProvider);
 
     return PageScaffold(
       appBarData: AppBarData(
@@ -35,7 +35,7 @@ class GroupListPage extends ConsumerWidget {
               )
             : AWEListView(
                 ListViewType.defaultIndentation,
-                listViewItemsBuilder: AppListItemsBuilder.fromViewModels(
+                listViewItemsBuilder: AppListItemsBuilder.fromSections(
                   data,
                 ),
               ),

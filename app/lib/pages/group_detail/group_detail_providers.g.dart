@@ -192,32 +192,33 @@ class _GroupDetailProvider extends AutoDisposeFutureProvider<Group> {
   }
 }
 
-String _$groupDetailMembersHash() =>
-    r'71b89c381d1d00cc0a85770f0de400872314d832';
-typedef GroupDetailMembersRef
-    = AutoDisposeFutureProviderRef<ListSection<String>>;
+String _$groupDetailSectionsHash() =>
+    r'c893bf33c483ec1a96d0868c59eb7add19378390';
+typedef GroupDetailSectionsRef
+    = AutoDisposeFutureProviderRef<List<ListSection<String>>>;
 
-/// See also [groupDetailMembers].
-@ProviderFor(groupDetailMembers)
-const groupDetailMembersProvider = GroupDetailMembersFamily();
+/// See also [groupDetailSections].
+@ProviderFor(groupDetailSections)
+const groupDetailSectionsProvider = GroupDetailSectionsFamily();
 
-/// See also [groupDetailMembers].
-class GroupDetailMembersFamily extends Family<AsyncValue<ListSection<String>>> {
-  /// See also [groupDetailMembers].
-  const GroupDetailMembersFamily();
+/// See also [groupDetailSections].
+class GroupDetailSectionsFamily
+    extends Family<AsyncValue<List<ListSection<String>>>> {
+  /// See also [groupDetailSections].
+  const GroupDetailSectionsFamily();
 
-  /// See also [groupDetailMembers].
-  GroupDetailMembersProvider call(
+  /// See also [groupDetailSections].
+  GroupDetailSectionsProvider call(
     int groupId,
   ) {
-    return GroupDetailMembersProvider(
+    return GroupDetailSectionsProvider(
       groupId,
     );
   }
 
   @override
-  GroupDetailMembersProvider getProviderOverride(
-    covariant GroupDetailMembersProvider provider,
+  GroupDetailSectionsProvider getProviderOverride(
+    covariant GroupDetailSectionsProvider provider,
   ) {
     return call(
       provider.groupId,
@@ -236,36 +237,36 @@ class GroupDetailMembersFamily extends Family<AsyncValue<ListSection<String>>> {
       _allTransitiveDependencies;
 
   @override
-  String? get name => r'groupDetailMembersProvider';
+  String? get name => r'groupDetailSectionsProvider';
 }
 
-/// See also [groupDetailMembers].
-class GroupDetailMembersProvider
-    extends AutoDisposeFutureProvider<ListSection<String>> {
-  /// See also [groupDetailMembers].
-  GroupDetailMembersProvider(
+/// See also [groupDetailSections].
+class GroupDetailSectionsProvider
+    extends AutoDisposeFutureProvider<List<ListSection<String>>> {
+  /// See also [groupDetailSections].
+  GroupDetailSectionsProvider(
     this.groupId,
   ) : super.internal(
-          (ref) => groupDetailMembers(
+          (ref) => groupDetailSections(
             ref,
             groupId,
           ),
-          from: groupDetailMembersProvider,
-          name: r'groupDetailMembersProvider',
+          from: groupDetailSectionsProvider,
+          name: r'groupDetailSectionsProvider',
           debugGetCreateSourceHash:
               const bool.fromEnvironment('dart.vm.product')
                   ? null
-                  : _$groupDetailMembersHash,
-          dependencies: GroupDetailMembersFamily._dependencies,
+                  : _$groupDetailSectionsHash,
+          dependencies: GroupDetailSectionsFamily._dependencies,
           allTransitiveDependencies:
-              GroupDetailMembersFamily._allTransitiveDependencies,
+              GroupDetailSectionsFamily._allTransitiveDependencies,
         );
 
   final int groupId;
 
   @override
   bool operator ==(Object other) {
-    return other is GroupDetailMembersProvider && other.groupId == groupId;
+    return other is GroupDetailSectionsProvider && other.groupId == groupId;
   }
 
   @override

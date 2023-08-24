@@ -21,16 +21,19 @@ class AppListItemsBuilder extends ListViewItemsBuilder {
     );
   }
 
-  factory AppListItemsBuilder.fromSection({
-    required ListSection<String> section,
-  }) {
-    return AppListItemsBuilder(section.totalItemsCount, (context, index) {
-      final itemIndex = section.getItemIndex(index);
-      return itemIndex != null
-          ? _buildItem(section.viewModels[itemIndex])
-          : AWESectionTitle(
+  factory AppListItemsBuilder.fromSections(
+    List<ListSection<String>> sections,
+  ) {
+    final indexMap = sections.indexMap;
+    return AppListItemsBuilder(indexMap.keys.length, (context, index) {
+      final indexKey = indexMap[index];
+      if (indexKey == null) return const SizedBox();
+      final section = sections[indexKey.sectionIndex];
+      return indexKey.isSectionItem
+          ? AWESectionTitle(
               section.title,
-            );
+            )
+          : _buildItem(section.viewModels[indexKey.itemIndex]);
     });
   }
 }
@@ -86,4 +89,38 @@ extension _Widgets on ListItemTrailingType {
           Icons.check,
         ),
       );
+}
+
+extension _Computations<T> on List<ListSection<T>> {
+  Map<int, _IndexKey> get indexMap {
+    final indexMap = <int, _IndexKey>{};
+    int currentIndex = 0;
+
+    for (int sectionIndex = 0; sectionIndex < length; sectionIndex++) {
+      final section = this[sectionIndex];
+      indexMap[currentIndex] = _IndexKey(sectionIndex, 0, true);
+
+      for (int itemIndex = 0;
+          itemIndex < section.viewModels.length;
+          itemIndex++) {
+        currentIndex++;
+        indexMap[currentIndex] = _IndexKey(sectionIndex, itemIndex, false);
+      }
+      currentIndex++;
+    }
+
+    return indexMap;
+  }
+}
+
+class _IndexKey {
+  int sectionIndex;
+  int itemIndex;
+  bool isSectionItem;
+
+  _IndexKey(
+    this.sectionIndex,
+    this.itemIndex,
+    this.isSectionItem,
+  );
 }

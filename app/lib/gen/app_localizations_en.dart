@@ -128,6 +128,12 @@ class AppLocalizationsEn extends AppLocalizations {
   String get current => 'Current';
 
   @override
+  String get yourGroupsSectionTitle => 'Your groups';
+
+  @override
+  String get groupsYouInvitedIn => 'Group Invitations';
+
+  @override
   String get addGroupMember => 'Add group member';
 
   @override
@@ -152,4 +158,13 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get emptyInvitationListPlaceholder => 'You don\'t any invitation right now';
+
+  @override
+  String get invitationAcceptInfoText => 'Do you want to accept the invitation?';
+
+  @override
+  String get yes => 'yes';
+
+  @override
+  String get decline => 'decline';
 }

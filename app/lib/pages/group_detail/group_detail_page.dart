@@ -17,7 +17,6 @@ class GroupDetailPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final texts = ref.watch(groupDetailTextsProvider(groupId));
-    final members = ref.watch(groupDetailMembersProvider(groupId));
     final showFloatingButton =
         ref.watch(groupDetailShowSwitchToProvider(groupId));
 
@@ -38,17 +37,17 @@ class GroupDetailPage extends ConsumerWidget {
               onPressed: () => ref.actions.didTapSetDefault(groupId),
             )
           : null,
-      body: members.maybeWhen(
-        data: (section) => AWEListView(
-          ListViewType.defaultIndentation,
-          listViewItemsBuilder: AppListItemsBuilder.fromSection(
-            section: section,
+      body: ref.watch(groupDetailSectionsProvider(groupId)).maybeWhen(
+            data: (section) => AWEListView(
+              ListViewType.defaultIndentation,
+              listViewItemsBuilder: AppListItemsBuilder.fromSections(
+                section,
+              ),
+            ),
+            orElse: () => const Center(
+              child: CircularProgressIndicator(),
+            ),
           ),
-        ),
-        orElse: () => const Center(
-          child: CircularProgressIndicator(),
-        ),
-      ),
     );
   }
 }

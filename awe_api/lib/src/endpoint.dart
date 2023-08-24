@@ -26,8 +26,10 @@ class Endpoint {
       Endpoint("groups/$groupId/inviteUser/$inviteeId");
 
   factory Endpoint.groupsInvitationsResolution(
-          int invitationId, InvitationResolution resolution) =>
-      Endpoint("groups/invitations/$invitationId/$resolution");
+    int invitationId,
+    InvitationResolution resolution,
+  ) =>
+      Endpoint("groups/invitations/$invitationId/${resolution.name}");
 
   factory Endpoint.expense(int expenseId) =>
       Endpoint("groups/expenses/$expenseId");
@@ -38,7 +40,7 @@ class Endpoint {
   factory Endpoint.groupWithId(int groupId) => Endpoint("groups/$groupId");
 
   factory Endpoint.groupDefault(int? groupId) => groupId == null
-      ? Endpoint("groups/default")
+      ? const Endpoint("groups/default")
       : Endpoint("groups/$groupId/default");
 
   factory Endpoint.group() => const Endpoint("group");
@@ -49,5 +51,3 @@ class Endpoint {
 
   const Endpoint(this.path);
 }
-
-enum InvitationResolution { accept, decline }

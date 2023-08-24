@@ -56,23 +56,25 @@ FutureOr<Group> _groupDetail(_GroupDetailRef ref, int groupId) {
 }
 
 @riverpod
-FutureOr<ListSection<String>> groupDetailMembers(
-  GroupDetailMembersRef ref,
+FutureOr<List<ListSection<String>>> groupDetailSections(
+  GroupDetailSectionsRef ref,
   int groupId,
 ) {
   return ref.watch(_groupDetailProvider(groupId).future).then(
-        (groupDetail) => ListSection(
-          "Members",
-          groupDetail.members!
-              .map(
-                (e) => ListItemViewModel.fromUser(
-                  e,
-                  localizations: ref.watch(localizationProvider),
-                  onPressed: (_) {},
-                ),
-              )
-              .toList(),
-        ),
+        (groupDetail) => [
+          ListSection(
+            "Members",
+            groupDetail.members!
+                .map(
+                  (e) => ListItemViewModel.fromUser(
+                    e,
+                    localizations: ref.watch(localizationProvider),
+                    onPressed: (_) {},
+                  ),
+                )
+                .toList(),
+          ),
+        ],
       );
 }
 

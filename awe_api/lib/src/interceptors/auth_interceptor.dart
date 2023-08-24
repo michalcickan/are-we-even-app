@@ -30,10 +30,7 @@ final class AuthInterceptor extends InterceptorsWrapper {
     RequestInterceptorHandler handler,
   ) async {
     _tokensHolder ??= await authInfoManager.getTokens();
-    if (_tokensHolder!.accessToken != null) {
-      options.headers[HeaderField.authorization.value] =
-          "Bearer ${_tokensHolder!.accessToken}";
-    }
+    options.setAccessTokenIfPresent(_tokensHolder?.accessToken);
     if (_needsDeviceId.contains(options.uri.pathSegments[0])) {
       options.headers[HeaderField.deviceId.value] =
           await authInfoManager.deviceId;
@@ -88,6 +85,7 @@ final class AuthInterceptor extends InterceptorsWrapper {
               newAccessToken?.refreshToken,
             ),
           );
+          e.requestOptions.setAccessTokenIfPresent(newAccessToken?.accessToken);
           return handler.resolve(
             await tempDio.fetch(e.requestOptions),
           );
@@ -140,4 +138,11 @@ extension _TokenHolder on AccessToken {
         accessToken,
         refreshToken,
       );
+}
+
+extension _Auth on RequestOptions {
+  void setAccessTokenIfPresent(String? accessToken) {
+    if (accessToken == null) return;
+    headers[HeaderField.authorization.value] = "Bearer $accessToken";
+  }
 }

@@ -1,4 +1,5 @@
 import 'package:areweeven/global_providers/auth_provider.dart';
+import 'package:areweeven/global_providers/global_error_provider.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
 import 'package:areweeven/utils/extensions/go_router_context.dart';
 import 'package:areweeven/utils/logger.dart';
@@ -45,6 +46,7 @@ class LoginActions extends _$LoginActions with ProviderRouterContextMixin {
             ref.read(loginPasswordProvider.notifier).state,
           );
     } catch (e) {
+      ref.read(globalErrorProvider.notifier).showError(e);
       logger.e(
         e.toString(),
       );

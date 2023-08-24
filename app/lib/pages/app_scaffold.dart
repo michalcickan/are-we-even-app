@@ -1,5 +1,6 @@
 import 'package:areweeven/gen/app_localizations.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
+import 'package:areweeven/utils/extensions/widget_ref_listeners.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -16,6 +17,12 @@ class AppScaffold extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
+    final localizations = ref.watch(localizationProvider);
+    ref.registerErrorListener();
+    ref.registerDialogListener(
+      localizations,
+      context,
+    );
     if (_tabs.isEmpty) {
       _tabs.addAll(
         _makeTabs(

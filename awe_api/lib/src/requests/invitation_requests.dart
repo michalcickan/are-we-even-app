@@ -4,20 +4,19 @@ import 'package:awe_api/src/extensions/list_for_serialization.dart';
 
 extension InvitationRequests on AweAPIClient {
   Future<Group> resolveInvitation(
-    int groupId,
     int invitationId,
     InvitationResolution resolution,
   ) =>
       post(
         Endpoint.groupsInvitationsResolution(
-          groupId,
+          invitationId,
           resolution,
         ),
         Group.fromJson,
       );
 
   Future<List<Invitation>> getAllInvitations() => get(
-        Endpoint.group(),
+        Endpoint.groupInvitations(),
         <Invitation>[].fromJson(Invitation.fromJson),
       );
 
