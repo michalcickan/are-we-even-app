@@ -167,4 +167,15 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get decline => 'decline';
+
+  @override
+  String get close => 'close';
+
+  @override
+  String get expenseTitle => 'Expense';
+
+  @override
+  String noExpensesInGroup(Object groupName) {
+    return 'You have no expenses in the group with name \'$groupName\'';
+  }
 }

@@ -18,5 +18,6 @@ class LoginParameters extends JsonConvertible {
   factory LoginParameters.fromJson(Map<String, dynamic> json) =>
       _$LoginParametersFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$LoginParametersToJson(this);
 }

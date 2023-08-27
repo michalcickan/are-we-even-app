@@ -42,7 +42,7 @@ class DialogInfo {
     this.title, {
     this.actionItems,
     this.text,
-    this.dismissDialogButtonType = DismissDialogButtonType.ok,
+    this.dismissDialogButtonType = DismissDialogButtonType.cancel,
     this.onDismiss,
   });
 }

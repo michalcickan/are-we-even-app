@@ -1,4 +1,3 @@
-import 'package:areweeven/widgets/awe_empty_placeholder.dart';
 import 'package:areweeven/widgets/awe_list_view.dart';
 import 'package:areweeven/widgets/list_item_builders/list_item_builder.dart';
 import 'package:areweeven/widgets/page_scaffold.dart';
@@ -20,17 +19,13 @@ class GroupInvitationListPage extends ConsumerWidget {
         title: texts.title,
       ),
       body: ref.watch(groupInvitationListItemsProvider).maybeWhen(
-            data: (data) => data.isNotEmpty
-                ? AWEListView(
-                    ListViewType.defaultIndentation,
-                    listViewItemsBuilder: AppListItemsBuilder.fromViewModels(
-                      data,
-                    ),
-                  )
-                : AWEEmptyPlaceholder(
-                    EmptyPlaceholderType.list,
-                    text: texts.emptyDataPlaceholder,
-                  ),
+            data: (data) => AWEListView(
+              ListViewType.defaultIndentation,
+              listViewItemsBuilder: AppListItemsBuilder.fromViewModels(
+                data,
+              ),
+              emptyText: texts.emptyDataPlaceholder,
+            ),
             orElse: () => const Center(
               child: CircularProgressIndicator(),
             ),

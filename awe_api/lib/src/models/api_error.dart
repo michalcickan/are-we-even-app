@@ -14,6 +14,7 @@ class APIError extends JsonConvertible {
   factory APIError.fromJson(Map<String, dynamic> json) =>
       _$APIErrorFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$APIErrorToJson(this);
 
   @override

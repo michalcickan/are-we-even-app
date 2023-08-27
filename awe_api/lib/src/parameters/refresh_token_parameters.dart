@@ -16,5 +16,6 @@ class RefreshTokenParameters extends JsonConvertible {
   factory RefreshTokenParameters.fromJson(Map<String, dynamic> json) =>
       _$RefreshTokenParametersFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$RefreshTokenParametersToJson(this);
 }

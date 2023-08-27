@@ -1,6 +1,7 @@
 import 'package:areweeven/utils/list_section.dart';
 import 'package:areweeven/view_models/list_item_view_model.dart';
 import 'package:areweeven/view_models/removable_list_item_view_model.dart';
+import 'package:areweeven/widgets/awe_dismissible_background.dart';
 import 'package:areweeven/widgets/awe_list_view.dart';
 import 'package:areweeven/widgets/awe_section_title.dart';
 import 'package:areweeven/widgets/list_item/awe_list_item.dart';
@@ -8,8 +9,8 @@ import 'package:flutter/material.dart';
 
 class AppListItemsBuilder extends ListViewItemsBuilder {
   AppListItemsBuilder(
-    super.buildItem,
     super.itemsCount,
+    super.buildItem,
   );
 
   factory AppListItemsBuilder.fromViewModels(
@@ -58,6 +59,10 @@ extension _RemovableViewModelBuilders on RemovableListItemViewModel {
           id.toString(),
         ),
         direction: DismissDirection.endToStart,
+        // dismissThresholds: {DismissDirection.endToStart: 10.0},
+        background: const AWEDismissibleBackground(
+          DismissibleBackgroundType.delete,
+        ),
         confirmDismiss: (direction) {
           onPressedRemove();
           return Future.value(false);
@@ -67,11 +72,11 @@ extension _RemovableViewModelBuilders on RemovableListItemViewModel {
 }
 
 Widget _buildItem(dynamic viewModel) {
-  if (viewModel is ListItemViewModel) {
-    return viewModel.simpleListItem;
-  }
   if (viewModel is RemovableListItemViewModel) {
     return viewModel.removableItem;
+  }
+  if (viewModel is ListItemViewModel) {
+    return viewModel.simpleListItem;
   }
   throw Exception("ViewModel type not implemented yet");
 }

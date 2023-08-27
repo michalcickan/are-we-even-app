@@ -65,9 +65,7 @@ class _AWETextFieldState extends State<AWETextField>
           controller: _textEditingController,
           cursorColor: context.colorScheme.primary,
           decoration: InputDecoration(
-            contentPadding: const EdgeInsets.all(
-              Sizes.large,
-            ),
+            contentPadding: widget.type.padding,
             labelText: shouldHaveFloatLabel ? widget.hintText : null,
             hintText: !shouldHaveFloatLabel ? widget.hintText : null,
             suffixIcon: widget.showRemoveButton
@@ -137,6 +135,19 @@ extension _Style on TextFieldType {
         );
       case TextFieldType.search:
         return null;
+    }
+  }
+
+  EdgeInsets get padding {
+    switch (this) {
+      case TextFieldType.basic:
+        return const EdgeInsets.all(
+          Sizes.large,
+        );
+      case TextFieldType.search:
+        return const EdgeInsets.all(
+          Sizes.medium,
+        );
     }
   }
 

@@ -14,5 +14,6 @@ class CreateGroupParameters extends JsonConvertible {
   factory CreateGroupParameters.fromJson(Map<String, dynamic> json) =>
       _$CreateGroupParametersFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$CreateGroupParametersToJson(this);
 }

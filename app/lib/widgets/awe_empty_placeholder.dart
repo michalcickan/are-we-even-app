@@ -1,3 +1,4 @@
+import 'package:areweeven/widgets/sizes.dart';
 import 'package:flutter/material.dart';
 
 enum EmptyPlaceholderType {
@@ -19,7 +20,15 @@ class AWEEmptyPlaceholder extends StatelessWidget {
     return Center(
       child: Card(
         elevation: 1.0,
-        child: Text(text),
+        child: Padding(
+          padding: const EdgeInsets.all(
+            Sizes.medium,
+          ),
+          child: Text(
+            text,
+            textAlign: TextAlign.center,
+          ),
+        ),
       ),
     );
   }

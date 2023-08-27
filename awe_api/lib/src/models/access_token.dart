@@ -21,5 +21,7 @@ class AccessToken extends JsonConvertible {
   factory AccessToken.fromJson(Map<String, dynamic> json) =>
       _$AccessTokenFromJson(json);
 
+  @override
+  @override
   Map<String, dynamic> toJson() => _$AccessTokenToJson(this);
 }

@@ -43,6 +43,7 @@ class GroupDetailPage extends ConsumerWidget {
               listViewItemsBuilder: AppListItemsBuilder.fromSections(
                 section,
               ),
+              emptyText: "",
             ),
             orElse: () => const Center(
               child: CircularProgressIndicator(),

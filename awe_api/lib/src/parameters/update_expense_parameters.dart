@@ -18,5 +18,6 @@ class UpdateExpenseParameters extends JsonConvertible {
   factory UpdateExpenseParameters.fromJson(Map<String, dynamic> json) =>
       _$UpdateExpenseParametersFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$UpdateExpenseParametersToJson(this);
 }

@@ -20,5 +20,6 @@ class Invitation {
   factory Invitation.fromJson(Map<String, dynamic> json) =>
       _$InvitationFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$InvitationToJson(this);
 }

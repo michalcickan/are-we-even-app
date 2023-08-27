@@ -27,6 +27,7 @@ class SettingsPage extends ConsumerWidget {
       body: AWEListView(
         ListViewType.defaultIndentation,
         listViewItemsBuilder: AppListItemsBuilder.fromViewModels(viewModels),
+        emptyText: "",
       ),
     );
   }

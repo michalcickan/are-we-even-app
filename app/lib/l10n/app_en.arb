@@ -52,5 +52,8 @@
   "emptyInvitationListPlaceholder": "You don't any invitation right now",
   "invitationAcceptInfoText": "Do you want to accept the invitation?",
   "yes": "yes",
-  "decline": "decline"
+  "decline": "decline",
+  "close": "close",
+  "expenseTitle": "Expense",
+  "noExpensesInGroup": "You have no expenses in the group with name '{groupName}'"
 }

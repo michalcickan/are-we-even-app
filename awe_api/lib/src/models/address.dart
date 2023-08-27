@@ -18,5 +18,6 @@ class Address extends JsonConvertible {
   factory Address.fromJson(Map<String, dynamic> json) =>
       _$AddressFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$AddressToJson(this);
 }

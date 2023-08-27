@@ -29,7 +29,7 @@ final class AweAPIClient {
         "accept": ContentType.json.toString(),
       },
       receiveDataWhenStatusError: true,
-      validateStatus: _validateStatus,
+      validateStatus: validateStatus,
     );
     if (logger != null) {
       _dio.interceptors.add(logger!);
@@ -42,7 +42,9 @@ final class AweAPIClient {
       ),
     );
   }
+}
 
+extension Methods on AweAPIClient {
   Future<T> get<T>(
     Endpoint endpoint,
     T Function(Map<String, dynamic> json) parser, {
@@ -58,6 +60,22 @@ final class AweAPIClient {
           )
           .then(parseResponse(parser))
           .then(handleResponse);
+
+  Future<PagedDataResponse<T>> getPagedData<T>(
+    Endpoint endpoint,
+    T Function(Map<String, dynamic> json) parser, {
+    JsonConvertible? params,
+    Map<String, dynamic>? additionalHeaders,
+  }) =>
+      _dio
+          .get(
+            endpoint.path,
+            data: null,
+            options: additionalHeaders?.dioOptions,
+            queryParameters: params?.toJson(),
+          )
+          .then(parsePagedResponse(parser))
+          .then((val) => checkForError(val) as PagedDataResponse<T>);
 
   Future<T> post<T>(
     Endpoint endpoint,
@@ -103,23 +121,41 @@ final class AweAPIClient {
           )
           .then(parseResponse(parser))
           .then(handleResponse);
+}
 
-  T handleResponse<T>(APIResponse<T> response) {
-    final data = response.data;
-    if (data == null) {
+extension _Handling on AweAPIClient {
+  DataResponse<T> checkForError<T>(DataResponse<T> response) {
+    if (response.error != null) {
       throw (response.error ?? Exception("Something went wrong"));
     }
+    return response;
+  }
+
+  T handleResponse<T>(DataResponse<T> response) {
+    checkForError(response);
+    final data = response.data;
     return data!;
   }
 
-  APIResponse<T> Function(Response<dynamic>) parseResponse<T>(
+  PagedDataResponse<T> Function(Response<dynamic>) parsePagedResponse<T>(
           Parser<T> parser) =>
-      (value) => APIResponse<T>.fromJson(
-            value.statusCode == HttpStatus.noContent ? {} : value.data,
-            parser,
-          );
+      (value) {
+        return PagedDataResponse<T>.fromJson(
+          value.statusCode == HttpStatus.noContent ? {} : value.data,
+          parser,
+        );
+      };
 
-  bool _validateStatus(int? status) {
+  DataResponse<T> Function(Response<dynamic>) parseResponse<T>(
+          Parser<T> parser) =>
+      (value) {
+        return APIResponse<T>.fromJson(
+          value.statusCode == HttpStatus.noContent ? {} : value.data,
+          parser,
+        );
+      };
+
+  bool validateStatus(int? status) {
     return status != 401 && status != 500;
   }
 }

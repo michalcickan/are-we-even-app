@@ -414,6 +414,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'decline'**
   String get decline;
+
+  /// No description provided for @close.
+  ///
+  /// In en, this message translates to:
+  /// **'close'**
+  String get close;
+
+  /// No description provided for @expenseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense'**
+  String get expenseTitle;
+
+  /// No description provided for @noExpensesInGroup.
+  ///
+  /// In en, this message translates to:
+  /// **'You have no expenses in the group with name \'{groupName}\''**
+  String noExpensesInGroup(Object groupName);
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

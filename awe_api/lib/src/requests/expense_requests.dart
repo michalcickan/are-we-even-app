@@ -9,9 +9,10 @@ extension ExpenseRequests on AweAPIClient {
         params: parameters,
       );
 
-  Future<List<Expense>> getAllExpenses(int groupId) => get(
-        Endpoint.group(),
-        <Expense>[].fromJson(Expense.fromJson),
+  Future<PagedDataResponse<Expense>> getAllExpenses(int groupId) =>
+      getPagedData(
+        Endpoint.groupExpenses(groupId),
+        Expense.fromJson,
       );
 
   Future<List<Invitation>> updateExpense(

@@ -19,5 +19,6 @@ class ExpenseUser {
   factory ExpenseUser.fromJson(Map<String, dynamic> json) =>
       _$ExpenseUserFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$ExpenseUserToJson(this);
 }

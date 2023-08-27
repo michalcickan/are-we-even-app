@@ -77,7 +77,7 @@ extension _Text on DismissDialogButtonType {
   String title(AppLocalizations localizations) {
     switch (this) {
       case DismissDialogButtonType.ok:
-        return localizations.add;
+        return localizations.close;
       case DismissDialogButtonType.cancel:
         return localizations.cancel;
     }

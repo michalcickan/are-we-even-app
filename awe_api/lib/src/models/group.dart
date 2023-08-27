@@ -19,5 +19,6 @@ class Group {
 
   factory Group.fromJson(Map<String, dynamic> json) => _$GroupFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$GroupToJson(this);
 }

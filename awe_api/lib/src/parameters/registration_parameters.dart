@@ -16,5 +16,6 @@ class RegistrationParameters extends JsonConvertible {
   factory RegistrationParameters.fromJson(Map<String, dynamic> json) =>
       _$RegistrationParametersFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$RegistrationParametersToJson(this);
 }

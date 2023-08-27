@@ -1,4 +1,3 @@
-import 'package:areweeven/widgets/awe_empty_placeholder.dart';
 import 'package:areweeven/widgets/awe_list_view.dart';
 import 'package:areweeven/widgets/list_item_builders/list_item_builder.dart';
 import 'package:areweeven/widgets/page_scaffold.dart';
@@ -28,17 +27,13 @@ class GroupListPage extends ConsumerWidget {
             ref.read(groupListActionsProvider.notifier).didTapAdd(),
       ),
       body: items.when(
-        data: (data) => data.isEmpty
-            ? AWEEmptyPlaceholder(
-                EmptyPlaceholderType.list,
-                text: texts.emptyDataPlaceholder,
-              )
-            : AWEListView(
-                ListViewType.defaultIndentation,
-                listViewItemsBuilder: AppListItemsBuilder.fromSections(
-                  data,
-                ),
-              ),
+        data: (data) => AWEListView(
+          ListViewType.defaultIndentation,
+          listViewItemsBuilder: AppListItemsBuilder.fromSections(
+            data,
+          ),
+          emptyText: texts.emptyDataPlaceholder,
+        ),
         error: (object, stackTrace) => Center(
           child: Text(
             object.toString(),

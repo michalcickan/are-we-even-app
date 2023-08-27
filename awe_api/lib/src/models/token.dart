@@ -19,5 +19,6 @@ class Token {
   @override
   static Token fromJson(Map<String, dynamic> json) => _$TokenFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$TokenToJson(this);
 }

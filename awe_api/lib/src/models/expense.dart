@@ -22,5 +22,6 @@ class Expense extends JsonConvertible {
   factory Expense.fromJson(Map<String, dynamic> json) =>
       _$ExpenseFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$ExpenseToJson(this);
 }

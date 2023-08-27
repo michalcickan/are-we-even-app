@@ -9,5 +9,6 @@ class EmptyResponse {
   factory EmptyResponse.fromJson(Map<String, dynamic> json) =>
       _$EmptyResponseFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$EmptyResponseToJson(this);
 }

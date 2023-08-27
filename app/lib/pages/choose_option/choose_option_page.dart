@@ -29,6 +29,7 @@ class ChooseOptionPage extends ConsumerWidget {
             chooseOptionItemsProvider(type),
           ),
         ),
+        emptyText: "",
       ),
     );
   }

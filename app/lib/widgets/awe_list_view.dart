@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import 'awe_empty_placeholder.dart';
 import 'sizes.dart';
 
 enum ListViewType {
@@ -19,9 +20,11 @@ abstract class ListViewItemsBuilder {
 class AWEListView extends StatelessWidget {
   final ListViewType type;
   final ListViewItemsBuilder listViewItemsBuilder;
+  final String emptyText;
 
   const AWEListView(
     this.type, {
+    required this.emptyText,
     required this.listViewItemsBuilder,
     Key? key,
   }) : super(key: key);
@@ -29,18 +32,26 @@ class AWEListView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sidePadding = type.padding;
-    return ListView.builder(
-      padding: const EdgeInsets.symmetric(
-        vertical: Sizes.small,
-      ),
-      itemBuilder: (context, index) {
-        final child = listViewItemsBuilder.buildItem(context, index);
-        return sidePadding != null
-            ? Padding(padding: sidePadding!, child: child)
-            : child;
-      },
-      itemCount: listViewItemsBuilder.itemsCount,
-    );
+    return listViewItemsBuilder.itemsCount > 0
+        ? ListView.builder(
+            padding: const EdgeInsets.symmetric(
+              vertical: Sizes.small,
+            ),
+            itemBuilder: (context, index) {
+              final child = listViewItemsBuilder.buildItem(context, index);
+              return sidePadding != null
+                  ? Padding(padding: sidePadding!, child: child)
+                  : child;
+            },
+            itemCount: listViewItemsBuilder.itemsCount,
+          )
+        : Padding(
+            padding: sidePadding!,
+            child: AWEEmptyPlaceholder(
+              EmptyPlaceholderType.list,
+              text: emptyText,
+            ),
+          );
   }
 }
 

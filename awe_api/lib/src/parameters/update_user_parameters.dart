@@ -20,5 +20,6 @@ class UpdateUserParameters extends JsonConvertible {
   factory UpdateUserParameters.fromJson(Map<String, dynamic> json) =>
       _$UpdateUserParametersFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$UpdateUserParametersToJson(this);
 }

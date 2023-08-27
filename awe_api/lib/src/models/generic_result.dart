@@ -19,5 +19,6 @@ class GenericResult {
   factory GenericResult.fromJson(Map<String, dynamic> json) =>
       _$GenericResultFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$GenericResultToJson(this);
 }

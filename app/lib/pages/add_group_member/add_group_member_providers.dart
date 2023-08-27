@@ -51,6 +51,7 @@ class AddGroupMemberActions extends _$AddGroupMemberActions
             DialogInfo(
               localizations.info,
               text: localizations.invitationSentText(user.name ?? user.email),
+              dismissDialogButtonType: DismissDialogButtonType.ok,
               onDismiss: () => ref.read(goRouterProvider).pop(),
             ),
           );
@@ -74,17 +75,19 @@ Future<List<ListItemViewModel>> addGroupSearchResults(
     AddGroupSearchResultsRef ref, int groupId) async {
   final query = ref.watch(addGroupMemberSearchQueryProvider);
   await ref.debounce(const Duration(milliseconds: 500));
+  if (query.length < 3) {
+    return [];
+  }
 
-  return query.length < 3
-      ? []
-      : (await ref.watch(aweApiClientProvider).searchUsers(
-                UserSearchParameters(
-                  query: query,
-                  offset: 0,
-                  limit: 10,
-                ),
-              ))
-          .map(
+  final pageResult = await ref.watch(aweApiClientProvider).searchUsers(
+        UserSearchParameters(
+          query: query,
+          offset: 0,
+          limit: 10,
+        ),
+      );
+  return pageResult.data
+          ?.map(
             (user) => ListItemViewModel.fromUser(
               user,
               localizations: ref.watch(localizationProvider),
@@ -96,7 +99,8 @@ Future<List<ListItemViewModel>> addGroupSearchResults(
                   ),
             ),
           )
-          .toList();
+          .toList() ??
+      [];
 }
 
 @riverpod

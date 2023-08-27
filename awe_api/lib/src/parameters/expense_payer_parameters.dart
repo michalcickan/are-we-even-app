@@ -19,5 +19,6 @@ class ExpensePayerParameters extends JsonConvertible {
   factory ExpensePayerParameters.fromJson(Map<String, dynamic> json) =>
       _$ExpensePayerParametersFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$ExpensePayerParametersToJson(this);
 }

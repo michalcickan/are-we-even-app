@@ -1,13 +1,12 @@
 // @JsonSerializable(genericArgumentFactories: true)
+import 'package:awe_api/src/models/data_response.dart';
+
 import 'api_error.dart';
 
-class APIResponse<T> {
-  T? data;
-  APIError? error;
-
+class APIResponse<T> extends DataResponse<T> {
   APIResponse({
-    this.data,
-    this.error,
+    super.data,
+    super.error,
   });
 
   factory APIResponse.fromJson(
@@ -18,9 +17,7 @@ class APIResponse<T> {
     if (data == null) {
       if (json["error"] != null) {
         return APIResponse(
-          error: APIError.fromJson(
-            json["error"],
-          ),
+          error: APIError.fromJson(json["error"]),
         );
       }
       try {

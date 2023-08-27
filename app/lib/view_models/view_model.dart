@@ -1,7 +1,7 @@
 abstract class ViewModel<ID> {
   final ID id;
 
-  ViewModel(
+  const ViewModel(
     this.id,
   );
 }

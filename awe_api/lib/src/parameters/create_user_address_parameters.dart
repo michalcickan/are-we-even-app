@@ -20,5 +20,6 @@ class CreateUserAddressParameters extends JsonConvertible {
   factory CreateUserAddressParameters.fromJson(Map<String, dynamic> json) =>
       _$CreateUserAddressParametersFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$CreateUserAddressParametersToJson(this);
 }
