@@ -32,9 +32,9 @@ UpdateProfileTexts updateProfileTexts(UpdateProfileTextsRef ref) {
   return UpdateProfileTexts(
       title: localizations.profileTitle,
       bottomButtonTitle: localizations.save,
-      middleNamePlaceholder: localizations.middleNamePlaceholder,
-      surnamePlaceholder: localizations.surnamePlaceholder,
-      namePlaceholder: localizations.namePlaceholder);
+      middleNamePlaceholder: localizations.middleNameHint,
+      surnamePlaceholder: localizations.surnameHint,
+      namePlaceholder: localizations.nameHint);
 }
 
 @riverpod

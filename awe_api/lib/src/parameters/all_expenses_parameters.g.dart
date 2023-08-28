@@ -9,6 +9,7 @@ part of 'all_expenses_parameters.dart';
 AllExpensesParameters _$AllExpensesParametersFromJson(
         Map<String, dynamic> json) =>
     AllExpensesParameters(
+      sortType: $enumDecodeNullable(_$SortTypeEnumMap, json['sort']),
       offset: json['offset'] as int?,
       limit: json['limit'] as int?,
     );
@@ -25,5 +26,11 @@ Map<String, dynamic> _$AllExpensesParametersToJson(
 
   writeNotNull('offset', instance.offset);
   writeNotNull('limit', instance.limit);
+  writeNotNull('sort', _$SortTypeEnumMap[instance.sortType]);
   return val;
 }
+
+const _$SortTypeEnumMap = {
+  SortType.asc: 'asc',
+  SortType.desc: 'desc',
+};

@@ -15,6 +15,7 @@ class AWETextField extends StatefulWidget {
   final bool showRemoveButton;
   final void Function(bool)? onFocusChanged;
   final String? initialValue;
+  final TextInputType? keyboardType;
   final bool obscureText;
 
   const AWETextField(
@@ -24,6 +25,7 @@ class AWETextField extends StatefulWidget {
     this.showRemoveButton = true,
     this.onFocusChanged,
     this.initialValue,
+    this.keyboardType,
     this.obscureText = false,
     super.key,
   });
@@ -61,6 +63,7 @@ class _AWETextFieldState extends State<AWETextField>
       child: Focus(
         onFocusChange: widget.onFocusChanged,
         child: TextField(
+          keyboardType: widget.keyboardType,
           obscureText: widget.obscureText,
           controller: _textEditingController,
           cursorColor: context.colorScheme.primary,

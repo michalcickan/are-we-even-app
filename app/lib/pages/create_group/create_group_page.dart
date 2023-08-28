@@ -19,11 +19,14 @@ class CreateGroup extends ConsumerWidget {
       appBarData: AppBarData(
         title: texts.title,
       ),
-      bottomButtonTitle: texts.bottomButtonTitle,
-      onBottomButtonPressed: ref.watch(createGroupBottomButtonEnabledProvider)
-          ? () =>
-              ref.read(createGroupActionsProvider.notifier).didTapBottomButton()
-          : null,
+      bottomButton: BottomButton(
+        title: texts.bottomButtonTitle,
+        onPressed: ref.watch(createGroupBottomButtonEnabledProvider)
+            ? () => ref
+                .read(createGroupActionsProvider.notifier)
+                .didTapBottomButton()
+            : null,
+      ),
       children: [
         AWETextField(
           TextFieldType.basic,

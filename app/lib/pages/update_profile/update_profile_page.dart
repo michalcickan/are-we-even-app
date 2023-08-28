@@ -24,9 +24,12 @@ class UpdateProfilePage extends ConsumerWidget {
       appBarData: AppBarData(
         title: texts.title,
       ),
-      bottomButtonTitle: texts.bottomButtonTitle,
-      onBottomButtonPressed: () =>
-          ref.read(updateProfileActionsProvider.notifier).didTapBottomButton(),
+      bottomButton: BottomButton(
+        title: texts.title,
+        onPressed: () => ref
+            .read(updateProfileActionsProvider.notifier)
+            .didTapBottomButton(),
+      ),
       children: [
         AWETextField(
           TextFieldType.basic,

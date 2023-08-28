@@ -6,7 +6,7 @@ import 'package:areweeven/widgets/awe_dialog_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-const groupsRoutes = [
+const groupRoutes = [
   TypedGoRoute<CreateGroupRoute>(path: "create-group"),
   TypedGoRoute<GroupDetailRoute>(path: "group-detail"),
   TypedGoRoute<AddGroupMemberRoute>(path: "add-group-member"),
@@ -35,7 +35,9 @@ class GroupDetailRoute extends GoRouteData {
 class AddGroupMemberRoute extends GoRouteData {
   final int groupId;
 
-  const AddGroupMemberRoute(this.groupId,);
+  const AddGroupMemberRoute(
+    this.groupId,
+  );
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {

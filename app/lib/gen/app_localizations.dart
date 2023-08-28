@@ -157,17 +157,17 @@ abstract class AppLocalizations {
   /// **'Login'**
   String get loginButtonTitle;
 
-  /// No description provided for @emailPlaceholder.
+  /// No description provided for @emailHint.
   ///
   /// In en, this message translates to:
   /// **'Email'**
-  String get emailPlaceholder;
+  String get emailHint;
 
-  /// No description provided for @passwordPlaceholder.
+  /// No description provided for @passwordHint.
   ///
   /// In en, this message translates to:
   /// **'Password'**
-  String get passwordPlaceholder;
+  String get passwordHint;
 
   /// No description provided for @registrationTitle.
   ///
@@ -175,11 +175,11 @@ abstract class AppLocalizations {
   /// **'Register'**
   String get registrationTitle;
 
-  /// No description provided for @repeatPasswordPlaceholder.
+  /// No description provided for @repeatPasswordHint.
   ///
   /// In en, this message translates to:
   /// **'Repeat password'**
-  String get repeatPasswordPlaceholder;
+  String get repeatPasswordHint;
 
   /// No description provided for @homeTabTitle.
   ///
@@ -211,23 +211,23 @@ abstract class AppLocalizations {
   /// **'Profile'**
   String get profileTitle;
 
-  /// No description provided for @namePlaceholder.
+  /// No description provided for @nameHint.
   ///
   /// In en, this message translates to:
   /// **'Name'**
-  String get namePlaceholder;
+  String get nameHint;
 
-  /// No description provided for @surnamePlaceholder.
+  /// No description provided for @surnameHint.
   ///
   /// In en, this message translates to:
   /// **'Surname'**
-  String get surnamePlaceholder;
+  String get surnameHint;
 
-  /// No description provided for @middleNamePlaceholder.
+  /// No description provided for @middleNameHint.
   ///
   /// In en, this message translates to:
   /// **'Middle name'**
-  String get middleNamePlaceholder;
+  String get middleNameHint;
 
   /// No description provided for @updatePersonalInfoTitle.
   ///
@@ -313,11 +313,11 @@ abstract class AppLocalizations {
   /// **'Country'**
   String get country;
 
-  /// No description provided for @emptyGroupListPlaceholder.
+  /// No description provided for @emptyGroupListHint.
   ///
   /// In en, this message translates to:
   /// **'You have no groups'**
-  String get emptyGroupListPlaceholder;
+  String get emptyGroupListHint;
 
   /// No description provided for @createGroupTitle.
   ///
@@ -325,11 +325,11 @@ abstract class AppLocalizations {
   /// **'Create group'**
   String get createGroupTitle;
 
-  /// No description provided for @groupNamePlaceholder.
+  /// No description provided for @groupNameHint.
   ///
   /// In en, this message translates to:
   /// **'Group name'**
-  String get groupNamePlaceholder;
+  String get groupNameHint;
 
   /// No description provided for @current.
   ///
@@ -391,11 +391,11 @@ abstract class AppLocalizations {
   /// **'Group invitations'**
   String get groupInvitationsTitle;
 
-  /// No description provided for @emptyInvitationListPlaceholder.
+  /// No description provided for @emptyInvitationListHint.
   ///
   /// In en, this message translates to:
   /// **'You don\'t any invitation right now'**
-  String get emptyInvitationListPlaceholder;
+  String get emptyInvitationListHint;
 
   /// No description provided for @invitationAcceptInfoText.
   ///
@@ -432,6 +432,48 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'You have no expenses in the group with name \'{groupName}\''**
   String noExpensesInGroup(Object groupName);
+
+  /// No description provided for @addExpenseTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Add expense'**
+  String get addExpenseTitle;
+
+  /// No description provided for @shouldPayHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Should pay'**
+  String get shouldPayHint;
+
+  /// No description provided for @paidHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Paid'**
+  String get paidHint;
+
+  /// No description provided for @addExpenseDescription.
+  ///
+  /// In en, this message translates to:
+  /// **'Add an expense you did and split it with your friends. The algorithm computes debt results as a whole from all your expenses. After the price computation, which the debtor should pay, the algorithm randomly assigns whom to pay according to who paid more than they should. It is not computed per each expense.'**
+  String get addExpenseDescription;
+
+  /// No description provided for @expenseDescriptionHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Expense description'**
+  String get expenseDescriptionHint;
+
+  /// No description provided for @homeExpensesSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Last expenses'**
+  String get homeExpensesSectionTitle;
+
+  /// No description provided for @seeAll.
+  ///
+  /// In en, this message translates to:
+  /// **'See all'**
+  String get seeAll;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

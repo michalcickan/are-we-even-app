@@ -4,7 +4,12 @@ import 'package:flutter/material.dart';
 
 import 'awe_border_radius.dart';
 
-enum TextButtonType { primary, secondary, bar }
+enum TextButtonType {
+  primary,
+  secondary,
+  bar,
+  section,
+}
 
 class AWETextButton extends StatelessWidget {
   final TextButtonType type;
@@ -90,6 +95,16 @@ extension _Styles on TextButtonType {
           overlayColor: MaterialStateProperty.all(
             Colors.white.withAlpha(128),
           ),
+        );
+      case TextButtonType.section:
+        return const _CommonButtonStyle().copyWith(
+          backgroundColor: MaterialStateProperty.all(
+            Colors.transparent,
+          ),
+          foregroundColor: MaterialStatePropertyAll(
+            context.colorScheme.onPrimary,
+          ),
+          padding: const MaterialStatePropertyAll(EdgeInsets.zero),
         );
     }
   }

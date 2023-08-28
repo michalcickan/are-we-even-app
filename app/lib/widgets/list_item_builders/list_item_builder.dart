@@ -1,6 +1,7 @@
 import 'package:areweeven/utils/list_section.dart';
 import 'package:areweeven/view_models/list_item_view_model.dart';
 import 'package:areweeven/view_models/removable_list_item_view_model.dart';
+import 'package:areweeven/widgets/awe_button.dart';
 import 'package:areweeven/widgets/awe_dismissible_background.dart';
 import 'package:areweeven/widgets/awe_list_view.dart';
 import 'package:areweeven/widgets/awe_section_title.dart';
@@ -33,6 +34,7 @@ class AppListItemsBuilder extends ListViewItemsBuilder {
       return indexKey.isSectionItem
           ? AWESectionTitle(
               section.title,
+              rightItem: section.rightItem?.widget,
             )
           : _buildItem(section.viewModels[indexKey.itemIndex]);
     });
@@ -128,4 +130,15 @@ class _IndexKey {
     this.itemIndex,
     this.isSectionItem,
   );
+}
+
+extension RightItemWidget on SectionRightItem {
+  Widget? get widget => when(
+        () => null,
+        more: (title, onPressed) => AWETextButton(
+          TextButtonType.section,
+          text: title,
+          onPressed: onPressed,
+        ),
+      );
 }

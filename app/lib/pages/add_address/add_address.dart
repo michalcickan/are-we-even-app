@@ -19,11 +19,14 @@ class AddAddressPage extends ConsumerWidget {
       appBarData: AppBarData(
         title: texts.title,
       ),
-      bottomButtonTitle: texts.bottomButtonTitle,
-      onBottomButtonPressed: ref.watch(addAddressEnableBottomButtonProvider)
-          ? () =>
-              ref.read(addAddressActionsProvider.notifier).didTapBottomButton()
-          : null,
+      bottomButton: BottomButton(
+        title: texts.bottomButtonTitle,
+        onPressed: ref.watch(addAddressEnableBottomButtonProvider)
+            ? () => ref
+                .read(addAddressActionsProvider.notifier)
+                .didTapBottomButton()
+            : null,
+      ),
       children: [
         AWETextField(
           TextFieldType.basic,

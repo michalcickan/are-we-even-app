@@ -15,10 +15,12 @@ class LoginPage extends ConsumerWidget {
       appBarData: AppBarData(
         title: texts.title,
       ),
-      bottomButtonTitle: texts.bottomButtonTitle,
-      onBottomButtonPressed: ref.watch(loginIsButtonEnabledProvider)
-          ? () => ref.read(loginActionsProvider.notifier).didTapBottomButton()
-          : null,
+      bottomButton: BottomButton(
+        title: texts.bottomButtonTitle,
+        onPressed: ref.watch(loginIsButtonEnabledProvider)
+            ? () => ref.read(loginActionsProvider.notifier).didTapBottomButton()
+            : null,
+      ),
       children: [
         if (texts.description != null)
           Text(

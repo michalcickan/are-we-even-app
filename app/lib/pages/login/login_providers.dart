@@ -29,8 +29,8 @@ LoginTexts loginTexts(LoginTextsRef ref) {
   return LoginTexts(
     bottomButtonTitle: localizations.loginButtonTitle,
     title: localizations.loginTitle,
-    emailPlaceholder: localizations.emailPlaceholder,
-    passwordPlaceholder: localizations.passwordPlaceholder,
+    emailPlaceholder: localizations.emailHint,
+    passwordPlaceholder: localizations.passwordHint,
   );
 }
 

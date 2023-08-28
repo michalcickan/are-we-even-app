@@ -3,7 +3,8 @@ import 'package:areweeven/pages/group_list/group_list_page.dart';
 import 'package:areweeven/pages/home/home_page.dart';
 import 'package:areweeven/pages/settings/settings_page.dart';
 import 'package:areweeven/pages/settings/settings_providers.dart';
-import 'package:areweeven/routes/groups_routes.dart';
+import 'package:areweeven/routes/expense_routes.dart';
+import 'package:areweeven/routes/group_routes.dart';
 import 'package:areweeven/routes/settings_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -13,12 +14,13 @@ const tabRoutes = TypedStatefulShellRoute<AppScaffoldShellRoute>(
     TypedStatefulShellBranch(routes: [
       TypedGoRoute<HomeRoute>(
         path: "home",
+        routes: expenseRoutes,
       ),
     ]),
     TypedStatefulShellBranch(routes: [
       TypedGoRoute<GroupListRoute>(
         path: "groups",
-        routes: groupsRoutes,
+        routes: groupRoutes,
       ),
     ]),
     TypedStatefulShellBranch<SettingsBranch>(routes: [

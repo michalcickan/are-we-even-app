@@ -34,6 +34,12 @@ RouteBase get $rootRoute => GoRouteData.$route(
                 GoRouteData.$route(
                   path: 'home',
                   factory: $HomeRouteExtension._fromState,
+                  routes: [
+                    GoRouteData.$route(
+                      path: 'add-expense',
+                      factory: $AddExpenseRouteExtension._fromState,
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -178,6 +184,28 @@ extension $HomeRouteExtension on HomeRoute {
 
   String get location => GoRouteData.$location(
         '/home',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $AddExpenseRouteExtension on AddExpenseRoute {
+  static AddExpenseRoute _fromState(GoRouterState state) => AddExpenseRoute(
+        int.parse(state.uri.queryParameters['group-id']!),
+      );
+
+  String get location => GoRouteData.$location(
+        '/home/add-expense',
+        queryParams: {
+          'group-id': groupId.toString(),
+        },
       );
 
   void go(BuildContext context) => context.go(location);

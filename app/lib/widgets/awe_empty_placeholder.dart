@@ -1,4 +1,4 @@
-import 'package:areweeven/widgets/sizes.dart';
+import 'package:areweeven/widgets/awe_card.dart';
 import 'package:flutter/material.dart';
 
 enum EmptyPlaceholderType {
@@ -18,16 +18,11 @@ class AWEEmptyPlaceholder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Card(
-        elevation: 1.0,
-        child: Padding(
-          padding: const EdgeInsets.all(
-            Sizes.medium,
-          ),
-          child: Text(
-            text,
-            textAlign: TextAlign.center,
-          ),
+      child: AWECard(
+        CardType.defaultIndentation,
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
         ),
       ),
     );

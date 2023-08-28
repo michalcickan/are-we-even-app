@@ -2,7 +2,7 @@ import 'package:areweeven/global_providers/awe_api_client_provider.dart';
 import 'package:areweeven/global_providers/current_group_provider.dart';
 import 'package:areweeven/global_providers/global_error_provider.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
-import 'package:areweeven/routes/groups_routes.dart';
+import 'package:areweeven/routes/group_routes.dart';
 import 'package:areweeven/routes/routes.dart';
 import 'package:areweeven/utils/extensions/go_router_context.dart';
 import 'package:areweeven/utils/list_section.dart';

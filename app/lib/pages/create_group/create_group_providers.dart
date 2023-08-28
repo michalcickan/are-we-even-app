@@ -27,7 +27,7 @@ CreateGroupTexts createGroupTexts(CreateGroupTextsRef ref) {
   return CreateGroupTexts(
     title: localizations.createGroupTitle,
     bottomButtonTitle: localizations.save,
-    groupNamePlaceholder: localizations.groupNamePlaceholder,
+    groupNamePlaceholder: localizations.groupNameHint,
   );
 }
 

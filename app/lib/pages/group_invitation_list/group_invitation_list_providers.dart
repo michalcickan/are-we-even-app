@@ -21,7 +21,7 @@ GroupInvitationListTexts groupInvitationListTexts(
   final localizations = ref.watch(localizationProvider);
   return GroupInvitationListTexts(
     title: localizations.groupInvitationsTitle,
-    emptyDataPlaceholder: localizations.emptyInvitationListPlaceholder,
+    emptyDataPlaceholder: localizations.emptyInvitationListHint,
   );
 }
 

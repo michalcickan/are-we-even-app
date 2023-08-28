@@ -13,7 +13,7 @@ class GroupInvitationListPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final texts = ref.read(groupInvitationListTextsProvider);
+    final texts = ref.watch(groupInvitationListTextsProvider);
     return PageScaffold(
       appBarData: AppBarData(
         title: texts.title,

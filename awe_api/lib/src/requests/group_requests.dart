@@ -33,4 +33,9 @@ extension GroupRequests on AweAPIClient {
         Endpoint.groupDefault(groupId),
         EmptyResponse.fromJson,
       );
+
+  Future<List<User>> getGroupMembers(int groupId) => get(
+        Endpoint.groupMembers(groupId),
+        <User>[].fromJson(User.fromJson),
+      );
 }

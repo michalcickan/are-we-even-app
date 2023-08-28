@@ -38,16 +38,16 @@ class AppLocalizationsEn extends AppLocalizations {
   String get loginButtonTitle => 'Login';
 
   @override
-  String get emailPlaceholder => 'Email';
+  String get emailHint => 'Email';
 
   @override
-  String get passwordPlaceholder => 'Password';
+  String get passwordHint => 'Password';
 
   @override
   String get registrationTitle => 'Register';
 
   @override
-  String get repeatPasswordPlaceholder => 'Repeat password';
+  String get repeatPasswordHint => 'Repeat password';
 
   @override
   String get homeTabTitle => 'Home';
@@ -65,13 +65,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get profileTitle => 'Profile';
 
   @override
-  String get namePlaceholder => 'Name';
+  String get nameHint => 'Name';
 
   @override
-  String get surnamePlaceholder => 'Surname';
+  String get surnameHint => 'Surname';
 
   @override
-  String get middleNamePlaceholder => 'Middle name';
+  String get middleNameHint => 'Middle name';
 
   @override
   String get updatePersonalInfoTitle => 'Update basic info';
@@ -116,13 +116,13 @@ class AppLocalizationsEn extends AppLocalizations {
   String get country => 'Country';
 
   @override
-  String get emptyGroupListPlaceholder => 'You have no groups';
+  String get emptyGroupListHint => 'You have no groups';
 
   @override
   String get createGroupTitle => 'Create group';
 
   @override
-  String get groupNamePlaceholder => 'Group name';
+  String get groupNameHint => 'Group name';
 
   @override
   String get current => 'Current';
@@ -157,7 +157,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get groupInvitationsTitle => 'Group invitations';
 
   @override
-  String get emptyInvitationListPlaceholder => 'You don\'t any invitation right now';
+  String get emptyInvitationListHint => 'You don\'t any invitation right now';
 
   @override
   String get invitationAcceptInfoText => 'Do you want to accept the invitation?';
@@ -178,4 +178,25 @@ class AppLocalizationsEn extends AppLocalizations {
   String noExpensesInGroup(Object groupName) {
     return 'You have no expenses in the group with name \'$groupName\'';
   }
+
+  @override
+  String get addExpenseTitle => 'Add expense';
+
+  @override
+  String get shouldPayHint => 'Should pay';
+
+  @override
+  String get paidHint => 'Paid';
+
+  @override
+  String get addExpenseDescription => 'Add an expense you did and split it with your friends. The algorithm computes debt results as a whole from all your expenses. After the price computation, which the debtor should pay, the algorithm randomly assigns whom to pay according to who paid more than they should. It is not computed per each expense.';
+
+  @override
+  String get expenseDescriptionHint => 'Expense description';
+
+  @override
+  String get homeExpensesSectionTitle => 'Last expenses';
+
+  @override
+  String get seeAll => 'See all';
 }

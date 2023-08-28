@@ -6,7 +6,7 @@ part of 'home_providers.dart';
 // RiverpodGenerator
 // **************************************************************************
 
-String _$homeTextsHash() => r'd2229cc56b0421226da934f7464f6b6235429bc4';
+String _$homeTextsHash() => r'94ece04c6c6925ca7e647edeacf54b9e1dd34d9c';
 
 /// See also [homeTexts].
 @ProviderFor(homeTexts)
@@ -20,7 +20,7 @@ final homeTextsProvider = AutoDisposeProvider<HomeTexts>.internal(
 );
 
 typedef HomeTextsRef = AutoDisposeProviderRef<HomeTexts>;
-String _$homeSectionsHash() => r'8ca0ecefa7f762addfeb93353d07194c40cd5a31';
+String _$homeSectionsHash() => r'2e661cf68d08f754054a6eed2334265c9a10c2ee';
 
 /// See also [homeSections].
 @ProviderFor(homeSections)
@@ -36,7 +36,7 @@ final homeSectionsProvider =
 
 typedef HomeSectionsRef
     = AutoDisposeFutureProviderRef<List<ListSection<String>>>;
-String _$homeActionsHash() => r'970cffa104c8308814404a5b4e1fd8c00955afda';
+String _$homeActionsHash() => r'4ec2dc545edb8421c858793d0ab3dea525a59dda';
 
 /// See also [HomeActions].
 @ProviderFor(HomeActions)

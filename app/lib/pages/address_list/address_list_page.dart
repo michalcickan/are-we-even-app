@@ -1,6 +1,7 @@
-import 'package:areweeven/utils/extensions/build_context_themes.dart';
+import 'package:areweeven/widgets/awe_card.dart';
+import 'package:areweeven/widgets/awe_list_view.dart';
+import 'package:areweeven/widgets/list_item_builders/list_item_builder.dart';
 import 'package:areweeven/widgets/page_scaffold.dart';
-import 'package:areweeven/widgets/scrollable_page_with_bottom_button.dart';
 import 'package:areweeven/widgets/sizes.dart';
 import 'package:awe_api/awe_api.dart';
 import 'package:flutter/material.dart';
@@ -17,45 +18,43 @@ class AddressListPage extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final texts = ref.watch(addressListTextsProvider);
     final addressList = ref.watch(addressListProvider);
-    return ScrollablePageWithBottomButton(
+    return PageScaffold(
       appBarData: AppBarData(
         title: texts.title,
       ),
-      bottomButtonTitle: texts.bottomButtonTitle,
-      onBottomButtonPressed: () {
-        ref.read(addressListActionsProvider.notifier).didTapBottomButton();
-      },
-      children: addressList.isEmpty
-          ? [
-              Center(
-                child: Text(texts.emptyText),
-              ),
-            ]
-          : addressList
-              .map(
-                _makeItem(context),
-              )
-              .toList(),
+      floatingButton: FloatingButton(
+        iconData: Icons.add,
+        onPressed: () =>
+            ref.read(addressListActionsProvider.notifier).didTapBottomButton(),
+      ),
+      body: AWEListView(
+        ListViewType.defaultIndentation,
+        listViewItemsBuilder: AppListItemsBuilder(
+          addressList.length,
+          (context, index) => _makeItem(
+            context,
+            addressList[index],
+          ),
+        ),
+        emptyText: texts.emptyText,
+      ),
     );
   }
 
-  Widget Function(Address) _makeItem(BuildContext context) =>
-      (Address address) => Container(
-            color: context.colorScheme.surface,
-            padding: const EdgeInsets.all(
-              Sizes.medium,
-            ),
-            margin: const EdgeInsets.only(bottom: Sizes.small),
-            child: Column(
-              children: [
-                Text(address.city),
-                _itemSpace,
-                Text(address.street),
-                _itemSpace,
-                Text(address.zip),
-              ],
-            ),
-          );
+  Widget _makeItem(BuildContext context, Address address) => AWECard(
+        CardType.defaultIndentation,
+        child: Column(
+          children: [
+            Text(address.city),
+            _itemSpace,
+            Text(address.street),
+            _itemSpace,
+            Text(address.zip),
+            _itemSpace,
+            Text(address.country),
+          ],
+        ),
+      );
 
   Widget get _itemSpace => const SizedBox(
         height: Sizes.small,

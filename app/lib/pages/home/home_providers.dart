@@ -1,8 +1,11 @@
 import 'package:areweeven/global_providers/awe_api_client_provider.dart';
 import 'package:areweeven/global_providers/current_group_provider.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
+import 'package:areweeven/routes/expense_routes.dart';
+import 'package:areweeven/routes/routes.dart';
 import 'package:areweeven/utils/extensions/go_router_context.dart';
 import 'package:areweeven/utils/list_section.dart';
+import 'package:areweeven/view_models/list_item_view_model.dart';
 import 'package:awe_api/awe_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -40,17 +43,53 @@ class HomeActions extends _$HomeActions with ProviderRouterContextMixin {
   @override
   void build() {}
 
-  void didTapAddExpense() {
-    return;
+  Future<void> didTapAddExpense() async {
+    final group = ref.read(currentGroupProvider).value;
+    await AddExpenseRoute(group!.id).push(context);
+    ref.refresh(homeSectionsProvider);
   }
+
+  void didTapShowAllExpenses() {}
 }
 
 @riverpod
 FutureOr<List<ListSection<String>>> homeSections(HomeSectionsRef ref) async {
+  const maxExpensesLength = 3;
   final client = ref.watch(aweApiClientProvider);
   final group = await ref.watch(currentGroupProvider.future);
+  final localizations = ref.watch(localizationProvider);
+  final pagedExpenses = await client.getAllExpenses(
+    group!.id,
+    AllExpensesParameters(
+      offset: 0,
+      limit: maxExpensesLength,
+      sortType: SortType.desc,
+    ),
+  );
+  if (pagedExpenses.data == null) {
+    return [];
+  }
 
-  final expenses = await client.getAllExpenses(group!.id);
-  // Perform other operations based on expenses if needed.
-  return []; // Return your result here.
+  return [
+    ListSection(
+      localizations.homeExpensesSectionTitle,
+      pagedExpenses.data!
+          .map(
+            (expense) => ListItemViewModel(
+              expense.id,
+              title: expense.description,
+              onPressed: () {},
+            ),
+          )
+          .toList(),
+      rightItem: maxExpensesLength < (pagedExpenses.meta?.totalCount ?? 0)
+          ? SectionRightItem.more(
+              localizations.seeAll,
+              () => ref
+                  .read(homeActionsProvider.notifier)
+                  .didTapShowAllExpenses(),
+            )
+          : null,
+    )
+  ]; // Return your result here.
 }

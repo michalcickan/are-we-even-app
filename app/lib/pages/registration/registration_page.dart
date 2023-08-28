@@ -15,12 +15,14 @@ class RegistrationPage extends ConsumerWidget {
       appBarData: AppBarData(
         title: texts.title,
       ),
-      bottomButtonTitle: texts.bottomButtonTitle,
-      onBottomButtonPressed: ref.watch(registrationBottomButtonEnabledProvider)
-          ? () => ref
-              .read(registrationActionsProvider.notifier)
-              .didTapBottomButton()
-          : null,
+      bottomButton: BottomButton(
+        title: texts.bottomButtonTitle,
+        onPressed: ref.watch(registrationBottomButtonEnabledProvider)
+            ? () => ref
+                .read(registrationActionsProvider.notifier)
+                .didTapBottomButton()
+            : null,
+      ),
       children: [
         ..._makeInputs(
           ref,

@@ -7,7 +7,7 @@ part of 'group_invitation_list_providers.dart';
 // **************************************************************************
 
 String _$groupInvitationListTextsHash() =>
-    r'3e9cd1430a6f3ec866230d494ee3ae496c07a6f2';
+    r'560fa749cbfa73b49b354d52965d57fca7d44358';
 
 /// See also [groupInvitationListTexts].
 @ProviderFor(groupInvitationListTexts)

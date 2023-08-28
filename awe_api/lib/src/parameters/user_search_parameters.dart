@@ -1,7 +1,7 @@
 import 'package:awe_api/src/interfaces/json_convertible.dart';
 import 'package:json_annotation/json_annotation.dart';
 
-import 'user_filter_column.dart';
+import 'enums/user_filter_column.dart';
 
 part 'user_search_parameters.g.dart';
 

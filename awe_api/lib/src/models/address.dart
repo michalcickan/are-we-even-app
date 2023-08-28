@@ -8,11 +8,13 @@ class Address extends JsonConvertible {
   final String street;
   final String zip;
   final String city;
+  final String country;
 
   Address({
     required this.street,
     required this.zip,
     required this.city,
+    required this.country,
   });
 
   factory Address.fromJson(Map<String, dynamic> json) =>

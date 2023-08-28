@@ -31,9 +31,9 @@ RegistrationTexts registrationTexts(RegistrationTextsRef ref) {
   return RegistrationTexts(
     title: localizations.registrationTitle,
     bottomButtonTitle: localizations.registerButtonWithEmailTitle,
-    emailPlaceholder: localizations.emailPlaceholder,
-    passwordPlaceholder: localizations.passwordPlaceholder,
-    repeatPasswordPlaceholder: localizations.repeatPasswordPlaceholder,
+    emailPlaceholder: localizations.emailHint,
+    passwordPlaceholder: localizations.passwordHint,
+    repeatPasswordPlaceholder: localizations.repeatPasswordHint,
   );
 }
 
