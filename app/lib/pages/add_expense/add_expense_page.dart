@@ -40,7 +40,7 @@ class AddExpensePage extends ConsumerWidget {
         data: (data) => [
           if (texts.description != null)
             Text(
-              texts.description! + texts.description!,
+              texts.description!,
             ),
           const SizedBox(
             height: Sizes.doubleLarge,

@@ -22,7 +22,7 @@ final expenseListTextsProvider = AutoDisposeProvider<ExpenseListTexts>.internal(
 
 typedef ExpenseListTextsRef = AutoDisposeProviderRef<ExpenseListTexts>;
 String _$expenseListActionsHash() =>
-    r'd95f03a9159cdc30b56df9eac841829395e75fbd';
+    r'66136eea98c053f482b5dc0ed7a335707b126979';
 
 /// See also [ExpenseListActions].
 @ProviderFor(ExpenseListActions)

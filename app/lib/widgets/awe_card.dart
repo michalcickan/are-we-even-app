@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 import 'sizes.dart';
 
-enum CardType { defaultIndentation }
+enum CardType {
+  defaultIndentation,
+}
 
 class AWECard extends StatelessWidget {
   final CardType type;

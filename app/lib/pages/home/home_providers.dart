@@ -1,11 +1,15 @@
+import 'package:areweeven/gen/app_localizations.dart';
 import 'package:areweeven/global_providers/awe_api_client_provider.dart';
 import 'package:areweeven/global_providers/current_group_provider.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
 import 'package:areweeven/routes/expense_routes.dart';
 import 'package:areweeven/routes/routes.dart';
 import 'package:areweeven/utils/extensions/go_router_context.dart';
+import 'package:areweeven/utils/extensions/user_utils.dart';
 import 'package:areweeven/utils/list_section.dart';
+import 'package:areweeven/view_models/card_list_item_view_model.dart';
 import 'package:areweeven/view_models/list_item_view_model.dart';
+import 'package:areweeven/view_models/text_deliminator.dart';
 import 'package:awe_api/awe_api.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -52,6 +56,10 @@ class HomeActions extends _$HomeActions with ProviderRouterContextMixin {
     const ExpenseListRoute().push(context);
   }
 
+  void didTapExpense(Expense expense) {
+    ExpenseDetailRoute(expense.id).push(context);
+  }
+
   int get _groupId => ref.read(currentGroupProvider).value!.id;
 }
 
@@ -59,10 +67,11 @@ class HomeActions extends _$HomeActions with ProviderRouterContextMixin {
 FutureOr<List<ListSection<String>>> homeSections(HomeSectionsRef ref) async {
   const maxExpensesLength = 3;
   final client = ref.watch(aweApiClientProvider);
-  final group = await ref.watch(currentGroupProvider.future);
+  final groupId = (await ref.watch(currentGroupProvider.future))!.id;
   final localizations = ref.watch(localizationProvider);
+  final debts = await client.getDebts(groupId);
   final pagedExpenses = await client.getAllExpenses(
-    group!.id,
+    groupId,
     AllExpensesParameters(
       offset: 0,
       limit: maxExpensesLength,
@@ -72,27 +81,59 @@ FutureOr<List<ListSection<String>>> homeSections(HomeSectionsRef ref) async {
   if (pagedExpenses.data?.isEmpty ?? true) {
     return [];
   }
+  final actions = ref.watch(homeActionsProvider.notifier);
 
   return [
     ListSection(
+      "",
+      debts.viewModels(
+        localizations,
+        actions,
+      ),
+    ),
+    ListSection(
       localizations.homeExpensesSectionTitle,
-      pagedExpenses.data!
-          .map(
-            (expense) => ListItemViewModel.fromExpense(
-              expense,
-              localizations: localizations,
-              onPressed: (expense) {},
-            ),
-          )
-          .toList(),
+      pagedExpenses.data!.viewModels(
+        localizations,
+        actions,
+      ),
       rightItem: maxExpensesLength < (pagedExpenses.meta?.totalCount ?? 0)
           ? SectionRightItem.more(
               localizations.seeAll,
-              () => ref
-                  .read(homeActionsProvider.notifier)
-                  .didTapShowAllExpenses(),
+              actions.didTapShowAllExpenses,
             )
           : null,
     )
   ]; // Return your result here.
+}
+
+extension _Expenses on List<Expense> {
+  List<ListItemViewModel> viewModels(
+    AppLocalizations localizations,
+    HomeActions actions,
+  ) =>
+      map(
+        (expense) => ListItemViewModel.fromExpense(
+          expense,
+          localizations: localizations,
+          onPressed: actions.didTapExpense,
+        ),
+      ).toList();
+}
+
+extension _Debts on List<Debt> {
+  List<CardListItemViewModel> viewModels(
+    AppLocalizations localizations,
+    HomeActions actions,
+  ) =>
+      map(
+        (debt) => CardListItemViewModel(
+          debt.id.toString(),
+          upperText: debt.debtor.validName,
+          textDeliminator: TextDeliminator.arrowDown(
+            additionalInfo: debt?.amountOwed.toString(),
+          ),
+          bottomText: debt.creditor.validName,
+        ),
+      ).toList();
 }

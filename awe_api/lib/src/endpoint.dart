@@ -39,6 +39,8 @@ class Endpoint {
 
   factory Endpoint.groupWithId(int groupId) => Endpoint("groups/$groupId");
 
+  factory Endpoint.groupDebts(int groupId) => Endpoint("groups/$groupId/debts");
+
   factory Endpoint.groupMembers(int groupId) =>
       Endpoint("groups/$groupId/members");
 

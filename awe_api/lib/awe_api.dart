@@ -16,6 +16,7 @@ export 'src/models/address.dart';
 export 'src/models/data_response.dart';
 export 'src/models/access_token.dart';
 export 'src/models/paged_data_response.dart';
+export 'src/models/debt.dart';
 export 'src/models/generic_result.dart';
 export 'src/models/api_error.dart';
 export 'src/models/token.dart';

@@ -1,5 +1,7 @@
 import 'package:areweeven/global_providers/awe_api_client_provider.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
+import 'package:areweeven/routes/expense_routes.dart';
+import 'package:areweeven/routes/routes.dart';
 import 'package:areweeven/utils/extensions/go_router_context.dart';
 import 'package:areweeven/view_models/list_item_view_model.dart';
 import 'package:awe_api/awe_api.dart';
@@ -30,7 +32,7 @@ class ExpenseListActions extends _$ExpenseListActions
   void build() {}
 
   void didTapExpense(Expense expense) {
-    return;
+    ExpenseDetailRoute(expense.id).push(context);
   }
 }
 

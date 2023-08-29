@@ -480,6 +480,24 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Expenses'**
   String get expenseListTitle;
+
+  /// No description provided for @dueAmountTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Due amount'**
+  String get dueAmountTitle;
+
+  /// No description provided for @totalAmountTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Total amount'**
+  String get totalAmountTitle;
+
+  /// No description provided for @createdAtTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Created'**
+  String get createdAtTitle;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

@@ -6,12 +6,14 @@ part 'expense_user.g.dart';
 class ExpenseUser {
   final int id;
   final String? name;
+  final String email;
   final double paidAmount;
   final double dueAmount;
 
   ExpenseUser({
     required this.id,
     this.name,
+    required this.email,
     required this.paidAmount,
     required this.dueAmount,
   });

@@ -9,6 +9,7 @@ part of 'expense_user.dart';
 ExpenseUser _$ExpenseUserFromJson(Map<String, dynamic> json) => ExpenseUser(
       id: json['id'] as int,
       name: json['name'] as String?,
+      email: json['email'] as String,
       paidAmount: (json['paidAmount'] as num).toDouble(),
       dueAmount: (json['dueAmount'] as num).toDouble(),
     );
@@ -25,6 +26,7 @@ Map<String, dynamic> _$ExpenseUserToJson(ExpenseUser instance) {
   }
 
   writeNotNull('name', instance.name);
+  val['email'] = instance.email;
   val['paidAmount'] = instance.paidAmount;
   val['dueAmount'] = instance.dueAmount;
   return val;

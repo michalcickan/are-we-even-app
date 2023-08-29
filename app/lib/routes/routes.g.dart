@@ -37,8 +37,11 @@ RouteBase get $rootRoute => GoRouteData.$route(
                   routes: [
                     GoRouteData.$route(
                       path: 'expense-list',
-                      parentNavigatorKey: ExpenseListRoute.$parentNavigatorKey,
                       factory: $ExpenseListRouteExtension._fromState,
+                    ),
+                    GoRouteData.$route(
+                      path: 'expense-detail',
+                      factory: $ExpenseDetailRouteExtension._fromState,
                     ),
                   ],
                 ),
@@ -211,6 +214,29 @@ extension $ExpenseListRouteExtension on ExpenseListRoute {
 
   String get location => GoRouteData.$location(
         '/home/expense-list',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $ExpenseDetailRouteExtension on ExpenseDetailRoute {
+  static ExpenseDetailRoute _fromState(GoRouterState state) =>
+      ExpenseDetailRoute(
+        _$convertMapValue('expense-id', state.uri.queryParameters, int.parse),
+      );
+
+  String get location => GoRouteData.$location(
+        '/home/expense-detail',
+        queryParams: {
+          if (expenseId != null) 'expense-id': expenseId!.toString(),
+        },
       );
 
   void go(BuildContext context) => context.go(location);
