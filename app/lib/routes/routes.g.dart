@@ -36,8 +36,9 @@ RouteBase get $rootRoute => GoRouteData.$route(
                   factory: $HomeRouteExtension._fromState,
                   routes: [
                     GoRouteData.$route(
-                      path: 'add-expense',
-                      factory: $AddExpenseRouteExtension._fromState,
+                      path: 'expense-list',
+                      parentNavigatorKey: ExpenseListRoute.$parentNavigatorKey,
+                      factory: $ExpenseListRouteExtension._fromState,
                     ),
                   ],
                 ),
@@ -50,16 +51,8 @@ RouteBase get $rootRoute => GoRouteData.$route(
                   factory: $GroupListRouteExtension._fromState,
                   routes: [
                     GoRouteData.$route(
-                      path: 'create-group',
-                      factory: $CreateGroupRouteExtension._fromState,
-                    ),
-                    GoRouteData.$route(
                       path: 'group-detail',
                       factory: $GroupDetailRouteExtension._fromState,
-                    ),
-                    GoRouteData.$route(
-                      path: 'add-group-member',
-                      factory: $AddGroupMemberRouteExtension._fromState,
                     ),
                   ],
                 ),
@@ -85,10 +78,6 @@ RouteBase get $rootRoute => GoRouteData.$route(
                       factory: $UpdateProfileRouteExtension._fromState,
                     ),
                     GoRouteData.$route(
-                      path: 'add-address',
-                      factory: $AddAddressRouteExtension._fromState,
-                    ),
-                    GoRouteData.$route(
                       path: 'choose-option',
                       factory: $ChooseOptionRouteExtension._fromState,
                     ),
@@ -101,6 +90,26 @@ RouteBase get $rootRoute => GoRouteData.$route(
               ],
             ),
           ],
+        ),
+        GoRouteData.$route(
+          path: 'create-group',
+          parentNavigatorKey: CreateGroupRoute.$parentNavigatorKey,
+          factory: $CreateGroupRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'add-group-member',
+          parentNavigatorKey: AddGroupMemberRoute.$parentNavigatorKey,
+          factory: $AddGroupMemberRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'add-expense',
+          parentNavigatorKey: AddExpenseRoute.$parentNavigatorKey,
+          factory: $AddExpenseRouteExtension._fromState,
+        ),
+        GoRouteData.$route(
+          path: 'add-address',
+          parentNavigatorKey: AddAddressRoute.$parentNavigatorKey,
+          factory: $AddAddressRouteExtension._fromState,
         ),
       ],
     );
@@ -196,16 +205,12 @@ extension $HomeRouteExtension on HomeRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $AddExpenseRouteExtension on AddExpenseRoute {
-  static AddExpenseRoute _fromState(GoRouterState state) => AddExpenseRoute(
-        int.parse(state.uri.queryParameters['group-id']!),
-      );
+extension $ExpenseListRouteExtension on ExpenseListRoute {
+  static ExpenseListRoute _fromState(GoRouterState state) =>
+      const ExpenseListRoute();
 
   String get location => GoRouteData.$location(
-        '/home/add-expense',
-        queryParams: {
-          'group-id': groupId.toString(),
-        },
+        '/home/expense-list',
       );
 
   void go(BuildContext context) => context.go(location);
@@ -236,56 +241,15 @@ extension $GroupListRouteExtension on GroupListRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $CreateGroupRouteExtension on CreateGroupRoute {
-  static CreateGroupRoute _fromState(GoRouterState state) =>
-      const CreateGroupRoute();
-
-  String get location => GoRouteData.$location(
-        '/groups/create-group',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
-
 extension $GroupDetailRouteExtension on GroupDetailRoute {
   static GroupDetailRoute _fromState(GoRouterState state) => GroupDetailRoute(
-        int.parse(state.uri.queryParameters['group-id']!),
+        _$convertMapValue('group-id', state.uri.queryParameters, int.parse),
       );
 
   String get location => GoRouteData.$location(
         '/groups/group-detail',
         queryParams: {
-          'group-id': groupId.toString(),
-        },
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
-
-extension $AddGroupMemberRouteExtension on AddGroupMemberRoute {
-  static AddGroupMemberRoute _fromState(GoRouterState state) =>
-      AddGroupMemberRoute(
-        int.parse(state.uri.queryParameters['group-id']!),
-      );
-
-  String get location => GoRouteData.$location(
-        '/groups/add-group-member',
-        queryParams: {
-          'group-id': groupId.toString(),
+          if (groupId != null) 'group-id': groupId!.toString(),
         },
       );
 
@@ -369,24 +333,6 @@ extension $UpdateProfileRouteExtension on UpdateProfileRoute {
   void replace(BuildContext context) => context.replace(location);
 }
 
-extension $AddAddressRouteExtension on AddAddressRoute {
-  static AddAddressRoute _fromState(GoRouterState state) =>
-      const AddAddressRoute();
-
-  String get location => GoRouteData.$location(
-        '/settings/add-address',
-      );
-
-  void go(BuildContext context) => context.go(location);
-
-  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
-
-  void pushReplacement(BuildContext context) =>
-      context.pushReplacement(location);
-
-  void replace(BuildContext context) => context.replace(location);
-}
-
 extension $ChooseOptionRouteExtension on ChooseOptionRoute {
   static ChooseOptionRoute _fromState(GoRouterState state) => ChooseOptionRoute(
         _$convertMapValue('type', state.uri.queryParameters,
@@ -420,6 +366,87 @@ extension $AddressesRouteExtension on AddressesRoute {
 
   String get location => GoRouteData.$location(
         '/settings/addresses',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $CreateGroupRouteExtension on CreateGroupRoute {
+  static CreateGroupRoute _fromState(GoRouterState state) =>
+      const CreateGroupRoute();
+
+  String get location => GoRouteData.$location(
+        '/create-group',
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $AddGroupMemberRouteExtension on AddGroupMemberRoute {
+  static AddGroupMemberRoute _fromState(GoRouterState state) =>
+      AddGroupMemberRoute(
+        int.parse(state.uri.queryParameters['group-id']!),
+      );
+
+  String get location => GoRouteData.$location(
+        '/add-group-member',
+        queryParams: {
+          'group-id': groupId.toString(),
+        },
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $AddExpenseRouteExtension on AddExpenseRoute {
+  static AddExpenseRoute _fromState(GoRouterState state) => AddExpenseRoute(
+        int.parse(state.uri.queryParameters['group-id']!),
+      );
+
+  String get location => GoRouteData.$location(
+        '/add-expense',
+        queryParams: {
+          'group-id': groupId.toString(),
+        },
+      );
+
+  void go(BuildContext context) => context.go(location);
+
+  Future<T?> push<T>(BuildContext context) => context.push<T>(location);
+
+  void pushReplacement(BuildContext context) =>
+      context.pushReplacement(location);
+
+  void replace(BuildContext context) => context.replace(location);
+}
+
+extension $AddAddressRouteExtension on AddAddressRoute {
+  static AddAddressRoute _fromState(GoRouterState state) =>
+      const AddAddressRoute();
+
+  String get location => GoRouteData.$location(
+        '/add-address',
       );
 
   void go(BuildContext context) => context.go(location);

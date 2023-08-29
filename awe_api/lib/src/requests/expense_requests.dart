@@ -29,4 +29,12 @@ extension ExpenseRequests on AweAPIClient {
         <Invitation>[].fromJson(Invitation.fromJson),
         params: parameters,
       );
+
+  Future<List<Invitation>> getExpense(
+    int expenseId,
+  ) =>
+      get(
+        Endpoint.expense(expenseId),
+        <Invitation>[].fromJson(Invitation.fromJson),
+      );
 }

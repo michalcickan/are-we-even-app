@@ -1,5 +1,5 @@
 import 'package:areweeven/routes/routes.dart';
-import 'package:flutter/material.dart';
+import 'package:areweeven/routes/routes_global_keys.dart';
 import 'package:go_router/go_router.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
@@ -12,7 +12,7 @@ GoRouter goRouter(GoRouterRef ref) {
   final isLoggedIn = ref.watch(authProvider);
   return GoRouter(
     routes: $appRoutes,
-    navigatorKey: GlobalKey<NavigatorState>(),
+    navigatorKey: rootNavigatorKey,
     redirect: (context, state) {
       switch (state.uri.toString()) {
         case "/":

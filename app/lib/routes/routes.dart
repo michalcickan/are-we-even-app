@@ -16,6 +16,9 @@ part 'routes.g.dart';
   routes: [
     ...authRoutes,
     tabRoutes,
+    ...groupRoutes,
+    ...expensesRoutes,
+    ...settingsRoutes,
   ],
 )
 class RootRoute extends GoRouteData {

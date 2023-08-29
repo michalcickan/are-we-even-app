@@ -20,7 +20,7 @@ final homeTextsProvider = AutoDisposeProvider<HomeTexts>.internal(
 );
 
 typedef HomeTextsRef = AutoDisposeProviderRef<HomeTexts>;
-String _$homeSectionsHash() => r'2e661cf68d08f754054a6eed2334265c9a10c2ee';
+String _$homeSectionsHash() => r'745bc8fee92a11b102690d866dbf95cff11fb973';
 
 /// See also [homeSections].
 @ProviderFor(homeSections)
@@ -36,7 +36,7 @@ final homeSectionsProvider =
 
 typedef HomeSectionsRef
     = AutoDisposeFutureProviderRef<List<ListSection<String>>>;
-String _$homeActionsHash() => r'4ec2dc545edb8421c858793d0ab3dea525a59dda';
+String _$homeActionsHash() => r'013cc4b3148a1ae6bb8f25987a3281cc5343aca2';
 
 /// See also [HomeActions].
 @ProviderFor(HomeActions)

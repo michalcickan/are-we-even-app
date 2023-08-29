@@ -44,12 +44,15 @@ class HomeActions extends _$HomeActions with ProviderRouterContextMixin {
   void build() {}
 
   Future<void> didTapAddExpense() async {
-    final group = ref.read(currentGroupProvider).value;
-    await AddExpenseRoute(group!.id).push(context);
+    await AddExpenseRoute(_groupId).push(context);
     ref.refresh(homeSectionsProvider);
   }
 
-  void didTapShowAllExpenses() {}
+  void didTapShowAllExpenses() {
+    const ExpenseListRoute().push(context);
+  }
+
+  int get _groupId => ref.read(currentGroupProvider).value!.id;
 }
 
 @riverpod
@@ -66,7 +69,7 @@ FutureOr<List<ListSection<String>>> homeSections(HomeSectionsRef ref) async {
       sortType: SortType.desc,
     ),
   );
-  if (pagedExpenses.data == null) {
+  if (pagedExpenses.data?.isEmpty ?? true) {
     return [];
   }
 
@@ -75,10 +78,10 @@ FutureOr<List<ListSection<String>>> homeSections(HomeSectionsRef ref) async {
       localizations.homeExpensesSectionTitle,
       pagedExpenses.data!
           .map(
-            (expense) => ListItemViewModel(
-              expense.id,
-              title: expense.description,
-              onPressed: () {},
+            (expense) => ListItemViewModel.fromExpense(
+              expense,
+              localizations: localizations,
+              onPressed: (expense) {},
             ),
           )
           .toList(),

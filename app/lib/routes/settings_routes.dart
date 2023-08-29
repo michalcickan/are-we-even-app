@@ -10,7 +10,9 @@ import 'package:areweeven/widgets/awe_dialog_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
-const settingsRoutes = [
+import 'routes_global_keys.dart';
+
+const shelledSettingsRoutes = [
   TypedGoRoute<ProfileRoute>(
     path: "profile",
   ),
@@ -20,14 +22,17 @@ const settingsRoutes = [
   TypedGoRoute<UpdateProfileRoute>(
     path: "update-profile",
   ),
-  TypedGoRoute<AddAddressRoute>(
-    path: "add-address",
-  ),
   TypedGoRoute<ChooseOptionRoute>(
     path: "choose-option",
   ),
   TypedGoRoute<AddressesRoute>(
     path: "addresses",
+  ),
+];
+
+const settingsRoutes = [
+  TypedGoRoute<AddAddressRoute>(
+    path: "add-address",
   ),
 ];
 
@@ -58,6 +63,8 @@ class UpdateProfileRoute extends GoRouteData {
 
 class AddAddressRoute extends GoRouteData {
   const AddAddressRoute();
+
+  static final GlobalKey<NavigatorState> $parentNavigatorKey = rootNavigatorKey;
 
   @override
   Page<void> buildPage(BuildContext context, GoRouterState state) {

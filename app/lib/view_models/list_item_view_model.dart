@@ -65,4 +65,16 @@ class ListItemViewModel<ID> extends ViewModel<ID> {
       ),
     );
   }
+
+  static ListItemViewModel<int> fromExpense(
+    Expense expense, {
+    required AppLocalizations localizations,
+    required Function(Expense) onPressed,
+  }) {
+    return ListItemViewModel(
+      expense.id,
+      title: expense.description,
+      onPressed: () => onPressed(expense),
+    );
+  }
 }

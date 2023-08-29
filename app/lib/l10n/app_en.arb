@@ -62,5 +62,6 @@
   "addExpenseDescription": "Add an expense you did and split it with your friends. The algorithm computes debt results as a whole from all your expenses. After the price computation, which the debtor should pay, the algorithm randomly assigns whom to pay according to who paid more than they should. It is not computed per each expense.",
   "expenseDescriptionHint": "Expense description",
   "homeExpensesSectionTitle": "Last expenses",
-  "seeAll": "See all"
+  "seeAll": "See all",
+  "expenseListTitle": "Expenses"
 }

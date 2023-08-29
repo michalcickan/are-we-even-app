@@ -474,6 +474,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'See all'**
   String get seeAll;
+
+  /// No description provided for @expenseListTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Expenses'**
+  String get expenseListTitle;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

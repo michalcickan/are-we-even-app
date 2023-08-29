@@ -9,24 +9,26 @@ import 'package:areweeven/routes/settings_routes.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import 'routes_global_keys.dart';
+
 const tabRoutes = TypedStatefulShellRoute<AppScaffoldShellRoute>(
   branches: [
     TypedStatefulShellBranch(routes: [
       TypedGoRoute<HomeRoute>(
         path: "home",
-        routes: expenseRoutes,
+        routes: shelledExpenseRoutes,
       ),
     ]),
     TypedStatefulShellBranch(routes: [
       TypedGoRoute<GroupListRoute>(
         path: "groups",
-        routes: groupRoutes,
+        routes: shelledGroupRoutes,
       ),
     ]),
     TypedStatefulShellBranch<SettingsBranch>(routes: [
       TypedGoRoute<SettingsRoute>(
         path: "settings",
-        routes: settingsRoutes,
+        routes: shelledSettingsRoutes,
       ),
     ])
   ],
@@ -35,7 +37,7 @@ const tabRoutes = TypedStatefulShellRoute<AppScaffoldShellRoute>(
 class AppScaffoldShellRoute extends StatefulShellRouteData {
   const AppScaffoldShellRoute();
 
-  static final GlobalKey<NavigatorState> $navigatorKey = GlobalKey();
+  static final GlobalKey<NavigatorState> $navigatorKey = shellNavigatorKey;
 
   @override
   Widget builder(BuildContext context, GoRouterState state,
