@@ -64,7 +64,7 @@
   "homeExpensesSectionTitle": "Last expenses",
   "seeAll": "See all",
   "expenseListTitle": "Expenses",
-  "dueAmountTitle": "Due amount",
+  "dueAmountTitle": "Should pay",
   "totalAmountTitle": "Total amount",
   "createdAtTitle": "Created"
 }

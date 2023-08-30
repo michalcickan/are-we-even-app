@@ -2,15 +2,12 @@ import 'package:areweeven/utils/list_section.dart';
 import 'package:areweeven/view_models/card_list_item_view_model.dart';
 import 'package:areweeven/view_models/list_item_view_model.dart';
 import 'package:areweeven/view_models/removable_list_item_view_model.dart';
-import 'package:areweeven/view_models/text_deliminator.dart';
 import 'package:areweeven/widgets/awe_button.dart';
-import 'package:areweeven/widgets/awe_card.dart';
-import 'package:areweeven/widgets/awe_dismissible_background.dart';
 import 'package:areweeven/widgets/awe_list_view.dart';
 import 'package:areweeven/widgets/awe_section_title.dart';
-import 'package:areweeven/widgets/list_item/awe_list_item.dart';
-import 'package:areweeven/widgets/sizes.dart';
 import 'package:flutter/material.dart';
+
+import 'list_item_builder_view_model_widgets.dart';
 
 class AppListItemsBuilder extends ListViewItemsBuilder {
   AppListItemsBuilder(
@@ -28,7 +25,7 @@ class AppListItemsBuilder extends ListViewItemsBuilder {
   }
 
   factory AppListItemsBuilder.fromSections(
-    List<ListSection<String>> sections,
+    List<ListSection> sections,
   ) {
     final indexMap = sections.indexMap;
     return AppListItemsBuilder(indexMap.keys.length, (context, index) {
@@ -36,63 +33,20 @@ class AppListItemsBuilder extends ListViewItemsBuilder {
       if (indexKey == null) return const SizedBox();
       final section = sections[indexKey.sectionIndex];
       return indexKey.isSectionItem
-          ? AWESectionTitle(
-              section.title,
-              rightItem: section.rightItem?.widget,
-            )
+          ? _buildSectionHeader(section.title, section.rightItem)
           : _buildItem(section.viewModels[indexKey.itemIndex]);
     });
   }
 }
 
-extension _SimpleViewModelBuilders on ListItemViewModel {
-  Widget get simpleListItem => AWEListItem(
-        subtitle?.type == SubtitleType.selectionIndicator
-            ? ListItemType.selectionIndicator
-            : ListItemType.option,
-        title: title,
-        subtitle: subtitle?.text,
-        onPressed: onPressed,
-        iconData: iconData,
-        key: ValueKey(id),
-        trailing: trailingType?.widget,
-      );
-}
-
-extension _RemovableViewModelBuilders on RemovableListItemViewModel {
-  Widget get removableItem => Dismissible(
-        key: Key(
-          id.toString(),
-        ),
-        direction: DismissDirection.endToStart,
-        // dismissThresholds: {DismissDirection.endToStart: 10.0},
-        background: const AWEDismissibleBackground(
-          DismissibleBackgroundType.delete,
-        ),
-        confirmDismiss: (direction) {
-          onPressedRemove();
-          return Future.value(false);
-        },
-        child: simpleListItem,
-      );
-}
-
-extension _CardListItemViewModelBuilders on CardListItemViewModel {
-  Widget get cardItem => AWECard(
-        CardType.defaultIndentation,
-        child: Column(
-          children: [
-            Text(upperText),
-            if (textDeliminator != null)
-              Padding(
-                  padding: const EdgeInsets.symmetric(
-                    vertical: Sizes.small,
-                  ),
-                  child: textDeliminator!.widget),
-            Text(bottomText),
-          ],
-        ),
-      );
+Widget _buildSectionHeader(dynamic title, SectionRightItem? rightItem) {
+  if (title is String) {
+    return AWESectionTitle(
+      title,
+      rightItem: rightItem?.widget,
+    );
+  }
+  throw Exception("Other types are not implemented yet");
 }
 
 Widget _buildItem(dynamic viewModel) {
@@ -109,36 +63,13 @@ Widget _buildItem(dynamic viewModel) {
   throw Exception("ViewModel type not implemented yet");
 }
 
-extension _DeliminatorWidget on TextDeliminator {
-  Widget get widget => when(
-        simpleText: (text) => Text(text),
-        arrowDown: (additionalInfo) {
-          const iconWidget = Icon(Icons.arrow_downward);
-          return additionalInfo != null
-              ? Column(
-                  children: [
-                    Text(
-                      additionalInfo!,
-                    ),
-                    iconWidget
-                  ],
-                )
-              : iconWidget;
-        },
-      );
-}
-
-extension _Widgets on ListItemTrailingType {
-  Widget get widget => when(
-        navigation: () => const Icon(
-          Icons.arrow_right,
-        ),
-        switcher: (value, onValueChanged) => Switch(
-          value: value,
-          onChanged: onValueChanged,
-        ),
-        checkbox: () => const Icon(
-          Icons.check,
+extension _RightItemWidget on SectionRightItem {
+  Widget? get widget => when(
+        () => null,
+        more: (title, onPressed) => AWETextButton(
+          TextButtonType.section,
+          text: title,
+          onPressed: onPressed,
         ),
       );
 }
@@ -175,15 +106,4 @@ class _IndexKey {
     this.itemIndex,
     this.isSectionItem,
   );
-}
-
-extension _RightItemWidget on SectionRightItem {
-  Widget? get widget => when(
-        () => null,
-        more: (title, onPressed) => AWETextButton(
-          TextButtonType.section,
-          text: title,
-          onPressed: onPressed,
-        ),
-      );
 }

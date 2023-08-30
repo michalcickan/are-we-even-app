@@ -7,7 +7,7 @@ enum ListItemType {
   selectionIndicator,
 }
 
-class AWEListItem extends StatelessWidget {
+class AWEListTile extends StatelessWidget {
   final String title;
   final String? subtitle;
   final IconData? iconData;
@@ -15,7 +15,7 @@ class AWEListItem extends StatelessWidget {
   final VoidCallback? onPressed;
   final Widget? trailing;
 
-  const AWEListItem(
+  const AWEListTile(
     this.type, {
     required this.title,
     this.iconData,

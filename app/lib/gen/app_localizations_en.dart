@@ -204,7 +204,7 @@ class AppLocalizationsEn extends AppLocalizations {
   String get expenseListTitle => 'Expenses';
 
   @override
-  String get dueAmountTitle => 'Due amount';
+  String get dueAmountTitle => 'Should pay';
 
   @override
   String get totalAmountTitle => 'Total amount';

@@ -484,7 +484,7 @@ abstract class AppLocalizations {
   /// No description provided for @dueAmountTitle.
   ///
   /// In en, this message translates to:
-  /// **'Due amount'**
+  /// **'Should pay'**
   String get dueAmountTitle;
 
   /// No description provided for @totalAmountTitle.
