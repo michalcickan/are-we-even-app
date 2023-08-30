@@ -47,6 +47,10 @@ class GroupListActions extends _$GroupListActions
     ref.read(groupListSectionsProvider.notifier).addGroup(group);
   }
 
+  Future<void> didTapRefresh() async {
+    ref.refresh(groupListSectionsProvider);
+  }
+
   void didTapRemoveGroup(Group group) async {
     try {
       await ref.read(aweApiClientProvider).deleteGroup(group.id);
@@ -109,7 +113,8 @@ typedef GroupListSection = ListSection<String>;
 class GroupListSections extends _$GroupListSections {
   @override
   Future<List<GroupListSection>> build() async {
-    ref.watch(currentGroupProvider);
+    final group = await ref.watch(currentGroupProvider.future);
+    if (group?.id == null) return [];
     final client = ref.watch(aweApiClientProvider);
     final sections = [
       _makeMainSection(

@@ -55,15 +55,14 @@ class ListItemViewModel<ID> extends ViewModel<ID> {
     required AppLocalizations localizations,
     required Function(User) onPressed,
   }) {
-    return ListItemViewModel(
-      user.id,
-      onPressed: () => onPressed(user),
-      title: user.name ?? localizations.unknown,
-      subtitle: Subtitle(
-        text: user.email,
-        type: SubtitleType.info,
-      ),
-    );
+    return ListItemViewModel(user.id,
+        onPressed: () => onPressed(user),
+        title: user.name ?? localizations.unknown,
+        subtitle: Subtitle(
+          text: user.email,
+          type: SubtitleType.info,
+        ),
+        trailingType: null);
   }
 
   static ListItemViewModel<int> fromExpense(

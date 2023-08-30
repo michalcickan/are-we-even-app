@@ -60,6 +60,10 @@ class HomeActions extends _$HomeActions with ProviderRouterContextMixin {
     ExpenseDetailRoute(expense.id).push(context);
   }
 
+  Future<void> didTapRefresh() async {
+    ref.refresh(homeSectionsProvider);
+  }
+
   int get _groupId => ref.read(currentGroupProvider).value!.id;
 }
 

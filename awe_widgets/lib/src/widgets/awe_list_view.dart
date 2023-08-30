@@ -1,7 +1,6 @@
+import 'package:awe_widgets/src/foundation/awe_sizes.dart';
 import 'package:flutter/material.dart';
-
 import 'awe_empty_placeholder.dart';
-import 'sizes.dart';
 
 enum ListViewType {
   defaultIndentation,
@@ -40,7 +39,7 @@ class AWEListView extends StatelessWidget {
     return listViewItemsBuilder.itemsCount > 0
         ? ListView.builder(
             padding: const EdgeInsets.symmetric(
-              vertical: Sizes.small,
+              vertical: AWESizes.small,
             ),
             controller: onReachBottom != null ? _scrollController : null,
             itemBuilder: (context, index) {
@@ -75,9 +74,9 @@ extension _Styles on ListViewType {
     switch (this) {
       case ListViewType.defaultIndentation:
         return const EdgeInsets.only(
-          right: Sizes.small,
-          left: Sizes.small,
-          bottom: Sizes.small,
+          right: AWESizes.small,
+          left: AWESizes.small,
+          bottom: AWESizes.small,
         );
     }
   }

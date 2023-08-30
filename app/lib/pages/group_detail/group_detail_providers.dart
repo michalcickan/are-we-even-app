@@ -41,6 +41,10 @@ class GroupDetailActions extends _$GroupDetailActions
     AddGroupMemberRoute(groupId).push(context);
   }
 
+  Future<void> didTapRefresh(int groupId) async {
+    ref.refresh(_groupDetailProvider(groupId));
+  }
+
   Future<void> didTapSetDefault(int groupId) async {
     try {
       await ref.read(currentGroupProvider.notifier).setDefaultGroup(groupId);
@@ -60,10 +64,11 @@ FutureOr<List<ListSection<String>>> groupDetailSections(
   GroupDetailSectionsRef ref,
   int groupId,
 ) {
+  final localizations = ref.watch(localizationProvider);
   return ref.watch(_groupDetailProvider(groupId).future).then(
         (groupDetail) => [
           ListSection(
-            "Members",
+            localizations.membersSectionTitle,
             groupDetail.members!
                 .map(
                   (e) => ListItemViewModel.fromUser(

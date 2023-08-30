@@ -211,4 +211,7 @@ class AppLocalizationsEn extends AppLocalizations {
 
   @override
   String get createdAtTitle => 'Created';
+
+  @override
+  String get membersSectionTitle => 'Members';
 }

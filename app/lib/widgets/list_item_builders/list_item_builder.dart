@@ -2,9 +2,7 @@ import 'package:areweeven/utils/list_section.dart';
 import 'package:areweeven/view_models/card_list_item_view_model.dart';
 import 'package:areweeven/view_models/list_item_view_model.dart';
 import 'package:areweeven/view_models/removable_list_item_view_model.dart';
-import 'package:areweeven/widgets/awe_button.dart';
-import 'package:areweeven/widgets/awe_list_view.dart';
-import 'package:areweeven/widgets/awe_section_title.dart';
+import 'package:awe_widgets/awe_widgets.dart';
 import 'package:flutter/material.dart';
 
 import 'list_item_builder_view_model_widgets.dart';

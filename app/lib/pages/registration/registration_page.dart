@@ -1,4 +1,5 @@
 import 'package:areweeven/pages/registration/registration_providers.dart';
+import 'package:areweeven/utils/extensions/widget_ref_listeners.dart';
 import 'package:areweeven/utils/text_field_info.dart';
 import 'package:areweeven/widgets/page_scaffold.dart';
 import 'package:areweeven/widgets/scrollable_page_with_bottom_button.dart';
@@ -11,6 +12,8 @@ class RegistrationPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final texts = ref.watch(registrationTextsProvider);
+    ref.registerErrorListener();
+
     return ScrollablePageWithBottomButton(
       appBarData: AppBarData(
         title: texts.title,
@@ -18,7 +21,8 @@ class RegistrationPage extends ConsumerWidget {
       bottomButton: BottomButton(
         title: texts.bottomButtonTitle,
         onPressed: ref.watch(registrationBottomButtonEnabledProvider)
-            ? () => ref
+            ? () =>
+            ref
                 .read(registrationActionsProvider.notifier)
                 .didTapBottomButton()
             : null,
@@ -32,24 +36,30 @@ class RegistrationPage extends ConsumerWidget {
     );
   }
 
-  List<Widget> _makeInputs(
-    WidgetRef ref,
-    RegistrationTexts texts,
-  ) {
+  List<Widget> _makeInputs(WidgetRef ref,
+      RegistrationTexts texts,) {
     return [
       TextFieldInfo(
         texts.emailPlaceholder,
-        (val) => ref.read(registrationEmailProvider.notifier).state = val,
+            (val) =>
+        ref
+            .read(registrationEmailProvider.notifier)
+            .state = val,
       ),
       TextFieldInfo(
         texts.passwordPlaceholder,
-        (val) => ref.read(registrationPasswordProvider.notifier).state = val,
+            (val) =>
+        ref
+            .read(registrationPasswordProvider.notifier)
+            .state = val,
         isSecure: true,
       ),
       TextFieldInfo(
         texts.repeatPasswordPlaceholder,
-        (val) =>
-            ref.read(registrationRepeatedPasswordProvider.notifier).state = val,
+            (val) =>
+        ref
+            .read(registrationRepeatedPasswordProvider.notifier)
+            .state = val,
         isSecure: true,
       ),
     ].inputs;

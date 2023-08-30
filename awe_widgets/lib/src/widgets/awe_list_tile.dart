@@ -1,5 +1,6 @@
-import 'package:areweeven/utils/extensions/build_context_themes.dart';
-import 'package:areweeven/widgets/awe_border_radius.dart';
+import 'package:awe_widgets/src/utils/build_context_themes.dart';
+
+import '../foundation/awe_border_radius.dart';
 import 'package:flutter/material.dart';
 
 enum ListItemType {

@@ -1,4 +1,4 @@
-import 'package:areweeven/widgets/sizes.dart';
+import 'package:awe_widgets/awe_widgets.dart';
 import 'package:flutter/material.dart';
 
 class ScrollableContent extends StatelessWidget {
@@ -23,8 +23,8 @@ class ScrollableContent extends StatelessWidget {
             child: SingleChildScrollView(
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               padding: const EdgeInsets.symmetric(
-                horizontal: Sizes.medium,
-                vertical: Sizes.medium,
+                horizontal: AWESizes.medium,
+                vertical: AWESizes.medium,
               ),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -36,8 +36,8 @@ class ScrollableContent extends StatelessWidget {
           if (bottomView != null)
             Padding(
               padding: const EdgeInsets.symmetric(
-                vertical: Sizes.extraSmall,
-                horizontal: Sizes.extraSmall,
+                vertical: AWESizes.extraSmall,
+                horizontal: AWESizes.extraSmall,
               ),
               child: bottomView!,
             ),

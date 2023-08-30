@@ -1,8 +1,9 @@
-import 'package:areweeven/utils/extensions/build_context_themes.dart';
-import 'package:areweeven/widgets/sizes.dart';
+import 'package:awe_widgets/src/utils/build_context_themes.dart';
+
+import '../foundation/awe_sizes.dart';
 import 'package:flutter/material.dart';
 
-import 'awe_border_radius.dart';
+import '../foundation/awe_border_radius.dart';
 
 enum TextButtonType {
   primary,
@@ -127,8 +128,8 @@ class _CommonButtonStyle extends ButtonStyle {
       : super(
           padding: const MaterialStatePropertyAll(
             EdgeInsets.symmetric(
-              horizontal: Sizes.medium,
-              vertical: Sizes.small,
+              horizontal: AWESizes.medium,
+              vertical: AWESizes.small,
             ),
           ),
         );

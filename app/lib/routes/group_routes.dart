@@ -3,7 +3,7 @@ import 'package:areweeven/pages/create_group/create_group_page.dart';
 import 'package:areweeven/pages/group_detail/group_detail_page.dart';
 import 'package:areweeven/pages/group_invitation_list/group_invitation_list_page.dart';
 import 'package:areweeven/routes/routes_global_keys.dart';
-import 'package:areweeven/widgets/awe_dialog_page.dart';
+import 'package:awe_widgets/awe_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

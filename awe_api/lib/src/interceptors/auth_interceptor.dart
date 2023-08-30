@@ -43,13 +43,13 @@ final class AuthInterceptor extends InterceptorsWrapper {
     Response response,
     ResponseInterceptorHandler handler,
   ) async {
-    if (response.statusCode == HttpStatus.noContent) {
-      return handler.next(response);
-    }
     if (response.realUri.pathSegments.contains(Endpoint.logout().path)) {
       setTokens(
         TokensHolder(null, null),
       );
+      return handler.next(response);
+    }
+    if (response.statusCode == HttpStatus.noContent) {
       return handler.next(response);
     }
     final data = response.data?["data"];

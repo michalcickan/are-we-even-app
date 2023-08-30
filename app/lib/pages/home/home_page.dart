@@ -1,7 +1,7 @@
 import 'package:areweeven/pages/home/home_providers.dart';
-import 'package:areweeven/widgets/awe_list_view.dart';
 import 'package:areweeven/widgets/list_item_builders/list_item_builder.dart';
 import 'package:areweeven/widgets/page_scaffold.dart';
+import 'package:awe_widgets/awe_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -30,11 +30,15 @@ class HomePage extends ConsumerWidget {
         orElse: () => const Center(
           child: CircularProgressIndicator(),
         ),
-        data: (sections) => AWEListView(
-          ListViewType.defaultIndentation,
-          emptyText: texts.emptyListPlaceholder,
-          listViewItemsBuilder: AppListItemsBuilder.fromSections(
-            sections,
+        data: (sections) => RefreshIndicator(
+          onRefresh: () =>
+              ref.read(homeActionsProvider.notifier).didTapRefresh(),
+          child: AWEListView(
+            ListViewType.defaultIndentation,
+            emptyText: texts.emptyListPlaceholder,
+            listViewItemsBuilder: AppListItemsBuilder.fromSections(
+              sections,
+            ),
           ),
         ),
       ),

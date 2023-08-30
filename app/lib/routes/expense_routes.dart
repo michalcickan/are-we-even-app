@@ -1,7 +1,7 @@
 import 'package:areweeven/pages/add_expense/add_expense_page.dart';
 import 'package:areweeven/pages/expense_detail/expense_detail_page.dart';
 import 'package:areweeven/pages/expense_list/expense_list_page.dart';
-import 'package:areweeven/widgets/awe_dialog_page.dart';
+import 'package:awe_widgets/awe_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

@@ -1,9 +1,7 @@
 import 'package:areweeven/utils/extensions/build_context_themes.dart';
-import 'package:areweeven/widgets/awe_card.dart';
-import 'package:areweeven/widgets/awe_pie_chart.dart';
 import 'package:areweeven/widgets/page_scaffold.dart';
 import 'package:areweeven/widgets/scrollable_content.dart';
-import 'package:areweeven/widgets/sizes.dart';
+import 'package:awe_widgets/awe_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -36,7 +34,7 @@ class ExpenseDetailPage extends ConsumerWidget {
               context,
             ),
             const SizedBox(
-              height: Sizes.medium,
+              height: AWESizes.medium,
             ),
             ..._makeCharts(data),
           ],
@@ -70,7 +68,7 @@ class ExpenseDetailPage extends ConsumerWidget {
             textAlign: TextAlign.center,
           ),
           const SizedBox(
-            height: Sizes.medium,
+            height: AWESizes.medium,
           ),
           for (var index = 0; index < entries.length; index++)
             _buildInfoRow(entries[index], index, entries.length),
@@ -94,7 +92,7 @@ class ExpenseDetailPage extends ConsumerWidget {
               ),
             ),
             const SizedBox(
-              height: Sizes.large,
+              height: AWESizes.large,
             ),
           ],
         ),

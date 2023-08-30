@@ -66,5 +66,6 @@
   "expenseListTitle": "Expenses",
   "dueAmountTitle": "Should pay",
   "totalAmountTitle": "Total amount",
-  "createdAtTitle": "Created"
+  "createdAtTitle": "Created",
+  "membersSectionTitle": "Members"
 }

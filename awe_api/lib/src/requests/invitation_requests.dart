@@ -1,4 +1,5 @@
 import 'package:awe_api/awe_api.dart';
+import 'package:awe_api/src/awe_api_client.dart';
 import 'package:awe_api/src/endpoint.dart';
 import 'package:awe_api/src/extensions/list_for_serialization.dart';
 

@@ -36,7 +36,7 @@ final homeSectionsProvider =
 
 typedef HomeSectionsRef
     = AutoDisposeFutureProviderRef<List<ListSection<String>>>;
-String _$homeActionsHash() => r'23ba18f7c94f298179b48174d37cfe33731d0cd6';
+String _$homeActionsHash() => r'7cf2782c4ea05592cd2d5494f0baa5157ea9fe78';
 
 /// See also [HomeActions].
 @ProviderFor(HomeActions)

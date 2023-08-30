@@ -1,6 +1,5 @@
 import 'package:areweeven/utils/available_login_type.dart';
-import 'package:areweeven/widgets/awe_button.dart';
-import 'package:areweeven/widgets/sizes.dart';
+import 'package:awe_widgets/awe_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
@@ -32,19 +31,19 @@ class WelcomePage extends ConsumerWidget {
                 )
                 .toList(),
             const SizedBox(
-              height: Sizes.medium,
+              height: AWESizes.medium,
             ),
             if (texts.loginRegistrationDeliminatorText != null)
               Padding(
                 padding: const EdgeInsets.only(
-                  top: Sizes.medium,
+                  top: AWESizes.medium,
                 ),
                 child: Text(
                   texts.loginRegistrationDeliminatorText!,
                 ),
               ),
             const SizedBox(
-              height: Sizes.medium,
+              height: AWESizes.medium,
             ),
             AWETextButton(
               TextButtonType.secondary,

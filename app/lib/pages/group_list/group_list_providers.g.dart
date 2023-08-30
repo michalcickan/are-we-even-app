@@ -21,7 +21,7 @@ final groupListTextsProvider = AutoDisposeProvider<GroupListTexts>.internal(
 );
 
 typedef GroupListTextsRef = AutoDisposeProviderRef<GroupListTexts>;
-String _$groupListActionsHash() => r'c5797ac511502062c82b4934333d612483e4277e';
+String _$groupListActionsHash() => r'ca84ca7645835e0f52cc997f92893bc547b80800';
 
 /// See also [GroupListActions].
 @ProviderFor(GroupListActions)
@@ -37,7 +37,7 @@ final groupListActionsProvider =
 );
 
 typedef _$GroupListActions = AutoDisposeNotifier<void>;
-String _$groupListSectionsHash() => r'1dac99c7c1ac594d245cbfd02298164390f54cdb';
+String _$groupListSectionsHash() => r'e86cf285a15971d66b092fd6a5ef61458f33059f';
 
 /// See also [GroupListSections].
 @ProviderFor(GroupListSections)

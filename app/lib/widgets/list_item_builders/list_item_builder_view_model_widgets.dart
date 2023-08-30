@@ -2,10 +2,7 @@ import 'package:areweeven/view_models/card_list_item_view_model.dart';
 import 'package:areweeven/view_models/list_item_view_model.dart';
 import 'package:areweeven/view_models/removable_list_item_view_model.dart';
 import 'package:areweeven/view_models/text_deliminator.dart';
-import 'package:areweeven/widgets/awe_card.dart';
-import 'package:areweeven/widgets/awe_dismissible_background.dart';
-import 'package:areweeven/widgets/awe_list_tile.dart';
-import 'package:areweeven/widgets/sizes.dart';
+import 'package:awe_widgets/awe_widgets.dart';
 import 'package:flutter/material.dart';
 
 extension _TextDeliminatorWidget on TextDeliminator {
@@ -83,7 +80,7 @@ extension CardListItemViewModelBuilders on CardListItemViewModel {
             if (textDeliminator != null)
               Padding(
                   padding: const EdgeInsets.symmetric(
-                    vertical: Sizes.small,
+                    vertical: AWESizes.small,
                   ),
                   child: textDeliminator!.widget),
             Text(bottomText),

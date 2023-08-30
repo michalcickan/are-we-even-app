@@ -1,6 +1,6 @@
-import 'package:areweeven/widgets/awe_list_view.dart';
 import 'package:areweeven/widgets/list_item_builders/list_item_builder.dart';
 import 'package:areweeven/widgets/page_scaffold.dart';
+import 'package:awe_widgets/awe_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -38,12 +38,19 @@ class GroupDetailPage extends ConsumerWidget {
             )
           : null,
       body: ref.watch(groupDetailSectionsProvider(groupId)).maybeWhen(
-            data: (section) => AWEListView(
-              ListViewType.defaultIndentation,
-              listViewItemsBuilder: AppListItemsBuilder.fromSections(
-                section,
+            data: (section) => RefreshIndicator(
+              onRefresh: () => ref
+                  .refresh(groupDetailActionsProvider.notifier)
+                  .didTapRefresh(
+                    groupId,
+                  ),
+              child: AWEListView(
+                ListViewType.defaultIndentation,
+                listViewItemsBuilder: AppListItemsBuilder.fromSections(
+                  section,
+                ),
+                emptyText: "",
               ),
-              emptyText: "",
             ),
             orElse: () => const Center(
               child: CircularProgressIndicator(),

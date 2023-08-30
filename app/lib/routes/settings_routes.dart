@@ -6,7 +6,7 @@ import 'package:areweeven/pages/registration/registration_page.dart';
 import 'package:areweeven/pages/settings/settings_page.dart';
 import 'package:areweeven/pages/settings/settings_providers.dart';
 import 'package:areweeven/pages/update_profile/update_profile_page.dart';
-import 'package:areweeven/widgets/awe_dialog_page.dart';
+import 'package:awe_widgets/awe_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 

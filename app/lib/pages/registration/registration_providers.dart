@@ -3,6 +3,7 @@ import 'package:areweeven/global_providers/auth_provider.dart';
 import 'package:areweeven/global_providers/global_error_provider.dart';
 import 'package:areweeven/global_providers/localization_provider.dart';
 import 'package:areweeven/utils/extensions/go_router_context.dart';
+import 'package:email_validator/email_validator.dart';
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 
 part 'registration_providers.g.dart';
@@ -45,12 +46,15 @@ class RegistrationActions extends _$RegistrationActions
 
   Future<void> didTapBottomButton() async {
     try {
+      final email = ref.read(registrationEmailProvider);
+      if (!EmailValidator.validate(email)) {
+        throw ValidationException.incorrectEmailFormat();
+      }
       final password = ref.read(registrationPasswordProvider);
       final repeatedPassword = ref.read(registrationRepeatedPasswordProvider);
       if (password != repeatedPassword) {
         throw ValidationException.passwordNotMatch();
       }
-      final email = ref.read(registrationEmailProvider);
       await ref.read(authProvider.notifier).register(
             email,
             password,

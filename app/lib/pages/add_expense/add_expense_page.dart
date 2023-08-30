@@ -1,8 +1,6 @@
-import 'package:areweeven/widgets/awe_card.dart';
-import 'package:areweeven/widgets/awe_text_field.dart';
 import 'package:areweeven/widgets/page_scaffold.dart';
 import 'package:areweeven/widgets/scrollable_page_with_bottom_button.dart';
-import 'package:areweeven/widgets/sizes.dart';
+import 'package:awe_widgets/awe_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -43,7 +41,7 @@ class AddExpensePage extends ConsumerWidget {
               texts.description!,
             ),
           const SizedBox(
-            height: Sizes.doubleLarge,
+            height: AWESizes.doubleLarge,
           ),
           AWETextField(
             TextFieldType.basic,
@@ -52,7 +50,7 @@ class AddExpensePage extends ConsumerWidget {
                 ref.read(addExpenseDescriptionProvider.notifier).updateValue,
           ),
           const SizedBox(
-            height: Sizes.largeSmall,
+            height: AWESizes.largeSmall,
           ),
           ..._makeInputs(data, ref),
         ],
@@ -81,7 +79,7 @@ class AddExpensePage extends ConsumerWidget {
                 child: Text(member.name),
               ),
               const SizedBox(
-                height: Sizes.small,
+                height: AWESizes.small,
               ),
               Row(
                 children: [
@@ -89,7 +87,7 @@ class AddExpensePage extends ConsumerWidget {
                     child: member.shouldPay.input(ref),
                   ),
                   const SizedBox(
-                    width: Sizes.small,
+                    width: AWESizes.small,
                   ),
                   Expanded(
                     child: member.paid.input(ref),

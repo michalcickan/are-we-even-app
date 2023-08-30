@@ -2,7 +2,7 @@ import 'package:areweeven/gen/app_localizations.dart';
 import 'package:areweeven/global_providers/dialog_provider.dart';
 import 'package:areweeven/global_providers/global_error_provider.dart';
 import 'package:areweeven/global_providers/go_router_provider.dart';
-import 'package:areweeven/widgets/awe_dialog.dart';
+import 'package:awe_widgets/awe_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

@@ -1,5 +1,4 @@
-import 'package:areweeven/widgets/awe_text_field.dart';
-import 'package:areweeven/widgets/sizes.dart';
+import 'package:awe_widgets/awe_widgets.dart';
 import 'package:flutter/material.dart';
 
 class TextFieldInfo {
@@ -24,7 +23,7 @@ extension Inputs on List<TextFieldInfo> {
             obscureText: e.isSecure,
           ),
           const SizedBox(
-            height: Sizes.small,
+            height: AWESizes.small,
           ),
         ],
       ).toList();

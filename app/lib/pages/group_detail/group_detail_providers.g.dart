@@ -193,7 +193,7 @@ class _GroupDetailProvider extends AutoDisposeFutureProvider<Group> {
 }
 
 String _$groupDetailSectionsHash() =>
-    r'c893bf33c483ec1a96d0868c59eb7add19378390';
+    r'99a0247ed320ebd8bfd8164483dd00ddc10da23e';
 typedef GroupDetailSectionsRef
     = AutoDisposeFutureProviderRef<List<ListSection<String>>>;
 
@@ -362,7 +362,7 @@ class GroupDetailShowSwitchToProvider extends AutoDisposeProvider<bool> {
 }
 
 String _$groupDetailActionsHash() =>
-    r'e479bce7bcf7e2458caa93f9d7f683e4b7d50c15';
+    r'53c5b9f158e3e2d090d9bf1b73d3c3e313e6af2a';
 
 /// See also [GroupDetailActions].
 @ProviderFor(GroupDetailActions)

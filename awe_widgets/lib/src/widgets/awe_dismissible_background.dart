@@ -1,5 +1,5 @@
-import 'package:areweeven/utils/extensions/build_context_themes.dart';
-import 'package:areweeven/widgets/sizes.dart';
+import 'package:awe_widgets/src/foundation/awe_sizes.dart';
+import 'package:awe_widgets/src/utils/build_context_themes.dart';
 import 'package:flutter/material.dart';
 
 enum DismissibleBackgroundType {
@@ -21,7 +21,7 @@ class AWEDismissibleBackground extends StatelessWidget {
       color: styleInfo.backgroundColor, // Background color when swiped
       alignment: Alignment.centerRight,
       padding: const EdgeInsets.only(
-        right: Sizes.medium,
+        right: AWESizes.medium,
       ),
       child: Icon(
         styleInfo.iconData,

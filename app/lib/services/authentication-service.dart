@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:areweeven/env/env.dart';
 import 'package:awe_api/awe_api.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -14,7 +16,9 @@ class OauthService {
       case LoginType.google:
         final googleSigIn = GoogleSignIn(
           // TODO: make env
-          clientId: Env.googleClientId,
+          clientId: Platform.isAndroid
+              ? Env.androidGoogleClientId
+              : Env.iOSGoogleClientId,
           scopes: [
             "email",
             "profile",

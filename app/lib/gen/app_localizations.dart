@@ -498,6 +498,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Created'**
   String get createdAtTitle;
+
+  /// No description provided for @membersSectionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Members'**
+  String get membersSectionTitle;
 }
 
 class _AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {

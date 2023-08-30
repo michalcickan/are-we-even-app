@@ -1,10 +1,11 @@
 import 'dart:io';
 
 import 'package:awe_api/awe_api.dart';
-import 'package:awe_api/src/endpoint.dart';
 import 'package:awe_api/src/extensions/map_dio.dart';
 import 'package:awe_api/src/interceptors/auth_interceptor.dart';
 import 'package:dio/dio.dart';
+
+import 'endpoint.dart';
 
 typedef Parser<T> = T Function(Map<String, dynamic> json);
 

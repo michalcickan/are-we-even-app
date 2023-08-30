@@ -1,5 +1,4 @@
-import 'package:areweeven/widgets/awe_button.dart';
-import 'package:areweeven/widgets/awe_text_field.dart';
+import 'package:awe_widgets/awe_widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 

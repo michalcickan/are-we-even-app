@@ -1,4 +1,4 @@
-import 'package:areweeven/widgets/awe_card.dart';
+import 'awe_card.dart';
 import 'package:flutter/material.dart';
 
 enum EmptyPlaceholderType {

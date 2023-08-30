@@ -1,8 +1,9 @@
-import 'package:areweeven/utils/extensions/build_context_themes.dart';
-import 'package:areweeven/widgets/sizes.dart';
+import 'package:awe_widgets/src/utils/build_context_themes.dart';
+
+import '../foundation/awe_sizes.dart';
 import 'package:flutter/material.dart';
 
-import 'awe_border_radius.dart';
+import '../foundation/awe_border_radius.dart';
 
 typedef OnValueChanged = void Function(String);
 
@@ -145,11 +146,11 @@ extension _Style on TextFieldType {
     switch (this) {
       case TextFieldType.basic:
         return const EdgeInsets.all(
-          Sizes.large,
+          AWESizes.large,
         );
       case TextFieldType.search:
         return const EdgeInsets.all(
-          Sizes.medium,
+          AWESizes.medium,
         );
     }
   }

@@ -1,7 +1,7 @@
-import 'package:areweeven/widgets/awe_border_radius.dart';
+import '../foundation/awe_border_radius.dart';
 import 'package:flutter/material.dart';
 
-import 'sizes.dart';
+import '../foundation/awe_sizes.dart';
 
 enum CardType {
   defaultIndentation,
@@ -37,7 +37,7 @@ extension _Styles on CardType {
     switch (this) {
       case CardType.defaultIndentation:
         return const EdgeInsets.all(
-          Sizes.medium,
+          AWESizes.medium,
         );
     }
   }

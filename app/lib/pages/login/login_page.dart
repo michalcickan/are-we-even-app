@@ -1,4 +1,5 @@
 import 'package:areweeven/pages/login/login_providers.dart';
+import 'package:areweeven/utils/extensions/widget_ref_listeners.dart';
 import 'package:areweeven/utils/text_field_info.dart';
 import 'package:areweeven/widgets/page_scaffold.dart';
 import 'package:areweeven/widgets/scrollable_page_with_bottom_button.dart';
@@ -11,6 +12,7 @@ class LoginPage extends ConsumerWidget {
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final texts = ref.watch(loginTextsProvider);
+    ref.registerErrorListener();
     return ScrollablePageWithBottomButton(
       appBarData: AppBarData(
         title: texts.title,
